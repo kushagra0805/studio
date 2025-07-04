@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'HyperAutomate',
-  description: 'Automate PowerShell VM Creation',
+  title: 'My Awesome App',
+  description: 'A new website created in Firebase Studio',
 };
 
 export default function RootLayout({
