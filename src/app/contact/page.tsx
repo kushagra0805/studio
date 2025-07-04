@@ -1,6 +1,5 @@
 "use client"
 
-import type { Metadata } from 'next';
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -20,11 +19,6 @@ import { useToast } from "@/hooks/use-toast"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Send, User, MessageSquare } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: 'Contact Us | MA Global Network',
-  description: 'Get in touch with the MA Global Network team for sales inquiries, support, or custom quotes for our cloud services.',
-};
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),

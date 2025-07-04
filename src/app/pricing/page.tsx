@@ -1,18 +1,12 @@
 
 "use client"
 
-import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, Mail } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-export const metadata: Metadata = {
-  title: 'Pricing Plans | MA Global Network',
-  description: 'Explore flexible and affordable pricing for our VPS, Web Hosting, Dedicated Server, and Colocation services.',
-};
 
 const vpsPlans = [
   {
