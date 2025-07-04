@@ -1,8 +1,9 @@
+
 "use client"
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Server, Database, Globe, Building, BarChart } from 'lucide-react';
+import { ArrowRight, Server, Database, Globe, Building, BarChart, CloudCog } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const textFromLeft = {
@@ -206,6 +207,36 @@ export default function ProductsPage() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <img src="https://placehold.co/500x350.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server racks" />
+          </motion.div>
+        </div>
+        
+        {/* Apex Private Cloud */}
+        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+           <motion.div 
+            className="order-last md:order-first"
+            variants={imageFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+           >
+             <img src="https://placehold.co/500x350.png" alt="Apex Private Cloud" className="rounded-lg shadow-md" data-ai-hint="private secure cloud" />
+          </motion.div>
+          <motion.div
+            variants={textFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <CloudCog className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Apex Private Cloud</h2>
+            </div>
+            <p className="text-muted-foreground text-lg mb-4">
+              Take full control of your infrastructure with a dedicated, on-premises cloud solution built exclusively for your business. We design and deploy a private cloud environment right at your location, tailored to your unique security, performance, and compliance requirements.
+            </p>
+             <Button asChild>
+              <Link href="/contact">Design Your Cloud <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
           </motion.div>
         </div>
 

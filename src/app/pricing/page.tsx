@@ -4,7 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, Mail } from "lucide-react";
+import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, Mail, CloudCog } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -197,7 +197,7 @@ const PlanCard = ({ plan }: { plan: any }) => (
             </CardContent>
             <CardFooter>
                 <Button asChild className="w-full" variant={plan.popular ? 'default' : 'secondary'}>
-                    <Link href="/contact">Get Started</Link>
+                    <Link href="/order">Get Started</Link>
                 </Button>
             </CardFooter>
         </Card>
@@ -229,11 +229,12 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 h-auto">
               <TabsTrigger value="vps" className="py-2">Virtual Servers</TabsTrigger>
               <TabsTrigger value="web-hosting" className="py-2">Web Hosting</TabsTrigger>
               <TabsTrigger value="dedicated" className="py-2">Dedicated Servers</TabsTrigger>
               <TabsTrigger value="colocation" className="py-2">Colocation</TabsTrigger>
+              <TabsTrigger value="apex-cloud" className="py-2">Apex Private Cloud</TabsTrigger>
             </TabsList>
           </motion.div>
 
@@ -293,6 +294,35 @@ export default function PricingPage() {
                     <CardFooter>
                         <Button asChild size="lg" className="w-full md:w-auto">
                             <Link href="/contact">Contact Sales for a Custom Quote</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="apex-cloud" className="mt-10">
+            <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+            >
+                <Card className="shadow-lg max-w-4xl mx-auto">
+                    <CardHeader>
+                        <CardTitle className="text-3xl flex items-center gap-3"><CloudCog className="h-8 w-8 text-primary" />Apex Private Cloud</CardTitle>
+                        <CardDescription>Your own private cloud, deployed on-premises at your business location for ultimate control and security.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                         <ul className="space-y-4 text-lg">
+                            <li className="flex items-center"><ShieldCheck className="h-6 w-6 text-primary mr-3" /><span>Tailored to your specific compliance and security needs.</span></li>
+                            <li className="flex items-center"><Zap className="h-6 w-6 text-primary mr-3" /><span>Dedicated performance with hardware you control.</span></li>
+                            <li className="flex items-center"><Network className="h-6 w-6 text-primary mr-3" /><span>Fully managed by our experts or co-managed with your IT team.</span></li>
+                            <li className="flex items-center"><Check className="h-6 w-6 text-primary mr-3" /><span>Scalable architecture that grows with your business.</span></li>
+                        </ul>
+                        <p className="mt-6 text-muted-foreground">Apex Private Cloud is the ideal solution for businesses requiring maximum data sovereignty, performance, and customized infrastructure. Let us build the perfect cloud for you.</p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button asChild size="lg" className="w-full md:w-auto">
+                            <Link href="/contact">Contact Sales for a Consultation</Link>
                         </Button>
                     </CardFooter>
                 </Card>
