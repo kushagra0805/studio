@@ -28,6 +28,9 @@ export function Header() {
           <Link href="/pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
             Pricing
           </Link>
+           <Link href="/order" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+            Order
+          </Link>
            <Link href="/tools" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
             VM Automation
           </Link>
@@ -65,6 +68,9 @@ export function Header() {
               </Link>
               <Link href="/pricing" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Pricing
+              </Link>
+              <Link href="/order" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
+                Order
               </Link>
               <Link href="/tools" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 VM Automation
