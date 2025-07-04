@@ -13,46 +13,74 @@ export function Chatbot() {
   const toggleChat = () => setIsOpen(!isOpen);
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
-       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute bottom-[80px] right-0"
-          >
-            <ChatInterface onClose={() => setIsOpen(false)} />
-          </motion.div>
+    <div className="fixed bottom-8 right-8 z-50 flex items-end gap-3">
+      {/* Speech bubble */}
+      <AnimatePresence>
+        {!isOpen && (
+            <motion.div
+              key="speech-bubble"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3, delay: 1.2 }}
+              className="mb-2"
+            >
+              <div className="relative rounded-lg bg-primary text-primary-foreground px-4 py-2 shadow-lg">
+                <p className="text-sm font-medium">I am here to help you</p>
+                {/* Arrow pointing to the button */}
+                <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 
+                  border-t-8 border-t-transparent
+                  border-b-8 border-b-transparent
+                  border-l-8 border-l-primary">
+                </div>
+              </div>
+            </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-          delay: 0.5,
-        }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <Button
-          size="icon"
-          className="rounded-full h-16 w-16 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-2xl transition-all duration-300"
-          aria-label={isOpen ? "Close chat" : "Open chat"}
-          onClick={toggleChat}
-        >
-          {isOpen ? (
-            <X className="h-8 w-8 text-primary-foreground" />
-          ) : (
-            <MessageSquare className="h-8 w-8 text-primary-foreground" />
+      {/* Main chat button and interface container */}
+      <div className="relative">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              key="chat-interface"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 50, scale: 0.9 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="absolute bottom-[80px] right-0"
+            >
+              <ChatInterface onClose={() => setIsOpen(false)} />
+            </motion.div>
           )}
-        </Button>
-      </motion.div>
+        </AnimatePresence>
+
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+            delay: 0.5,
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Button
+            size="icon"
+            className="rounded-full h-16 w-16 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-2xl transition-all duration-300"
+            aria-label={isOpen ? "Close chat" : "Open chat"}
+            onClick={toggleChat}
+          >
+            {isOpen ? (
+              <X className="h-8 w-8 text-primary-foreground" />
+            ) : (
+              <MessageSquare className="h-8 w-8 text-primary-foreground" />
+            )}
+          </Button>
+        </motion.div>
+      </div>
     </div>
   )
 }
