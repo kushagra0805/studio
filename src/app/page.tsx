@@ -71,12 +71,12 @@ export default function Home() {
                 whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
               >
                 <img
-                  src="https://placehold.co/600x400.png"
+                  src="https://placehold.co/600x450.png"
                   width="600"
-                  height="400"
+                  height="450"
                   alt="Cloud Infrastructure"
-                  data-ai-hint="abstract network"
-                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
+                  data-ai-hint="futuristic network"
+                  className="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover"
                 />
               </motion.div>
             </div>
@@ -192,7 +192,7 @@ export default function Home() {
                 width="550"
                 height="310"
                 alt="Cloud-x.in for Accounting"
-                data-ai-hint="financial dashboard"
+                data-ai-hint="accounting software"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               />
             </motion.div>

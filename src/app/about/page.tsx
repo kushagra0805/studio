@@ -108,7 +108,7 @@ export default function AboutPage() {
              <motion.div variants={itemVariants} whileHover={{ y: -5, scale: 1.03 }} className="h-full">
               <Card className="p-6 text-center h-full shadow-md hover:shadow-xl transition-shadow">
                   <Avatar className="w-24 h-24 mx-auto mb-4">
-                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="person face" />
+                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="male portrait" />
                       <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                   <h3 className="text-xl font-bold">John Doe</h3>
@@ -118,7 +118,7 @@ export default function AboutPage() {
             <motion.div variants={itemVariants} whileHover={{ y: -5, scale: 1.03 }} className="h-full">
               <Card className="p-6 text-center h-full shadow-md hover:shadow-xl transition-shadow">
                   <Avatar className="w-24 h-24 mx-auto mb-4">
-                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="person face" />
+                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="female portrait" />
                       <AvatarFallback>JS</AvatarFallback>
                   </Avatar>
                   <h3 className="text-xl font-bold">Jane Smith</h3>
@@ -128,7 +128,7 @@ export default function AboutPage() {
             <motion.div variants={itemVariants} whileHover={{ y: -5, scale: 1.03 }} className="h-full">
               <Card className="p-6 text-center h-full shadow-md hover:shadow-xl transition-shadow">
                   <Avatar className="w-24 h-24 mx-auto mb-4">
-                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="person face" />
+                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="professional portrait" />
                       <AvatarFallback>PS</AvatarFallback>
                   </Avatar>
                   <h3 className="text-xl font-bold">Peter Jones</h3>

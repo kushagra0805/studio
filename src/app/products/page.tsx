@@ -84,7 +84,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="https://placehold.co/500x350.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" data-ai-hint="server racks" />
+            <img src="https://placehold.co/500x350.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" data-ai-hint="glowing server" />
           </motion.div>
         </div>
 
@@ -97,7 +97,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-             <img src="https://placehold.co/500x350.png" alt="Dedicated Servers" className="rounded-lg shadow-md" data-ai-hint="data center aisle" />
+             <img src="https://placehold.co/500x350.png" alt="Dedicated Servers" className="rounded-lg shadow-md" data-ai-hint="data center" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -143,7 +143,7 @@ export default function ProductsPage() {
              whileInView="visible"
              viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="https://placehold.co/500x350.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" data-ai-hint="business charts" />
+            <img src="https://placehold.co/500x350.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" data-ai-hint="cloud accounting" />
           </motion.div>
         </div>
 
@@ -156,7 +156,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
            >
-             <img src="https://placehold.co/500x350.png" alt="Web Hosting" className="rounded-lg shadow-md" data-ai-hint="website code" />
+             <img src="https://placehold.co/500x350.png" alt="Web Hosting" className="rounded-lg shadow-md" data-ai-hint="modern website" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -202,7 +202,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="https://placehold.co/500x350.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server room" />
+            <img src="https://placehold.co/500x350.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server racks" />
           </motion.div>
         </div>
 
