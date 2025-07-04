@@ -4,7 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, Mail, CloudCog, ArrowRight } from "lucide-react";
+import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, CloudCog, ArrowRight, Layers, Hand } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -84,6 +84,19 @@ const vpsPlans = [
     ],
     popular: false,
   },
+  {
+    name: "VPS Elite",
+    price: "₹24,999",
+    description: "For large-scale enterprise deployments.",
+    features: [
+      { icon: Cpu, text: "24 vCPU Cores" },
+      { icon: MemoryStick, text: "64 GB RAM" },
+      { icon: HardDrive, text: "1.2 TB NVMe SSD" },
+      { icon: Globe, text: "15 TB Bandwidth" },
+      { icon: Zap, text: "Dedicated Support" },
+    ],
+    popular: false,
+  }
 ];
 
 const webHostingPlans = [
@@ -189,6 +202,60 @@ const dedicatedPlans = [
     },
 ];
 
+const colocationPlans = [
+    {
+        name: "Per U",
+        price: "₹4,999",
+        description: "Ideal for single servers or small network appliances.",
+        features: [
+            { icon: Layers, text: "1U Rack Space" },
+            { icon: Zap, text: "1 Amp Power" },
+            { icon: Network, text: "1 Gbps Uplink Port" },
+            { icon: Globe, text: "5 TB Bandwidth" },
+        ],
+        popular: false,
+    },
+    {
+        name: "Quarter Rack",
+        price: "₹14,999",
+        description: "For small businesses with multiple servers.",
+        features: [
+            { icon: Layers, text: "10U Rack Space" },
+            { icon: Zap, text: "5 Amps Power" },
+            { icon: Network, text: "1 Gbps Uplink Port" },
+            { icon: Globe, text: "10 TB Bandwidth" },
+            { icon: Hand, text: "Basic Remote Hands" },
+        ],
+        popular: false,
+    },
+    {
+        name: "Half Rack",
+        price: "₹24,999",
+        description: "Ample space and power for growing infrastructure.",
+        features: [
+            { icon: Layers, text: "21U Rack Space" },
+            { icon: Zap, text: "10 Amps Power" },
+            { icon: Network, text: "1 Gbps Uplink Port" },
+            { icon: Globe, text: "20 TB Bandwidth" },
+            { icon: Hand, text: "Standard Remote Hands" },
+        ],
+        popular: true,
+    },
+    {
+        name: "Full Rack",
+        price: "₹44,999",
+        description: "Complete, secure cabinet for mission-critical hardware.",
+        features: [
+            { icon: Layers, text: "42U Private Rack" },
+            { icon: Zap, text: "20 Amps Power" },
+            { icon: Network, text: "1 Gbps Uplink Port" },
+            { icon: Globe, text: "30 TB Bandwidth" },
+            { icon: Hand, text: "Advanced Remote Hands" },
+        ],
+        popular: false,
+    },
+];
+
 
 const containerVariants = {
   hidden: { opacity: 1 },
@@ -287,7 +354,7 @@ export default function PricingPage() {
 
           <TabsContent value="vps" className="mt-10">
             <motion.div 
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -319,31 +386,13 @@ export default function PricingPage() {
           </TabsContent>
           
           <TabsContent value="colocation" className="mt-10">
-            <motion.div
-              variants={itemVariants}
+            <motion.div 
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+              variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
-                <Card className="shadow-lg max-w-4xl mx-auto">
-                    <CardHeader>
-                        <CardTitle className="text-3xl flex items-center gap-3"><Building className="h-8 w-8 text-primary" />Server Colocation</CardTitle>
-                        <CardDescription>House your hardware in our enterprise-grade data centers. We provide the space, power, cooling, and network.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <ul className="space-y-4 text-lg">
-                            <li className="flex items-center"><ShieldCheck className="h-6 w-6 text-primary mr-3" /><span>Secure, 24/7 Monitored Facilities</span></li>
-                            <li className="flex items-center"><Zap className="h-6 w-6 text-primary mr-3" /><span>Redundant A+B Power Feeds</span></li>
-                            <li className="flex items-center"><Network className="h-6 w-6 text-primary mr-3" /><span>High-Speed, Low-Latency Network</span></li>
-                            <li className="flex items-center"><Check className="h-6 w-6 text-primary mr-3" /><span>Flexible Rack Space (per U, half, full)</span></li>
-                        </ul>
-                        <p className="mt-6 text-muted-foreground">Our colocation services are perfect for businesses looking to leverage world-class infrastructure without the capital expense of building their own data center.</p>
-                    </CardContent>
-                    <CardFooter>
-                        <Button asChild size="lg" className="w-full md:w-auto">
-                            <Link href="/contact">Contact Sales for a Custom Quote</Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
+              {colocationPlans.map((plan) => <PlanCard key={plan.name} plan={plan} />)}
             </motion.div>
           </TabsContent>
 
@@ -381,3 +430,5 @@ export default function PricingPage() {
     </div>
   );
 }
+
+    
