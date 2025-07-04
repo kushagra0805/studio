@@ -24,7 +24,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { User, Home, Briefcase, FileText, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, Package } from "lucide-react"
+import { User, Home, Briefcase, FileText, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, Package, Cpu, MemoryStick, HardDrive } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { db, storage } from "@/lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
@@ -99,6 +99,11 @@ const orderFormSchema = z.object({
   dedicatedServerPlan: z.string().optional(),
   colocationPlan: z.string().optional(),
 
+  // Custom spec selections
+  customCpu: z.number().optional(),
+  customRam: z.number().optional(),
+  customStorage: z.number().optional(),
+  
   // Custom requirements
   customRequirements: z.string().min(10, { message: "Please provide more details for your custom request (min 10 characters)." }).optional().or(z.literal("")),
 
@@ -160,6 +165,9 @@ export default function OrderPage() {
           webHostingPlan: "",
           dedicatedServerPlan: "",
           colocationPlan: "",
+          customCpu: 8,
+          customRam: 16,
+          customStorage: 160,
           customRequirements: "",
           userNames: [{ name: "" }],
           termsAccepted: false,
@@ -191,6 +199,10 @@ export default function OrderPage() {
   const webHostingPlan = form.watch("webHostingPlan");
   const dedicatedServerPlan = form.watch("dedicatedServerPlan");
   const colocationPlan = form.watch("colocationPlan");
+  
+  const customCpu = form.watch("customCpu");
+  const customRam = form.watch("customRam");
+  const customStorage = form.watch("customStorage");
 
   const showCustomRequirements = 
     (serviceType === 'vps' && vpsPlan === 'Custom') ||
@@ -344,7 +356,7 @@ export default function OrderPage() {
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-3 space-y-0">
                                     <FormControl><RadioGroupItem value="cloud-x" /></FormControl>
-                                    <FormLabel className="font-normal flex items-center gap-2"><Cloud className="h-5 w-5" />Shared Server (Cloud-x.in)</FormLabel>
+                                    <FormLabel className="font-normal flex items-center gap-2"><Cloud className="h-5 w-5" />Shared Server</FormLabel>
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-3 space-y-0">
                                     <FormControl><RadioGroupItem value="web-hosting" /></FormControl>
@@ -434,22 +446,55 @@ export default function OrderPage() {
                         )}
                         
                         {showCustomRequirements && (
-                            <FormField control={form.control} name="customRequirements" render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>Custom Requirements</FormLabel>
-                                <FormControl>
-                                    <Textarea
-                                        placeholder="Please describe your custom hardware, software, or service needs..."
-                                        className="min-h-[120px]"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormDescription>
-                                    Our team will review your request and contact you with a custom quote.
-                                </FormDescription>
-                                <FormMessage />
-                                </FormItem>
-                            )} />
+                            <div className="space-y-8 rounded-lg border p-6 mt-6 bg-secondary/50">
+                                <h4 className="text-lg font-semibold flex items-center gap-2">Customize Your Plan</h4>
+                                
+                                {(serviceType === 'vps' || serviceType === 'dedicated-server') && (
+                                    <div className="space-y-6">
+                                        <FormField control={form.control} name="customCpu" render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="flex items-center gap-2"><Cpu className="h-5 w-5" /> vCPU Cores: <span className="font-bold text-primary">{customCpu}</span></FormLabel>
+                                                <FormControl>
+                                                    <Slider min={1} max={32} step={1} defaultValue={[field.value || 8]} onValueChange={(value) => field.onChange(value[0])} />
+                                                </FormControl>
+                                            </FormItem>
+                                        )} />
+                                        <FormField control={form.control} name="customRam" render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="flex items-center gap-2"><MemoryStick className="h-5 w-5" /> RAM (GB): <span className="font-bold text-primary">{customRam}</span></FormLabel>
+                                                <FormControl>
+                                                    <Slider min={2} max={128} step={2} defaultValue={[field.value || 16]} onValueChange={(value) => field.onChange(value[0])} />
+                                                </FormControl>
+                                            </FormItem>
+                                        )} />
+                                        <FormField control={form.control} name="customStorage" render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="flex items-center gap-2"><HardDrive className="h-5 w-5" /> Storage (GB): <span className="font-bold text-primary">{customStorage}</span></FormLabel>
+                                                <FormControl>
+                                                    <Slider min={40} max={2000} step={20} defaultValue={[field.value || 160]} onValueChange={(value) => field.onChange(value[0])} />
+                                                </FormControl>
+                                            </FormItem>
+                                        )} />
+                                    </div>
+                                )}
+
+                                <FormField control={form.control} name="customRequirements" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Additional Requirements</FormLabel>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder="Please describe any other hardware, software, or service needs..."
+                                                className="min-h-[120px] bg-background"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormDescription>
+                                            Our team will review your request and contact you with a custom quote.
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )} />
+                            </div>
                         )}
                     </div>
                 </div>
@@ -514,7 +559,5 @@ export default function OrderPage() {
     </div>
   );
 }
-
-    
 
     
