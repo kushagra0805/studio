@@ -31,11 +31,16 @@ Here is information about MA Global Network:
       content: [{text: msg.content}]
   }));
 
-  const response = await ai.generate({
-    system: systemPrompt,
-    history: genkitHistory,
-    prompt: query,
-  });
+  try {
+    const response = await ai.generate({
+      system: systemPrompt,
+      history: genkitHistory,
+      prompt: query,
+    });
 
-  return response.text;
+    return response.text;
+  } catch (error) {
+    console.error("AI chat generation failed:", error);
+    return "I'm sorry, but I encountered an error. Please try again later.";
+  }
 }
