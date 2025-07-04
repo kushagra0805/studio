@@ -13,29 +13,29 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { motion } from "framer-motion"
-import { Cloud } from "lucide-react"
+import { KeyRound } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [securityCode, setSecurityCode] = useState("")
   const { toast } = useToast()
 
-  const handleLogin = (e: FormEvent) => {
+  const handleConnect = (e: FormEvent) => {
     e.preventDefault()
     
-    if (username && password) {
+    if (securityCode && !isNaN(Number(securityCode))) {
+      const url = `https://cloud-x.in:${securityCode}`
       toast({
-        title: "Login Successful",
-        description: `Welcome back, ${username}! Redirecting to Cloud-x.in...`,
+        title: "Connecting...",
+        description: `Redirecting you to ${url}`,
       })
       setTimeout(() => {
-        window.open('https://cloud-x.in', '_blank');
-      }, 1500)
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }, 1000)
     } else {
       toast({
-        title: "Login Failed",
-        description: "Please provide both username and password.",
+        title: "Invalid Code",
+        description: "Please enter a valid security code (port number).",
         variant: "destructive",
       })
     }
@@ -50,43 +50,33 @@ export default function LoginPage() {
         className="w-full max-w-sm"
       >
         <Card className="bg-background shadow-xl">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-2xl">
-              <Cloud className="h-6 w-6 text-primary" />
-              Cloud-x.in Login
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-2 text-2xl">
+              <KeyRound className="h-6 w-6 text-primary" />
+              Cloud-x.in Secure Access
             </CardTitle>
             <CardDescription>
-              Enter your credentials to access your cloud accounting portal.
+              Enter your security code to connect to your portal.
             </CardDescription>
           </CardHeader>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleConnect}>
             <CardContent className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="security-code">Security Code</Label>
                 <Input
-                  id="username"
+                  id="security-code"
                   type="text"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  inputMode="numeric"
+                  placeholder="Enter your assigned code"
+                  value={securityCode}
+                  onChange={(e) => setSecurityCode(e.target.value)}
                   required
                 />
               </div>
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full">
-                Login & Connect
+                Connect
               </Button>
             </CardFooter>
           </form>
