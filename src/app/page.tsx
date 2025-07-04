@@ -2,129 +2,182 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mountain, Zap, Cloud, Shield } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { ArrowRight, Server, Database, Globe, Shield, Zap, Cloud } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function Home() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6
+      }
+    }
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center bg-background border-b">
-        <Link href="#" className="flex items-center justify-center" prefetch={false}>
-          <Mountain className="h-6 w-6 text-primary" />
-          <span className="sr-only">Awesome App</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-            Features
-          </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-            Pricing
-          </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-            About
-          </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-            Contact
-          </Link>
-        </nav>
-      </header>
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-secondary/50">
+        <section className="w-full py-24 md:py-32 lg:py-40 xl:py-48">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Build Your Next Big Thing
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-24">
+              <motion.div 
+                className="flex flex-col justify-center space-y-4"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="space-y-4">
+                  <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+                    MA Global Network
                   </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Our platform gives you the tools you need to succeed. Fast, reliable, and secure.
+                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                    Powering Your Digital Future with Cutting-Edge Cloud Solutions.
+                  </p>
+                  <p className="max-w-[600px] text-muted-foreground md:text-lg">
+                    We provide scalable, secure, and reliable cloud infrastructure including VMs, dedicated servers, colocation, and web hosting to fuel your growth.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button asChild size="lg">
-                    <Link href="#" prefetch={false}>
-                      Get Started
+                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Link href="/pricing" prefetch={false}>
+                      View Pricing
                     </Link>
                   </Button>
                   <Button asChild variant="outline" size="lg">
-                    <Link href="#" prefetch={false}>
-                      Learn More
+                    <Link href="/contact" prefetch={false}>
+                      Contact Sales
                     </Link>
                   </Button>
                 </div>
-              </div>
-              <img
-                src="https://placehold.co/600x400.png"
-                width="600"
-                height="400"
-                alt="Hero"
-                data-ai-hint="abstract geometric"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
-              />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <img
+                  src="https://placehold.co/600x400.png"
+                  width="600"
+                  height="400"
+                  alt="Cloud Infrastructure"
+                  data-ai-hint="cloud data center"
+                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
-        <section id="features" className="w-full py-12 md:py-24 lg:py-32">
+
+        <motion.section 
+          id="services" 
+          className="w-full py-12 md:py-24 lg:py-32 bg-secondary/30"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Key Features</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Everything You Need</h2>
+                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm font-semibold text-primary">Our Services</div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Built For Performance</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Discover the features that make our platform the best choice for your projects.
+                  Explore our comprehensive suite of cloud services designed for reliability and scale.
                 </p>
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3 mt-12">
-              <Card>
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full">
-                    <Zap className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle>Blazing Fast</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">Our infrastructure is optimized for speed, ensuring your application runs smoothly.</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full">
-                    <Cloud className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle>Cloud Native</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">Built for the cloud, our platform scales with you as your business grows.</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full">
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle>Top-tier Security</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">We prioritize security to protect your data and your users' privacy.</p>
-                </CardContent>
-              </Card>
+              <motion.div variants={itemVariants}>
+                <Card className="h-full hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                  <CardHeader className="flex flex-col items-center text-center">
+                    <div className="bg-primary/10 p-4 rounded-full mb-4">
+                      <Server className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle>Virtual & Dedicated Servers</CardTitle>
+                    <CardDescription>Get powerful, isolated server environments with full root access.</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <Card className="h-full hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                  <CardHeader className="flex flex-col items-center text-center">
+                    <div className="bg-primary/10 p-4 rounded-full mb-4">
+                      <Globe className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle>Web Hosting</CardTitle>
+                    <CardDescription>Blazing-fast and secure hosting for websites of all sizes.</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <Card className="h-full hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                  <CardHeader className="flex flex-col items-center text-center">
+                    <div className="bg-primary/10 p-4 rounded-full mb-4">
+                      <Database className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle>Server Colocation</CardTitle>
+                    <CardDescription>House your own hardware in our secure, state-of-the-art data centers.</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
             </div>
+          </div>
+        </motion.section>
+
+        <section id="cloud-x" className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm font-semibold text-primary">Cloud-x.in</div>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Experience the Simplicity of Shared Hosting with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">Cloud-x.in</span>
+              </h2>
+              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Our premium shared hosting platform, Cloud-x.in, offers an affordable, easy-to-use solution for hosting your websites with cPanel, one-click installers, and 24/7 support.
+              </p>
+              <Button asChild>
+                <Link href="/products#cloud-x" prefetch={false}>
+                  Learn More about Cloud-x.in <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.8 }}
+            >
+              <img
+                src="https://placehold.co/550x310.png"
+                width="550"
+                height="310"
+                alt="Cloud-x.in"
+                data-ai-hint="hosting control panel"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+              />
+            </motion.div>
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">&copy; 2024 My Awesome App. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-            Terms of Service
-          </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-            Privacy
-          </Link>
-        </nav>
-      </footer>
     </div>
   )
 }
