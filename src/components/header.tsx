@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -30,9 +29,6 @@ export function Header() {
           </Link>
            <Link href="/order" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
             Order
-          </Link>
-           <Link href="/tools" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
-            VM Automation
           </Link>
           <Link href="/about" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
             About
@@ -71,9 +67,6 @@ export function Header() {
               </Link>
               <Link href="/order" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Order
-              </Link>
-              <Link href="/tools" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
-                VM Automation
               </Link>
               <Link href="/about" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 About
