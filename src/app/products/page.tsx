@@ -76,7 +76,7 @@ export default function ProductsPage() {
               Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions give you full root access, guaranteed resources, and the ability to scale up as you grow. Perfect for web applications, development environments, and small business servers.
             </p>
             <Button asChild>
-              <Link href="/pricing">View VPS Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing">Explore VPS Pricing <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
           <motion.div
@@ -114,7 +114,7 @@ export default function ProductsPage() {
               For ultimate performance and security, nothing beats a dedicated server. You get an entire physical server dedicated to your applications, with no noisy neighbors. Ideal for high-traffic websites, large databases, and enterprise applications.
             </p>
              <Button asChild>
-              <Link href="/pricing">View Dedicated Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing">Explore Dedicated Pricing <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
         </div>
@@ -176,7 +176,7 @@ export default function ProductsPage() {
              Fast, reliable, and secure hosting for your websites. From personal blogs to large e-commerce stores, our web hosting plans are designed for speed and come with everything you need to get online, backed by our 24/7 expert support.
             </p>
              <Button asChild>
-              <Link href="/pricing">View Hosting Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing">Explore Hosting Pricing<ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
         </div>

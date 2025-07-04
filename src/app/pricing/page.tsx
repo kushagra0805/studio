@@ -4,7 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, Mail, CloudCog } from "lucide-react";
+import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, Mail, CloudCog, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -40,8 +40,8 @@ const vpsPlans = [
     features: [
       { icon: Cpu, text: "2 vCPU Cores" },
       { icon: MemoryStick, text: "4 GB RAM" },
-      { icon: HardDrive, text: "40 GB NVMe SSD" },
-      { icon: Globe, text: "2 TB Bandwidth" },
+      { icon: HardDrive, text: "80 GB NVMe SSD" },
+      { icon: Globe, text: "4 TB Bandwidth" },
     ],
     popular: false,
   },
@@ -52,9 +52,9 @@ const vpsPlans = [
     features: [
       { icon: Cpu, text: "4 vCPU Cores" },
       { icon: MemoryStick, text: "8 GB RAM" },
-      { icon: HardDrive, text: "80 GB NVMe SSD" },
-      { icon: Globe, text: "4 TB Bandwidth" },
-      { icon: Check, text: "Daily Backups" },
+      { icon: HardDrive, text: "160 GB NVMe SSD" },
+      { icon: Globe, text: "5 TB Bandwidth" },
+      { icon: ShieldCheck, text: "Daily Backups" },
     ],
     popular: true,
   },
@@ -65,9 +65,9 @@ const vpsPlans = [
     features: [
       { icon: Cpu, text: "8 vCPU Cores" },
       { icon: MemoryStick, text: "16 GB RAM" },
-      { icon: HardDrive, text: "160 GB NVMe SSD" },
+      { icon: HardDrive, text: "320 GB NVMe SSD" },
       { icon: Globe, text: "8 TB Bandwidth" },
-      { icon: Check, text: "Daily Backups" },
+      { icon: ShieldCheck, text: "Daily Backups" },
     ],
     popular: false,
   },
@@ -78,9 +78,9 @@ const vpsPlans = [
     features: [
       { icon: Cpu, text: "16 vCPU Cores" },
       { icon: MemoryStick, text: "32 GB RAM" },
-      { icon: HardDrive, text: "320 GB NVMe SSD" },
+      { icon: HardDrive, text: "640 GB NVMe SSD" },
       { icon: Globe, text: "10 TB Bandwidth" },
-      { icon: Check, text: "Priority Support" },
+      { icon: Zap, text: "Priority Support" },
     ],
     popular: false,
   },
@@ -88,13 +88,26 @@ const vpsPlans = [
 
 const webHostingPlans = [
     {
-        name: "Personal",
-        price: "₹449",
-        description: "Great for personal sites and blogs.",
+        name: "Starter",
+        price: "₹199",
+        description: "Perfect for a static landing page or basic blog.",
         features: [
             { icon: Globe, text: "1 Website" },
+            { icon: HardDrive, text: "20 GB SSD Storage" },
+            { icon: Globe, text: "Unmetered Bandwidth" },
+            { icon: ShieldCheck, text: "Free SSL Certificate" },
+        ],
+        popular: false,
+    },
+    {
+        name: "Personal",
+        price: "₹449",
+        description: "Great for personal sites and growing blogs.",
+        features: [
+            { icon: Globe, text: "5 Websites" },
             { icon: HardDrive, text: "50 GB SSD Storage" },
-            { icon: Globe, text: "1 TB Bandwidth" },
+            { icon: Globe, text: "Unmetered Bandwidth" },
+            { icon: ShieldCheck, text: "Free SSL Certificate" },
         ],
         popular: false,
     },
@@ -104,8 +117,9 @@ const webHostingPlans = [
         description: "More power for small business websites.",
         features: [
             { icon: Globe, text: "10 Websites" },
-            { icon: HardDrive, text: "100 GB SSD Storage" },
+            { icon: HardDrive, text: "100 GB NVMe Storage" },
             { icon: Globe, text: "Unmetered Bandwidth" },
+            { icon: ShieldCheck, text: "Daily Backups" },
         ],
         popular: true,
     },
@@ -117,6 +131,7 @@ const webHostingPlans = [
             { icon: Globe, text: "Unlimited Websites" },
             { icon: HardDrive, text: "200 GB NVMe Storage" },
             { icon: Globe, text: "Unmetered Bandwidth" },
+            { icon: ShieldCheck, text: "Daily Backups" },
             { icon: Check, text: "Staging Site" },
         ],
         popular: false,
@@ -125,31 +140,43 @@ const webHostingPlans = [
 
 const dedicatedPlans = [
     {
-        name: "DS-1",
-        price: "₹11,999",
+        name: "DS-Essential",
+        price: "₹7,999",
         description: "Entry-level dedicated power for serious projects.",
         features: [
-            { icon: Cpu, text: "Intel Xeon-D 2123IT (4C/8T)" },
+            { icon: Cpu, text: "Intel Xeon E-2336 (6C/12T)" },
             { icon: MemoryStick, text: "32 GB DDR4 RAM" },
-            { icon: HardDrive, text: "2x 512 GB NVMe SSD" },
+            { icon: HardDrive, text: "2x 250 GB SATA SSD" },
             { icon: Globe, text: "10 TB Bandwidth" },
         ],
         popular: false,
     },
     {
-        name: "DS-2",
+        name: "DS-Standard",
+        price: "₹11,999",
+        description: "A solid foundation for growing applications.",
+        features: [
+            { icon: Cpu, text: "Intel Xeon-D 2123IT (4C/8T)" },
+            { icon: MemoryStick, text: "32 GB DDR4 RAM" },
+            { icon: HardDrive, text: "2x 512 GB NVMe SSD" },
+            { icon: Globe, text: "15 TB Bandwidth" },
+        ],
+        popular: false,
+    },
+    {
+        name: "DS-Advanced",
         price: "₹23,999",
         description: "High performance for demanding applications.",
         features: [
             { icon: Cpu, text: "AMD EPYC 7282 (16C/32T)" },
             { icon: MemoryStick, text: "64 GB DDR4 RAM" },
             { icon: HardDrive, text: "2x 1 TB NVMe SSD" },
-            { icon: Globe, text: "20 TB Bandwidth" },
+            { icon: Globe, text: "25 TB Bandwidth" },
         ],
         popular: true,
     },
     {
-        name: "DS-3",
+        name: "DS-Elite",
         price: "₹39,999",
         description: "Ultimate power for enterprise-level workloads.",
         features: [
@@ -168,7 +195,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25
+      staggerChildren: 0.15
     }
   }
 };
@@ -271,7 +298,7 @@ export default function PricingPage() {
 
           <TabsContent value="web-hosting" className="mt-10">
             <motion.div 
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -282,7 +309,7 @@ export default function PricingPage() {
 
           <TabsContent value="dedicated" className="mt-10">
             <motion.div 
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
