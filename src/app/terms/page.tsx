@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | MA Global Network',
-  description: 'Read the Terms of Service for using MA Global Network products and services.',
+  title: 'Terms of Service | M A Global Network',
+  description: 'Read the Terms of Service for using M A Global Network products and services.',
 };
 
 export default function TermsPage() {
@@ -13,7 +13,7 @@ export default function TermsPage() {
         <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">1. Agreement to Terms</h2>
-        <p>By purchasing, accessing, or using the services provided by MA Global Network ("Service," "we," "us," "our"), you ("Client," "you," "your") agree to be bound by these Terms of Service. These terms govern your use of our virtual private servers, dedicated servers, web hosting, server colocation, and specialized Cloud-x.in services. If you do not agree to these terms, you may not use our services.</p>
+        <p>By purchasing, accessing, or using the services provided by M A Global Network ("Service," "we," "us," "our"), you ("Client," "you," "your") agree to be bound by these Terms of Service. These terms govern your use of our virtual private servers, dedicated servers, web hosting, server colocation, and specialized Cloud-x.in services. If you do not agree to these terms, you may not use our services.</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">2. Service Provision</h2>
         <p>We will provide the services according to the specifications of the plan you have selected. We strive to maintain a high level of service availability, but we do not guarantee that the service will be uninterrupted, error-free, or completely secure.</p>
@@ -39,14 +39,14 @@ export default function TermsPage() {
         <p>We reserve the right to suspend or terminate services immediately for any violation of this policy without prior notice.</p>
         
         <h2 className="text-2xl font-bold mt-8 mb-4">5. Backup and Data Loss</h2>
-        <p>For certain services, MA Global Network may perform courtesy backups of client data. Where backups are provided, they are retained for a period of <strong>7 (seven) days</strong>. These backups are provided as a convenience and are not guaranteed. </p>
-        <p><strong>It is the Client’s sole responsibility to maintain their own independent backups.</strong> MA Global Network is not liable for any data loss or corruption, regardless of the cause. We strongly recommend that you implement your own comprehensive backup strategy.</p>
+        <p>For certain services, M A Global Network may perform courtesy backups of client data. Where backups are provided, they are retained for a period of <strong>7 (seven) days</strong>. These backups are provided as a convenience and are not guaranteed. </p>
+        <p><strong>It is the Client’s sole responsibility to maintain their own independent backups.</strong> M A Global Network is not liable for any data loss or corruption, regardless of the cause. We strongly recommend that you implement your own comprehensive backup strategy.</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">6. Payment and Billing</h2>
         <p>You agree to pay for the services in advance for the billing cycle you have selected. Failure to pay on time may result in the suspension or termination of your services. All payments are non-refundable unless otherwise stated in a specific service agreement.</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">7. Limitation of Liability</h2>
-        <p>In no event will MA Global Network, its directors, employees, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage.</p>
+        <p>In no event will M A Global Network, its directors, employees, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage.</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">8. Disclaimer of Warranties</h2>
         <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis. Your use of the Service is at your sole risk. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance.</p>

@@ -69,7 +69,7 @@ export function ChatInterface({ onClose }: ChatInterfaceProps) {
       <CardHeader className="flex flex-row items-center justify-between">
         <div className="flex items-center gap-2">
           <Bot className="h-6 w-6 text-primary" />
-          <CardTitle>MA Global Assistant</CardTitle>
+          <CardTitle>M A Global Assistant</CardTitle>
         </div>
         <Button
           variant="ghost"

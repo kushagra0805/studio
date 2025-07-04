@@ -42,7 +42,7 @@ export default function Home() {
               >
                 <div className="space-y-4">
                   <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl xl:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">
-                    MA Global Network
+                    M A Global Network
                   </h1>
                    <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     Powering Your Digital Future with Cutting-Edge, Reliable, and Secure Cloud Solutions.
@@ -94,7 +94,7 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Why Choose MA Global Network?</h2>
+                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Why Choose M A Global Network?</h2>
                  <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                     We are more than just a provider; we are your partner in innovation and growth.
                  </p>

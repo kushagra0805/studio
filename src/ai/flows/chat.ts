@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview A chatbot flow for MA Global Network.
+ * @fileOverview A chatbot flow for M A Global Network.
  *
  * - chat - A function that handles the chatbot conversation.
  */
@@ -9,12 +9,12 @@ import type {Message} from 'genkit';
 import type { ChatMessage } from '@/lib/types';
 
 export async function chat(history: ChatMessage[], query: string): Promise<string> {
-  const systemPrompt = `You are a friendly and helpful customer support assistant for MA Global Network, a cloud services provider.
+  const systemPrompt = `You are a friendly and helpful customer support assistant for M A Global Network, a cloud services provider.
 Your goal is to answer user questions about the company's products and services.
 Be concise and helpful.
 
-Here is information about MA Global Network:
-- **Business Name:** MA Global Network
+Here is information about M A Global Network:
+- **Business Name:** M A Global Network
 - **Services:**
   - Virtual Private Servers (VPS): Scalable and powerful virtual servers.
   - Dedicated Servers: For high-performance and security needs.

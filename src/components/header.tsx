@@ -16,7 +16,7 @@ export function Header() {
     <header className="px-4 lg:px-6 h-16 flex items-center bg-background/80 backdrop-blur-sm border-b sticky top-0 z-50">
       <Link href="/" className="flex items-center justify-center gap-2" prefetch={false}>
         <Cloud className="h-6 w-6 text-primary" />
-        <span className="text-lg font-bold">MA Global Network</span>
+        <span className="text-lg font-bold">M A Global Network</span>
       </Link>
       
       <div className="ml-auto flex items-center gap-4">

@@ -42,7 +42,7 @@ export default function AboutPage() {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">
-            About MA Global Network
+            About M A Global Network
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
             Pioneering the future of cloud infrastructure with a focus on reliability, performance, and customer success.
@@ -100,7 +100,7 @@ export default function AboutPage() {
             >
                 <h2 className="text-3xl font-bold tracking-tight mb-4">Our Story</h2>
                 <p className="text-muted-foreground mb-4">
-                    Founded with the belief that powerful cloud technology should be accessible to everyone, MA Global Network began as a small team of passionate engineers. We saw a need for a hosting provider that wasn't just a vendor, but a true partner. 
+                    Founded with the belief that powerful cloud technology should be accessible to everyone, M A Global Network began as a small team of passionate engineers. We saw a need for a hosting provider that wasn't just a vendor, but a true partner. 
                 </p>
                 <p className="text-muted-foreground">
                     From our origins in providing specialized accounting cloud services with Cloud-x.in, we've grown into a comprehensive infrastructure provider. Today, we serve thousands of clients worldwide, but our core mission remains the same: to deliver exceptional performance and unwavering support.

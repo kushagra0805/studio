@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | MA Global Network',
-  description: 'Read the Privacy Policy for MA Global Network, detailing how we collect, use, and protect your data.',
+  title: 'Privacy Policy | M A Global Network',
+  description: 'Read the Privacy Policy for M A Global Network, detailing how we collect, use, and protect your data.',
 };
 
 export default function PrivacyPage() {
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
         <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
         <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         
-        <p>MA Global Network ("us", "we", or "our") operates the MA Global Network website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>
+        <p>M A Global Network ("us", "we", or "our") operates the M A Global Network website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">Information Collection and Use</h2>
         <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
         </ul>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">Use of Data</h2>
-        <p>MA Global Network uses the collected data for various purposes:</p>
+        <p>M A Global Network uses the collected data for various purposes:</p>
         <ul className="list-disc list-inside space-y-2">
             <li>To provide and maintain the Service</li>
             <li>To notify you about changes to our Service</li>

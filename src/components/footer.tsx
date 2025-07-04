@@ -8,10 +8,10 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
             <Cloud className="h-6 w-6 text-primary" />
-            <span className="text-lg font-semibold">MA Global Network</span>
+            <span className="text-lg font-semibold">M A Global Network</span>
           </div>
           <p className="text-sm text-muted-foreground text-center md:text-left">
-            &copy; {new Date().getFullYear()} MA Global Network. All rights reserved.
+            &copy; {new Date().getFullYear()} M A Global Network. All rights reserved.
           </p>
           <nav className="flex gap-4 sm:gap-6">
             <Link href="/terms" className="text-sm hover:underline underline-offset-4" prefetch={false}>

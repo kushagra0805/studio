@@ -6,7 +6,7 @@ import { Footer } from '@/components/footer';
 import { Chatbot } from '@/components/chatbot';
 
 export const metadata: Metadata = {
-  title: 'MA Global Network - Cloud Services',
+  title: 'M A Global Network - Cloud Services',
   description: 'Your trusted partner for VMs, dedicated servers, colocation, and web hosting.',
 };
 
