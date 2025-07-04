@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -11,10 +12,22 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import Link from "next/link"
 import { motion } from "framer-motion"
+import { ShieldCheck } from "lucide-react"
 
 export default function LoginPage() {
+  const [securityCode, setSecurityCode] = useState("")
+
+  const handleConnect = (e: FormEvent) => {
+    e.preventDefault()
+    if (securityCode && !isNaN(Number(securityCode))) {
+      window.location.href = `https://cloud-x.in:${securityCode}`
+    } else {
+      // You could add a toast notification here for invalid input
+      console.error("Invalid security code entered.")
+    }
+  }
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] py-12 bg-secondary">
       <motion.div
@@ -25,30 +38,36 @@ export default function LoginPage() {
       >
         <Card className="bg-background shadow-xl">
           <CardHeader>
-            <CardTitle className="text-2xl">Cloud-x.in Login</CardTitle>
+            <CardTitle className="flex items-center gap-2 text-2xl">
+              <ShieldCheck className="h-6 w-6 text-primary" />
+              Cloud-x.in Secure Access
+            </CardTitle>
             <CardDescription>
-              Enter your email below to login to your account.
+              Please enter your security code to connect to your service.
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="m@example.com" required />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required />
-            </div>
-          </CardContent>
-          <CardFooter className="flex flex-col">
-            <Button className="w-full">Sign in</Button>
-            <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link href="/contact" className="underline">
-                Sign up
-              </Link>
-            </div>
-          </CardFooter>
+          <form onSubmit={handleConnect}>
+            <CardContent className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="security-code">Security Code</Label>
+                <Input
+                  id="security-code"
+                  type="text"
+                  placeholder="Enter your assigned code"
+                  value={securityCode}
+                  onChange={(e) => setSecurityCode(e.target.value)}
+                  required
+                  pattern="\d*"
+                  title="Please enter a valid port number."
+                />
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button type="submit" className="w-full">
+                Connect
+              </Button>
+            </CardFooter>
+          </form>
         </Card>
       </motion.div>
     </div>
