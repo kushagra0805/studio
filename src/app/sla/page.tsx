@@ -16,7 +16,7 @@ export default function SlaPage() {
         <p>This Service Level Agreement ("SLA") is a part of the Master Service Agreement ("MSA") between M A Global Network ("we", "us") and you ("Customer", "you"). This SLA defines the service level commitments for the services provided by M A Global Network.</p>
         
         <h2 className="text-2xl font-bold mt-8 mb-4">1. Network Uptime Guarantee</h2>
-        <p>M A Global Network guarantees a <strong>99.9% network uptime</strong>. Network uptime refers to the availability of our network infrastructure, including routers, switches, and cabling. This guarantee applies to the portion of the network from the outbound port of our edge routers to the outbound port of the data center.</p>
+        <p>M A Global Network guarantees a <strong>99% network uptime</strong>. Network uptime refers to the availability of our network infrastructure, including routers, switches, and cabling. This guarantee applies to the portion of the network from the outbound port of our edge routers to the outbound port of the data center.</p>
         <p>The network uptime guarantee does not cover downtime caused by:</p>
         <ul className="list-disc list-inside space-y-2">
             <li>Scheduled maintenance windows, for which we will provide at least 24 hours' notice.</li>
@@ -31,12 +31,12 @@ export default function SlaPage() {
         <p>This guarantee does not cover software-related issues, data loss, or data recovery. Customers are responsible for their own data backups.</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">3. Credit for Downtime</h2>
-        <p>If we fail to meet the 99.9% network uptime guarantee in a given calendar month, you may be eligible for a service credit. To receive a credit, you must submit a ticket to our support department within 7 days of the end of the month in which the downtime occurred.</p>
+        <p>If we fail to meet the 99% network uptime guarantee in a given calendar month, you may be eligible for a service credit. To receive a credit, you must submit a ticket to our support department within 7 days of the end of the month in which the downtime occurred.</p>
         <p>Service credits are calculated as follows:</p>
         <ul className="list-disc list-inside space-y-2">
-            <li><strong>99.0% to 99.89% uptime:</strong> 5% of your monthly fee for the affected service.</li>
-            <li><strong>98.0% to 98.99% uptime:</strong> 10% of your monthly fee for the affected service.</li>
-            <li><strong>Below 98.0% uptime:</strong> 25% of your monthly fee for the affected service.</li>
+            <li><strong>98.0% to 98.99% uptime:</strong> 5% of your monthly fee for the affected service.</li>
+            <li><strong>95.0% to 97.99% uptime:</strong> 10% of your monthly fee for the affected service.</li>
+            <li><strong>Below 95.0% uptime:</strong> 25% of your monthly fee for the affected service.</li>
         </ul>
         <p>The maximum credit for any given month will not exceed 50% of your monthly fee for the affected service. Credits are applied to your next invoice and are not redeemable for cash.</p>
 
