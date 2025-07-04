@@ -45,20 +45,23 @@ export function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
-            <div className="grid gap-4 py-6">
-              <Link href="/products" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false} onClick={closeSheet}>
+            <div className="grid gap-2 py-6">
+              <Link href="/" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
+                Home
+              </Link>
+              <Link href="/products" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Products
               </Link>
-              <Link href="/pricing" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false} onClick={closeSheet}>
+              <Link href="/pricing" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Pricing
               </Link>
-              <Link href="/about" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false} onClick={closeSheet}>
-                About Us
+              <Link href="/about" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
+                About
               </Link>
-              <Link href="/contact" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false} onClick={closeSheet}>
+              <Link href="/contact" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Contact
               </Link>
-              <Button asChild className="w-full mt-4">
+              <Button asChild className="w-full mt-6">
                   <Link href="/login" prefetch={false} onClick={closeSheet}>
                     Cloud-x.in Login
                   </Link>

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ArrowRight, Server, Database, Globe, Shield, Zap, Cloud, BarChart } from "lucide-react"
+import { ArrowRight, Server, Database, Globe, Shield, Zap, Cloud, BarChart, LifeBuoy, ShieldCheck, Scaling } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function Home() {
@@ -41,14 +41,14 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="space-y-4">
-                  <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">
+                  <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl xl:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">
                     MA Global Network
                   </h1>
                    <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Powering Your Digital Future with Cutting-Edge Cloud Solutions.
+                    Powering Your Digital Future with Cutting-Edge, Reliable, and Secure Cloud Solutions.
                   </p>
                   <p className="max-w-[600px] text-muted-foreground md:text-lg">
-                    We provide scalable, secure, and reliable cloud infrastructure including VMs, dedicated servers, colocation, and web hosting to fuel your growth.
+                    We specialize in providing scalable and secure cloud infrastructure including high-performance VMs, dedicated servers, enterprise-grade colocation, and robust web hosting. Our mission is to fuel your growth with technology you can trust.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -82,6 +82,56 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <motion.section 
+          id="why-us" 
+          className="w-full py-12 md:py-24 lg:py-32"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Why Choose MA Global Network?</h2>
+                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    We are more than just a provider; we are your partner in innovation and growth.
+                 </p>
+              </div>
+            </div>
+             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 mt-12">
+               <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <LifeBuoy className="h-8 w-8" />
+                 </div>
+                 <h3 className="text-xl font-bold">24/7 Expert Support</h3>
+                 <p className="text-muted-foreground mt-2">Our team is always available to help you with any issues.</p>
+               </motion.div>
+               <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <ShieldCheck className="h-8 w-8" />
+                 </div>
+                 <h3 className="text-xl font-bold">Top-Tier Security</h3>
+                 <p className="text-muted-foreground mt-2">State-of-the-art security to protect your valuable data.</p>
+               </motion.div>
+               <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <Scaling className="h-8 w-8" />
+                 </div>
+                 <h3 className="text-xl font-bold">Scalable Solutions</h3>
+                 <p className="text-muted-foreground mt-2">Grow your infrastructure as your business expands.</p>
+               </motion.div>
+               <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <Globe className="h-8 w-8" />
+                 </div>
+                 <h3 className="text-xl font-bold">Global Infrastructure</h3>
+                 <p className="text-muted-foreground mt-2">High-performance servers located across the world.</p>
+               </motion.div>
+             </div>
+          </div>
+        </motion.section>
 
         <motion.section 
           id="services" 
