@@ -213,7 +213,7 @@ export default function CloudXPage() {
               </div>
               <div className="flex items-center gap-3">
                   <CheckCircle className="h-6 w-6 text-primary shrink-0" />
-                  <span>99.99% Uptime Guarantee</span>
+                  <span>99% Uptime Guarantee</span>
               </div>
               <div className="flex items-center gap-3">
                   <CheckCircle className="h-6 w-6 text-primary shrink-0" />

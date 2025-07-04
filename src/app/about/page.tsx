@@ -150,7 +150,7 @@ export default function AboutPage() {
                         <ShieldCheck className="h-8 w-8" />
                     </div>
                     <h3 className="text-xl font-bold">Uncompromising Reliability</h3>
-                    <p className="mt-2 text-muted-foreground">We build our systems for 99.99% uptime, ensuring your services are always available when you need them most.</p>
+                    <p className="mt-2 text-muted-foreground">We build our systems for 99% uptime, ensuring your services are always available when you need them most.</p>
                 </motion.div>
                 <motion.div variants={itemVariants} className="p-6 bg-background rounded-lg shadow-md text-center">
                     <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mx-auto mb-4">

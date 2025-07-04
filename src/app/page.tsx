@@ -50,9 +50,12 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <main className="flex-1">
-        <section className="w-full py-20 md:py-24 lg:py-32">
+        <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-secondary -z-10"></div>
+            <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-20"></div>
+            <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-20"></div>
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-24">
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-24 items-center">
               <motion.div 
                 className="flex flex-col justify-center space-y-4"
                 initial={{ opacity: 0, x: -50 }}
@@ -90,12 +93,12 @@ export default function Home() {
                 whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
               >
                 <img
-                  src="https://placehold.co/450x338.png"
-                  width="450"
-                  height="338"
+                  src="https://placehold.co/550x400.png"
+                  width="550"
+                  height="400"
                   alt="Cloud Infrastructure"
-                  data-ai-hint="futuristic network"
-                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
+                  data-ai-hint="abstract network"
+                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-2xl"
                 />
               </motion.div>
             </div>
@@ -235,15 +238,17 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section 
+        <section 
           id="testimonials" 
-          className="w-full py-12 md:py-24 lg:py-32"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          className="w-full py-12 md:py-24 lg:py-32 bg-secondary"
         >
-          <div className="container px-4 md:px-6">
+          <motion.div 
+            className="container px-4 md:px-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Trusted by Businesses Like Yours</h2>
@@ -255,7 +260,7 @@ export default function Home() {
              <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12">
                 {testimonials.map((testimonial, index) => (
                   <motion.div variants={itemVariants} key={index}>
-                    <Card className="h-full bg-secondary/50">
+                    <Card className="h-full bg-background/80">
                         <CardContent className="pt-6">
                             <Quote className="h-8 w-8 text-primary mb-4" />
                             <p className="text-muted-foreground mb-4">{testimonial.quote}</p>
@@ -266,8 +271,8 @@ export default function Home() {
                   </motion.div>
                 ))}
              </div>
-          </div>
-        </motion.section>
+          </motion.div>
+        </section>
         
       </main>
     </div>
