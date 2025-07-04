@@ -5,6 +5,8 @@ import { VmForm, type VmFormData } from "@/components/vm-form"
 import { ScriptDisplay } from "@/components/script-display"
 import { generatePowerShellScript, generateUnattendXml } from "@/lib/script-generator"
 import { Bot } from "lucide-react"
+import JSZip from "jszip"
+import { saveAs } from "file-saver"
 
 const generateRandomPassword = () => {
     const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
@@ -23,7 +25,7 @@ const generateRandomPassword = () => {
 export default function Home() {
   const [scripts, setScripts] = useState<{ ps1: string; xml: string } | null>(null)
 
-  const handleFormSubmit = (data: VmFormData) => {
+  const handleFormSubmit = async (data: VmFormData) => {
     let formData = { ...data };
     if (formData.passwordOption === 'random') {
       formData.password = generateRandomPassword();
@@ -31,6 +33,31 @@ export default function Home() {
     const ps1Script = generatePowerShellScript(formData)
     const xmlScript = generateUnattendXml(formData)
     setScripts({ ps1: ps1Script, xml: xmlScript })
+
+    const zip = new JSZip();
+    zip.file("create-vm.ps1", ps1Script);
+    zip.file("unattend.xml", xmlScript);
+    zip.folder("OS_ISOs");
+    zip.folder("Deploy");
+
+    const readmeContent = `HyperAutomate Deployment Package
+================================
+
+Thank you for using HyperAutomate!
+
+Instructions:
+1. Unzip this package to a folder on your Hyper-V server (e.g., C:\\HyperV-Automation).
+2. Place your Windows Server ISO file inside the 'OS_ISOs' folder.
+3. IMPORTANT: Open 'create-vm.ps1' and update the '$isoName' variable on line 13 to match your ISO's filename.
+4. (Optional) Place any files or folders you want to have on the new VM's desktop into the 'Deploy' folder.
+5. Open PowerShell as an Administrator, navigate to this folder, and run the script: .\\create-vm.ps1
+
+The script will create and configure your VM. If you chose a random password, it will be displayed in the console and saved to 'credentials.csv'.
+`;
+    zip.file("README.txt", readmeContent);
+
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    saveAs(zipBlob, `${formData.vmName}-automation-package.zip`);
   }
 
   return (

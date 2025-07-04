@@ -41,6 +41,7 @@ import {
   Server,
   Wrench,
   Globe,
+  Download,
 } from "lucide-react"
 import { useState } from "react"
 
@@ -346,8 +347,10 @@ export function VmForm({ onSubmit }: VmFormProps) {
               />
             )}
 
-
-            <Button type="submit" className="w-full" size="lg">Generate Script</Button>
+            <Button type="submit" size="lg" className="w-full mt-8">
+              <Download className="mr-2" />
+              Generate & Download Package
+            </Button>
           </form>
         </Form>
       </CardContent>
