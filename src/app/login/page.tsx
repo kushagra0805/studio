@@ -13,8 +13,8 @@ import Link from "next/link"
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] py-12">
-      <Card className="w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] py-12 bg-secondary">
+      <Card className="w-full max-w-sm bg-background">
         <CardHeader>
           <CardTitle className="text-2xl">Cloud-x.in Login</CardTitle>
           <CardDescription>
@@ -34,8 +34,8 @@ export default function LoginPage() {
         <CardFooter className="flex flex-col">
           <Button className="w-full">Sign in</Button>
            <div className="mt-4 text-center text-sm">
-            Don't have an account?{" "}
-            <Link href="/pricing" className="underline">
+            Don&apos;t have an account?{" "}
+            <Link href="/contact" className="underline">
               Sign up
             </Link>
           </div>

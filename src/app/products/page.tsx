@@ -1,10 +1,115 @@
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Server, Database, Globe, Building, BarChart } from 'lucide-react';
+
 export default function ProductsPage() {
   return (
-    <div className="container mx-auto py-12 px-4 md:px-6">
-      <h1 className="text-4xl font-bold mb-8">Our Products</h1>
-      <div className="space-y-4 text-muted-foreground">
-        <p>This is where the detailed product information will go.</p>
-        <p>We'll list out details for Virtual Machines, Dedicated Servers, Web Hosting, Colocation, and of course, Cloud-x.in.</p>
+    <div className="bg-background text-foreground">
+      <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+            Our Cloud Solutions
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
+            Infrastructure built for performance, reliability, and scale. Find the perfect fit for your needs.
+          </p>
+        </div>
+
+        {/* Virtual Private Servers */}
+        <div className="mt-20 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Server className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Virtual Private Servers (VPS)</h2>
+            </div>
+            <p className="text-muted-foreground text-lg mb-4">
+              Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions give you full root access, guaranteed resources, and the ability to scale up as you grow. Perfect for web applications, development environments, and small business servers.
+            </p>
+            <Button asChild>
+              <Link href="/pricing">View VPS Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+          <div>
+            <img src="https://placehold.co/500x350.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" data-ai-hint="server racks" />
+          </div>
+        </div>
+
+        {/* Dedicated Servers */}
+        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-last md:order-first">
+             <img src="https://placehold.co/500x350.png" alt="Dedicated Servers" className="rounded-lg shadow-md" data-ai-hint="data center aisle" />
+          </div>
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Database className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Dedicated Servers</h2>
+            </div>
+            <p className="text-muted-foreground text-lg mb-4">
+              For ultimate performance and security, nothing beats a dedicated server. You get an entire physical server dedicated to your applications, with no noisy neighbors. Ideal for high-traffic websites, large databases, and enterprise applications.
+            </p>
+             <Button asChild>
+              <Link href="/pricing">View Dedicated Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+        </div>
+        
+        {/* Accounting on Cloud */}
+        <div id="cloud-x" className="mt-24 pt-10 grid md:grid-cols-2 gap-12 items-center bg-secondary -mx-4 sm:-mx-6 lg:-mx-8 p-4 sm:p-6 lg:p-12 rounded-lg">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <BarChart className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Cloud-x.in: Accounting on the Cloud</h2>
+            </div>
+            <p className="text-muted-foreground text-lg mb-4">
+              Move your essential accounting software like Tally, Busy, and others to the cloud with our specialized Cloud-x.in platform. Access your financial data securely from any device, anywhere, without the hassle of managing local servers.
+            </p>
+            <Button asChild>
+              <Link href="/contact">Request a Demo <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+          <div>
+            <img src="https://placehold.co/500x350.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" data-ai-hint="business charts" />
+          </div>
+        </div>
+
+        {/* Web Hosting */}
+        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
+           <div className="order-last md:order-first">
+             <img src="https://placehold.co/500x350.png" alt="Web Hosting" className="rounded-lg shadow-md" data-ai-hint="website code" />
+          </div>
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Globe className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Web Hosting</h2>
+            </div>
+            <p className="text-muted-foreground text-lg mb-4">
+             Fast, reliable, and secure hosting for your websites. From personal blogs to large e-commerce stores, our web hosting plans are designed for speed and come with everything you need to get online, backed by our 24/7 expert support.
+            </p>
+             <Button asChild>
+              <Link href="/pricing">View Hosting Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+        </div>
+
+        {/* Server Colocation */}
+        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Building className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Server Colocation</h2>
+            </div>
+            <p className="text-muted-foreground text-lg mb-4">
+              House your own server hardware in our world-class data centers. We provide the secure space, power, cooling, and network connectivity, so you can benefit from our enterprise-grade infrastructure without the high cost of building your own.
+            </p>
+             <Button asChild>
+              <Link href="/contact">Contact for Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+          <div>
+            <img src="https://placehold.co/500x350.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server room" />
+          </div>
+        </div>
+
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Cloud } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="border-t bg-background">
+    <footer className="border-t bg-secondary">
       <div className="container mx-auto py-8 px-4 md:px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">

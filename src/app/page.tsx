@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ArrowRight, Server, Database, Globe, Shield, Zap, Cloud } from "lucide-react"
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { ArrowRight, Server, Database, Globe, Shield, Zap, Cloud, BarChart } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function Home() {
@@ -41,7 +41,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="space-y-4">
-                  <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+                  <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">
                     MA Global Network
                   </h1>
                    <p className="max-w-[600px] text-muted-foreground md:text-xl">
@@ -57,7 +57,7 @@ export default function Home() {
                       View Pricing
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg">
+                  <Button asChild variant="secondary" size="lg">
                     <Link href="/contact" prefetch={false}>
                       Contact Sales
                     </Link>
@@ -74,7 +74,7 @@ export default function Home() {
                   width="600"
                   height="400"
                   alt="Cloud Infrastructure"
-                  data-ai-hint="cloud data center"
+                  data-ai-hint="abstract network"
                   className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
                 />
               </motion.div>
@@ -84,7 +84,7 @@ export default function Home() {
 
         <motion.section 
           id="services" 
-          className="w-full py-12 md:py-24 lg:py-32 bg-secondary/30"
+          className="w-full py-12 md:py-24 lg:py-32 bg-secondary"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -93,44 +93,51 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm font-semibold text-primary">Our Services</div>
+                <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">Our Services</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Built For Performance</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Explore our comprehensive suite of cloud services designed for reliability and scale.
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3 mt-12">
+            <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 mt-12">
               <motion.div variants={itemVariants}>
-                <Card className="h-full hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                  <CardHeader className="flex flex-col items-center text-center">
-                    <div className="bg-primary/10 p-4 rounded-full mb-4">
+                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+                  <CardHeader className="flex flex-col items-center">
+                     <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Server className="h-8 w-8 text-primary" />
                     </div>
-                    <CardTitle>Virtual & Dedicated Servers</CardTitle>
-                    <CardDescription>Get powerful, isolated server environments with full root access.</CardDescription>
+                    <CardTitle>Virtual Servers</CardTitle>
                   </CardHeader>
                 </Card>
               </motion.div>
-              <motion.div variants={itemVariants}>
-                <Card className="h-full hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                  <CardHeader className="flex flex-col items-center text-center">
-                    <div className="bg-primary/10 p-4 rounded-full mb-4">
+               <motion.div variants={itemVariants}>
+                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+                  <CardHeader className="flex flex-col items-center">
+                     <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Globe className="h-8 w-8 text-primary" />
                     </div>
                     <CardTitle>Web Hosting</CardTitle>
-                    <CardDescription>Blazing-fast and secure hosting for websites of all sizes.</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
-              <motion.div variants={itemVariants}>
-                <Card className="h-full hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                  <CardHeader className="flex flex-col items-center text-center">
-                    <div className="bg-primary/10 p-4 rounded-full mb-4">
+               <motion.div variants={itemVariants}>
+                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+                  <CardHeader className="flex flex-col items-center">
+                     <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Database className="h-8 w-8 text-primary" />
                     </div>
-                    <CardTitle>Server Colocation</CardTitle>
-                    <CardDescription>House your own hardware in our secure, state-of-the-art data centers.</CardDescription>
+                    <CardTitle>Dedicated Servers</CardTitle>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+               <motion.div variants={itemVariants}>
+                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+                  <CardHeader className="flex flex-col items-center">
+                     <div className="bg-primary/10 p-4 rounded-full mb-4">
+                      <BarChart className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle>Accounting Cloud</CardTitle>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -147,12 +154,12 @@ export default function Home() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm font-semibold text-primary">Cloud-x.in</div>
+              <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm font-semibold text-primary">Cloud-x.in</div>
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                Experience the Simplicity of Shared Hosting with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">Cloud-x.in</span>
+                Run Your Accounting on the Cloud with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">Cloud-x.in</span>
               </h2>
               <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Our premium shared hosting platform, Cloud-x.in, offers an affordable, easy-to-use solution for hosting your websites with cPanel, one-click installers, and 24/7 support.
+                Cloud-x.in is our specialized cloud platform designed for accounting applications like Tally and Busy. Enjoy secure, reliable access to your financial data from anywhere, with performance you can count on.
               </p>
               <Button asChild>
                 <Link href="/products#cloud-x" prefetch={false}>
@@ -170,8 +177,8 @@ export default function Home() {
                 src="https://placehold.co/550x310.png"
                 width="550"
                 height="310"
-                alt="Cloud-x.in"
-                data-ai-hint="hosting control panel"
+                alt="Cloud-x.in for Accounting"
+                data-ai-hint="financial dashboard"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               />
             </motion.div>

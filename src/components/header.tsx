@@ -32,14 +32,14 @@ export function Header() {
         </Link>
       </nav>
       <div className="ml-auto flex items-center gap-4">
-        <Button asChild variant="outline" className="hidden lg:flex">
+        <Button asChild variant="ghost" className="hidden lg:flex">
             <Link href="/login" prefetch={false}>
                 Cloud-x.in Login
             </Link>
         </Button>
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden">
+            <Button variant="outline" size="icon" className="lg:hidden">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
