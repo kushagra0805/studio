@@ -35,7 +35,7 @@ export function Header() {
           </Link>
            <Button asChild>
               <Link href="/login" prefetch={false}>
-                  Cloud-x.in Login
+                  Login
               </Link>
           </Button>
         </nav>
@@ -67,7 +67,7 @@ export function Header() {
               </Link>
               <Button asChild className="w-full mt-6">
                   <Link href="/login" prefetch={false} onClick={closeSheet}>
-                    Cloud-x.in Login
+                    Login
                   </Link>
               </Button>
             </div>

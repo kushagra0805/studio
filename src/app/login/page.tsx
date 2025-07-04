@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, type FormEvent } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -13,18 +14,32 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { motion } from "framer-motion"
-import { ShieldCheck } from "lucide-react"
+import { LogIn } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
 
 export default function LoginPage() {
-  const [securityCode, setSecurityCode] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const router = useRouter()
+  const { toast } = useToast()
 
-  const handleConnect = (e: FormEvent) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault()
-    if (securityCode && !isNaN(Number(securityCode))) {
-      window.location.href = `https://cloud-x.in:${securityCode}`
+    
+    if (username && password) {
+      toast({
+        title: "Login Successful",
+        description: `Welcome back, ${username}! Redirecting...`,
+      })
+      setTimeout(() => {
+        router.push("/")
+      }, 1500)
     } else {
-      // You could add a toast notification here for invalid input
-      console.error("Invalid security code entered.")
+      toast({
+        title: "Login Failed",
+        description: "Please provide both username and password.",
+        variant: "destructive",
+      })
     }
   }
 
@@ -39,32 +54,41 @@ export default function LoginPage() {
         <Card className="bg-background shadow-xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
-              <ShieldCheck className="h-6 w-6 text-primary" />
-              Cloud-x.in Secure Access
+              <LogIn className="h-6 w-6 text-primary" />
+              Client Portal Login
             </CardTitle>
             <CardDescription>
-              Please enter your security code to connect to your service.
+              Enter your credentials to access your account.
             </CardDescription>
           </CardHeader>
-          <form onSubmit={handleConnect}>
+          <form onSubmit={handleLogin}>
             <CardContent className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="security-code">Security Code</Label>
+                <Label htmlFor="username">Username</Label>
                 <Input
-                  id="security-code"
+                  id="username"
                   type="text"
-                  placeholder="Enter your assigned code"
-                  value={securityCode}
-                  onChange={(e) => setSecurityCode(e.target.value)}
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
-                  pattern="\d*"
-                  title="Please enter a valid port number."
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full">
-                Connect
+                Login
               </Button>
             </CardFooter>
           </form>
