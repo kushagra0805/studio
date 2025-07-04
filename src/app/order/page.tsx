@@ -1,9 +1,9 @@
 
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { useForm } from "react-hook-form"
+import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
@@ -24,7 +24,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server, Cloud, Loader2 } from "lucide-react"
+import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { db, storage } from "@/lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
@@ -55,10 +55,14 @@ const orderFormSchema = z.object({
     ),
   
   // Service Requirements
-  serviceType: z.enum(["vps", "cloud-x"], {
+  serviceType: z.enum(["vps", "cloud-x", "web-hosting", "dedicated-server", "colocation"], {
     required_error: "You need to select a service type.",
   }),
-  users: z.coerce.number().min(1, "At least 1 user is required."),
+
+  userNames: z.array(z.object({
+    name: z.string().min(2, "User name must be at least 2 characters."),
+  })).min(1, "At least one user is required."),
+  
   cpu: z.number().min(1).max(64).optional(),
   ram: z.number().min(2).max(128).optional(),
   storage: z.number().min(20).max(2048).optional(),
@@ -98,6 +102,7 @@ export default function OrderPage() {
   const { toast } = useToast()
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [userCount, setUserCount] = useState(1);
 
   const form = useForm<z.infer<typeof orderFormSchema>>({
       resolver: zodResolver(orderFormSchema),
@@ -110,13 +115,31 @@ export default function OrderPage() {
           businessName: "",
           gstNumber: "",
           serviceType: "vps",
-          users: 1,
+          userNames: [{ name: "" }],
           cpu: 2,
           ram: 4,
           storage: 80,
           termsAccepted: false,
       },
   })
+
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "userNames"
+  });
+
+  useEffect(() => {
+    const currentCount = fields.length;
+    if (userCount > currentCount) {
+        for (let i = currentCount; i < userCount; i++) {
+            append({ name: "" });
+        }
+    } else if (userCount < currentCount) {
+        for (let i = currentCount; i > userCount; i--) {
+            remove(i - 1);
+        }
+    }
+  }, [userCount, fields.length, append, remove]);
 
   const fileRef = form.register("gstCertificate");
   const serviceType = form.watch("serviceType");
@@ -138,9 +161,7 @@ export default function OrderPage() {
         gstCertificate: gstCertificateUrl,
         submittedAt: new Date(),
       };
-      // remove the FileList from the data before saving
-      delete (orderData as any).gstCertificate;
-
+      
       await addDoc(collection(db, "orders"), orderData);
 
       toast({
@@ -161,12 +182,10 @@ export default function OrderPage() {
   }
   
   const handleAadhaarVerification = () => {
-    // This would redirect to a real Aadhaar verification service.
     toast({
         title: "Redirecting to Aadhaar Verification",
         description: "This is a placeholder for the actual verification flow.",
     });
-    // For example: window.open("https://uidai.gov.in/", "_blank");
   }
 
   return (
@@ -261,27 +280,29 @@ export default function OrderPage() {
                             <FormLabel>Select Service Type</FormLabel>
                             <FormControl>
                                 <RadioGroup
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                                className="flex flex-col md:flex-row gap-4"
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                    className="grid grid-cols-2 md:grid-cols-3 gap-4"
                                 >
                                 <FormItem className="flex items-center space-x-3 space-y-0">
-                                    <FormControl>
-                                    <RadioGroupItem value="vps" />
-                                    </FormControl>
-                                    <FormLabel className="font-normal flex items-center gap-2">
-                                        <Server className="h-5 w-5" />
-                                        Virtual Private Server (VPS)
-                                    </FormLabel>
+                                    <FormControl><RadioGroupItem value="vps" /></FormControl>
+                                    <FormLabel className="font-normal flex items-center gap-2"><Server className="h-5 w-5" />VPS</FormLabel>
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-3 space-y-0">
-                                    <FormControl>
-                                    <RadioGroupItem value="cloud-x" />
-                                    </FormControl>
-                                    <FormLabel className="font-normal flex items-center gap-2">
-                                        <Cloud className="h-5 w-5" />
-                                        Cloud-x Shared Service
-                                    </FormLabel>
+                                    <FormControl><RadioGroupItem value="cloud-x" /></FormControl>
+                                    <FormLabel className="font-normal flex items-center gap-2"><Cloud className="h-5 w-5" />Cloud-x</FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                    <FormControl><RadioGroupItem value="web-hosting" /></FormControl>
+                                    <FormLabel className="font-normal flex items-center gap-2"><Globe className="h-5 w-5" />Web Hosting</FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                    <FormControl><RadioGroupItem value="dedicated-server" /></FormControl>
+                                    <FormLabel className="font-normal flex items-center gap-2"><Database className="h-5 w-5" />Dedicated</FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                    <FormControl><RadioGroupItem value="colocation" /></FormControl>
+                                    <FormLabel className="font-normal flex items-center gap-2"><Building className="h-5 w-5" />Colocation</FormLabel>
                                 </FormItem>
                                 </RadioGroup>
                             </FormControl>
@@ -291,9 +312,37 @@ export default function OrderPage() {
                     />
 
                     <div className="space-y-6 mt-6">
-                        <FormField control={form.control} name="users" render={({ field }) => (
-                            <FormItem><FormLabel>Number of Users/IDs: {field.value}</FormLabel><FormControl><Slider min={1} max={50} step={1} defaultValue={[field.value ?? 1]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
-                        )} />
+                        <FormItem>
+                          <FormLabel>Number of Users/IDs: {userCount}</FormLabel>
+                          <FormControl>
+                            <Slider
+                              min={1}
+                              max={50}
+                              step={1}
+                              defaultValue={[userCount]}
+                              onValueChange={(value) => setUserCount(value[0])}
+                            />
+                          </FormControl>
+                        </FormItem>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                            {fields.map((item, index) => (
+                                <FormField
+                                    control={form.control}
+                                    key={item.id}
+                                    name={`userNames.${index}.name`}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Name for User ID #{index + 1}</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder={`Enter name...`} {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            ))}
+                        </div>
                         
                         {serviceType === 'vps' && (
                             <>
