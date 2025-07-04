@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -18,7 +19,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Send, User, MessageSquare } from "lucide-react";
+import { Mail, Send, User, MessageSquare, Loader2 } from "lucide-react";
+import { db } from "@/lib/firebase"
+import { collection, addDoc } from "firebase/firestore"
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -29,6 +32,7 @@ const contactFormSchema = z.object({
 
 export default function ContactPage() {
   const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
       resolver: zodResolver(contactFormSchema),
@@ -40,14 +44,29 @@ export default function ContactPage() {
       },
   })
 
-  function onSubmit(data: z.infer<typeof contactFormSchema>) {
-      // In a real application, you would send this data to a server or email service.
-      console.log("Form submitted:", data)
+  async function onSubmit(data: z.infer<typeof contactFormSchema>) {
+    setIsSubmitting(true)
+    try {
+      await addDoc(collection(db, "contacts"), {
+        ...data,
+        submittedAt: new Date(),
+      });
+      
       toast({
-          title: "Message Sent!",
-          description: "Thank you for contacting us. We'll get back to you shortly.",
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We'll get back to you shortly.",
       })
       form.reset()
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -130,8 +149,10 @@ export default function ContactPage() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" size="lg" className="w-full">
-                  Send Message <Send className="ml-2 h-4 w-4" />
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {isSubmitting ? 'Sending...' : 'Send Message'} 
+                  {!isSubmitting && <Send className="ml-2 h-4 w-4" />}
                 </Button>
               </form>
             </Form>

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -24,8 +23,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server, Cloud } from "lucide-react"
+import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server, Cloud, Loader2 } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
+import { db, storage } from "@/lib/firebase"
+import { collection, addDoc } from "firebase/firestore"
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
@@ -94,6 +96,7 @@ const orderFormSchema = z.object({
 export default function OrderPage() {
   const { toast } = useToast()
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<z.infer<typeof orderFormSchema>>({
       resolver: zodResolver(orderFormSchema),
@@ -117,17 +120,43 @@ export default function OrderPage() {
   const fileRef = form.register("gstCertificate");
   const serviceType = form.watch("serviceType");
 
-  function onSubmit(data: z.infer<typeof orderFormSchema>) {
-      console.log("Order submitted:", {
+  async function onSubmit(data: z.infer<typeof orderFormSchema>) {
+    setIsSubmitting(true);
+    try {
+      let gstCertificateUrl = "";
+      const gstFile = data.gstCertificate?.[0];
+
+      if (gstFile) {
+        const storageRef = ref(storage, `gst-certificates/${Date.now()}_${gstFile.name}`);
+        const snapshot = await uploadBytes(storageRef, gstFile);
+        gstCertificateUrl = await getDownloadURL(snapshot.ref);
+      }
+      
+      const orderData = {
         ...data,
-        gstCertificate: data.gstCertificate?.[0]?.name,
-      })
+        gstCertificate: gstCertificateUrl,
+        submittedAt: new Date(),
+      };
+      // remove the FileList from the data before saving
+      delete orderData.gstCertificate;
+
+      await addDoc(collection(db, "orders"), orderData);
+
       toast({
-          title: "Order Placed Successfully!",
-          description: "Thank you for your order. Please proceed with Aadhaar verification.",
-      })
-      setIsOrderSubmitted(true)
-      // In a real app, you would upload the file and send the data to a server.
+        title: "Order Placed Successfully!",
+        description: "Thank you for your order. Please proceed with Aadhaar verification.",
+      });
+      setIsOrderSubmitted(true);
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem submitting your order. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
   
   const handleAadhaarVerification = () => {
@@ -312,8 +341,10 @@ export default function OrderPage() {
                   )}
                 />
 
-                <Button type="submit" size="lg" className="w-full">
-                  Submit Order <Send className="ml-2 h-4 w-4" />
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {isSubmitting ? 'Submitting...' : 'Submit Order'}
+                  {!isSubmitting && <Send className="ml-2 h-4 w-4" />}
                 </Button>
               </form>
             </Form>
