@@ -24,7 +24,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { User, Home, Briefcase, FileText, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, PackageSelect } from "lucide-react"
+import { User, Home, Briefcase, FileText, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, Package } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { db, storage } from "@/lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
@@ -340,7 +340,7 @@ export default function OrderPage() {
                     <div className="space-y-6 mt-6">
                         {serviceType === 'vps' && (
                             <FormField control={form.control} name="vpsPlan" render={({ field }) => (
-                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select VPS Plan</FormLabel>
+                                <FormItem><FormLabel className="flex items-center gap-2"><Package />Select VPS Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a VPS plan..." /></SelectTrigger></FormControl>
                                 <SelectContent>{vpsPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
@@ -348,7 +348,7 @@ export default function OrderPage() {
                         )}
                         {serviceType === 'web-hosting' && (
                             <FormField control={form.control} name="webHostingPlan" render={({ field }) => (
-                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select Web Hosting Plan</FormLabel>
+                                <FormItem><FormLabel className="flex items-center gap-2"><Package />Select Web Hosting Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a hosting plan..." /></SelectTrigger></FormControl>
                                 <SelectContent>{webHostingPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
@@ -356,7 +356,7 @@ export default function OrderPage() {
                         )}
                         {serviceType === 'dedicated-server' && (
                             <FormField control={form.control} name="dedicatedServerPlan" render={({ field }) => (
-                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select Dedicated Server Plan</FormLabel>
+                                <FormItem><FormLabel className="flex items-center gap-2"><Package />Select Dedicated Server Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a dedicated server..." /></SelectTrigger></FormControl>
                                 <SelectContent>{dedicatedPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
@@ -364,7 +364,7 @@ export default function OrderPage() {
                         )}
                         {serviceType === 'colocation' && (
                              <FormField control={form.control} name="colocationPlan" render={({ field }) => (
-                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select Colocation Plan</FormLabel>
+                                <FormItem><FormLabel className="flex items-center gap-2"><Package />Select Colocation Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a colocation option..." /></SelectTrigger></FormControl>
                                 <SelectContent>{colocationPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
