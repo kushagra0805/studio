@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, type FormEvent } from "react"
-import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -20,7 +19,6 @@ import { useToast } from "@/hooks/use-toast"
 export default function LoginPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const router = useRouter()
   const { toast } = useToast()
 
   const handleLogin = (e: FormEvent) => {
@@ -29,10 +27,10 @@ export default function LoginPage() {
     if (username && password) {
       toast({
         title: "Login Successful",
-        description: `Welcome back, ${username}! Redirecting...`,
+        description: `Welcome back, ${username}! Opening the site in a new tab...`,
       })
       setTimeout(() => {
-        router.push("/")
+        window.open(window.location.origin, '_blank');
       }, 1500)
     } else {
       toast({
