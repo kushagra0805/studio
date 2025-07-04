@@ -22,7 +22,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
-import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send } from "lucide-react"
+import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server } from "lucide-react"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
