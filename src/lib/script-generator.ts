@@ -1,3 +1,4 @@
+
 import type { VmFormData } from "@/components/vm-form";
 
 export function generatePowerShellScript(data: VmFormData): string {

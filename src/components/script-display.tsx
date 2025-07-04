@@ -1,3 +1,4 @@
+
 "use client"
 
 import {
@@ -53,7 +54,7 @@ export function ScriptDisplay({ downloadInitiated }: ScriptDisplayProps) {
             <ol className="list-decimal list-inside space-y-3 mt-2">
               <li>
                 Transfer and unzip the downloaded package to a folder (e.g.,{" "}
-                <code className="font-code bg-muted px-1 py-0.5 rounded">C:\HyperV-Automation</code>).
+                <code className="font-code bg-muted px-1 py-0.5 rounded">C:\\HyperV-Automation</code>).
               </li>
               <li>
                 Place your Windows Server ISO file inside the{" "}
@@ -70,7 +71,7 @@ export function ScriptDisplay({ downloadInitiated }: ScriptDisplayProps) {
               </li>
               <li>
                 Open PowerShell <strong>as an Administrator</strong>, navigate to your folder, and run the script:{" "}
-                <code className="font-code bg-muted px-1 py-0.5 rounded">.\create-vm.ps1</code>
+                <code className="font-code bg-muted px-1 py-0.5 rounded">.\\create-vm.ps1</code>
               </li>
             </ol>
             <p className="mt-4 text-sm text-muted-foreground">

@@ -1,3 +1,4 @@
+
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -135,9 +136,9 @@ export function VmForm({ onSubmit }: VmFormProps) {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="C:\VMs">C:\VMs</SelectItem>
-                        <SelectItem value="D:\VMs">D:\VMs</SelectItem>
-                        <SelectItem value="E:\VirtualMachines">E:\VirtualMachines</SelectItem>
+                        <SelectItem value="C:\\VMs">C:\\VMs</SelectItem>
+                        <SelectItem value="D:\\VMs">D:\\VMs</SelectItem>
+                        <SelectItem value="E:\\VirtualMachines">E:\\VirtualMachines</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -245,7 +246,7 @@ export function VmForm({ onSubmit }: VmFormProps) {
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a network" />
-                        </SelectTrigger>
+                        </Trigger>
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="Default Switch">Default Switch</SelectItem>
