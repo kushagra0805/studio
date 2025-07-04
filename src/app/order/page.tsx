@@ -34,10 +34,38 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
 
-const vpsPlans = [ "VPS Nano", "VPS Micro", "VPS Starter", "VPS Business", "VPS Pro", "VPS Enterprise", "VPS Elite", "Custom" ];
-const webHostingPlans = [ "Starter", "Personal", "Business", "Pro", "Custom" ];
-const dedicatedPlans = [ "DS-Essential", "DS-Standard", "DS-Advanced", "DS-Elite", "Custom" ];
-const colocationPlans = [ "Per U", "Quarter Rack", "Half Rack", "Full Rack", "Custom" ];
+const vpsPlans = [
+  { name: "VPS Nano", description: "Perfect for testing and very small scripts." },
+  { name: "VPS Micro", description: "For lightweight apps and personal projects." },
+  { name: "VPS Starter", description: "Ideal for development and small applications." },
+  { name: "VPS Business", description: "Perfect for growing websites and applications." },
+  { name: "VPS Pro", description: "For demanding applications and high traffic." },
+  { name: "VPS Enterprise", description: "Maximum performance for critical workloads." },
+  { name: "VPS Elite", description: "For large-scale enterprise deployments." },
+  { name: "Custom", description: "Tailored specs for your unique needs." },
+];
+const webHostingPlans = [
+  { name: "Starter", description: "Perfect for a static landing page or basic blog." },
+  { name: "Personal", description: "Great for personal sites and growing blogs." },
+  { name: "Business", description: "More power for small business websites." },
+  { name: "Pro", description: "For agencies and multiple high-traffic sites." },
+  { name: "Custom", description: "Custom hosting solution for specific requirements." },
+];
+const dedicatedPlans = [
+  { name: "DS-Essential", description: "Entry-level dedicated power for serious projects." },
+  { name: "DS-Standard", description: "A solid foundation for growing applications." },
+  { name: "DS-Advanced", description: "High performance for demanding applications." },
+  { name: "DS-Elite", description: "Ultimate power for enterprise-level workloads." },
+  { name: "Custom", description: "Custom dedicated server configuration." },
+];
+const colocationPlans = [
+  { name: "Per U", description: "Ideal for single servers or small network appliances." },
+  { name: "Quarter Rack", description: "For small businesses with multiple servers." },
+  { name: "Half Rack", description: "Ample space and power for growing infrastructure." },
+  { name: "Full Rack", description: "Complete, secure cabinet for mission-critical hardware." },
+  { name: "Custom", description: "Custom colocation space and power." },
+];
+
 
 const orderFormSchema = z.object({
   // Personal Info
@@ -342,7 +370,7 @@ export default function OrderPage() {
                             <FormField control={form.control} name="vpsPlan" render={({ field }) => (
                                 <FormItem><FormLabel className="flex items-center gap-2"><Package />Select VPS Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a VPS plan..." /></SelectTrigger></FormControl>
-                                <SelectContent>{vpsPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                <SelectContent>{vpsPlans.map(plan => <SelectItem key={plan.name} value={plan.name}><div><p className="font-semibold">{plan.name}</p><p className="text-xs text-muted-foreground">{plan.description}</p></div></SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
                             )} />
                         )}
@@ -350,7 +378,7 @@ export default function OrderPage() {
                             <FormField control={form.control} name="webHostingPlan" render={({ field }) => (
                                 <FormItem><FormLabel className="flex items-center gap-2"><Package />Select Web Hosting Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a hosting plan..." /></SelectTrigger></FormControl>
-                                <SelectContent>{webHostingPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                <SelectContent>{webHostingPlans.map(plan => <SelectItem key={plan.name} value={plan.name}><div><p className="font-semibold">{plan.name}</p><p className="text-xs text-muted-foreground">{plan.description}</p></div></SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
                             )} />
                         )}
@@ -358,7 +386,7 @@ export default function OrderPage() {
                             <FormField control={form.control} name="dedicatedServerPlan" render={({ field }) => (
                                 <FormItem><FormLabel className="flex items-center gap-2"><Package />Select Dedicated Server Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a dedicated server..." /></SelectTrigger></FormControl>
-                                <SelectContent>{dedicatedPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                <SelectContent>{dedicatedPlans.map(plan => <SelectItem key={plan.name} value={plan.name}><div><p className="font-semibold">{plan.name}</p><p className="text-xs text-muted-foreground">{plan.description}</p></div></SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
                             )} />
                         )}
@@ -366,7 +394,7 @@ export default function OrderPage() {
                              <FormField control={form.control} name="colocationPlan" render={({ field }) => (
                                 <FormItem><FormLabel className="flex items-center gap-2"><Package />Select Colocation Plan</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a colocation option..." /></SelectTrigger></FormControl>
-                                <SelectContent>{colocationPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                <SelectContent>{colocationPlans.map(plan => <SelectItem key={plan.name} value={plan.name}><div><p className="font-semibold">{plan.name}</p><p className="text-xs text-muted-foreground">{plan.description}</p></div></SelectItem>)}</SelectContent>
                                 </Select><FormMessage /></FormItem>
                             )} />
                         )}
@@ -486,3 +514,5 @@ export default function OrderPage() {
     </div>
   );
 }
+
+    
