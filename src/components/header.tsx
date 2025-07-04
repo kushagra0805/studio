@@ -4,13 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Cloud, ChevronDown } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Menu, Cloud } from "lucide-react"
 
 export function Header() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -24,35 +18,22 @@ export function Header() {
         <span className="text-lg font-bold">MA Global Network</span>
       </Link>
       
-      {/* Combined navigation and actions into a single container for proper alignment */}
       <div className="ml-auto flex items-center gap-4">
         
-        {/* Desktop navigation now uses a dropdown */}
-        <nav className="hidden lg:flex items-center gap-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost">
-                Menu
-                <ChevronDown className="ml-2 h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem asChild>
-                <Link href="/products">Products</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/pricing">Pricing</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/about">About</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/contact">Contact</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button asChild variant="ghost">
+        <nav className="hidden lg:flex items-center gap-6">
+          <Link href="/products" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+            Products
+          </Link>
+          <Link href="/pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+            Pricing
+          </Link>
+          <Link href="/about" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+            About
+          </Link>
+          <Link href="/contact" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+            Contact
+          </Link>
+           <Button asChild>
               <Link href="/login" prefetch={false}>
                   Cloud-x.in Login
               </Link>
