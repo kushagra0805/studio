@@ -1,9 +1,15 @@
 "use client"
 
+import type { Metadata } from 'next';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { Users, Target, Globe } from "lucide-react";
 import { motion } from "framer-motion";
+
+export const metadata: Metadata = {
+  title: 'About Us | MA Global Network',
+  description: 'Learn about the mission, vision, and team behind MA Global Network, a leading provider of cloud solutions.',
+};
 
 export default function AboutPage() {
 

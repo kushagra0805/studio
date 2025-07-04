@@ -1,20 +1,149 @@
 "use client"
 
+import type { Metadata } from 'next';
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/hooks/use-toast"
 import { motion } from "framer-motion"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Mail, Send, User, MessageSquare } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: 'Contact Us | MA Global Network',
+  description: 'Get in touch with the MA Global Network team for sales inquiries, support, or custom quotes for our cloud services.',
+};
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters."),
+  email: z.string().email("Please enter a valid email address."),
+  subject: z.string().min(5, "Subject must be at least 5 characters."),
+  message: z.string().min(10, "Message must be at least 10 characters.").max(500, "Message cannot exceed 500 characters."),
+})
 
 export default function ContactPage() {
+  const { toast } = useToast()
+
+  const form = useForm<z.infer<typeof contactFormSchema>>({
+      resolver: zodResolver(contactFormSchema),
+      defaultValues: {
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+      },
+  })
+
+  function onSubmit(data: z.infer<typeof contactFormSchema>) {
+      // In a real application, you would send this data to a server or email service.
+      console.log("Form submitted:", data)
+      toast({
+          title: "Message Sent!",
+          description: "Thank you for contacting us. We'll get back to you shortly.",
+      })
+      form.reset()
+  }
+
   return (
-    <motion.div 
-      className="container mx-auto py-16 px-4 md:px-6 text-center"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-    >
-      <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
-      <div className="space-y-4 text-muted-foreground max-w-lg mx-auto">
-        <p>A contact form and other contact details like email, phone number, and address will go here.</p>
-        <p>We're ready to answer your questions and help you get started. Reach out to us today!</p>
-      </div>
-    </motion.div>
+    <div className="container mx-auto py-16 px-4 md:px-6">
+      <motion.div 
+        className="max-w-3xl mx-auto"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <Card className="shadow-xl">
+          <CardHeader className="text-center">
+            <Mail className="mx-auto h-12 w-12 text-primary" />
+            <CardTitle className="text-3xl font-bold mt-4">Contact Us</CardTitle>
+            <CardDescription className="text-lg">
+              Have a question or need a custom quote? We'd love to hear from you.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2"><User /> Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your Name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2"><Mail /> Email</FormLabel>
+                        <FormControl>
+                          <Input placeholder="your.email@example.com" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Subject</FormLabel>
+                      <FormControl>
+                        <Input placeholder="How can we help?" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><MessageSquare /> Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Tell us a little more about your needs..."
+                          className="min-h-[150px]"
+                          {...field}
+                        />
+                      </FormControl>
+                       <FormDescription>
+                          You can write up to 500 characters.
+                       </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" size="lg" className="w-full">
+                  Send Message <Send className="ml-2 h-4 w-4" />
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
   );
 }

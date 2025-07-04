@@ -1,9 +1,15 @@
 "use client"
 
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Server, Database, Globe, Building, BarChart } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+export const metadata: Metadata = {
+  title: 'Our Products | MA Global Network',
+  description: 'Discover our full suite of cloud solutions including high-performance VPS, dedicated servers, web hosting, and our specialized Cloud-x.in platform for accounting.',
+};
 
 const textFromLeft = {
   hidden: { opacity: 0, x: -50 },

@@ -1,5 +1,6 @@
 "use client"
 
+import type { Metadata } from 'next';
 import { useState, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -15,6 +16,11 @@ import { Label } from "@/components/ui/label"
 import { motion } from "framer-motion"
 import { KeyRound } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+
+export const metadata: Metadata = {
+  title: 'Cloud-x.in Secure Access | MA Global Network',
+  description: 'Securely connect to your Cloud-x.in portal using your assigned security code.',
+};
 
 export default function LoginPage() {
   const [securityCode, setSecurityCode] = useState("")
