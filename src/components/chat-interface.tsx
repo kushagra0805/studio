@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect, type FormEvent } from "react";
 import { ArrowUp, Bot, Loader2, User, X } from "lucide-react";
-import { chat, type ChatMessage } from "@/ai/flows/chat";
+import { chat } from "@/ai/flows/chat";
+import type { ChatMessage } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import {
   Card,

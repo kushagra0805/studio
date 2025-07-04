@@ -3,17 +3,10 @@
  * @fileOverview A chatbot flow for MA Global Network.
  *
  * - chat - A function that handles the chatbot conversation.
- * - ChatMessage - The type for a single chat message.
  */
 import {ai} from '@/ai/genkit';
-import {z} from 'zod';
 import type {Message} from 'genkit';
-
-export const ChatMessageSchema = z.object({
-  role: z.enum(['user', 'model']),
-  content: z.string(),
-});
-export type ChatMessage = z.infer<typeof ChatMessageSchema>;
+import type { ChatMessage } from '@/lib/types';
 
 export async function chat(history: ChatMessage[], query: string): Promise<string> {
   const systemPrompt = `You are a friendly and helpful customer support assistant for MA Global Network, a cloud services provider.

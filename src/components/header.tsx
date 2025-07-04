@@ -4,7 +4,13 @@ import Link from "next/link"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Cloud } from "lucide-react"
+import { Menu, Cloud, ChevronDown } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Header() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -17,26 +23,43 @@ export function Header() {
         <Cloud className="h-6 w-6 text-primary" />
         <span className="text-lg font-bold">MA Global Network</span>
       </Link>
-      <nav className="ml-auto hidden gap-4 sm:gap-6 lg:flex">
-        <Link href="/products" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-          Products
-        </Link>
-        <Link href="/pricing" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-          Pricing
-        </Link>
-        <Link href="/about" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-          About
-        </Link>
-        <Link href="/contact" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-          Contact
-        </Link>
-      </nav>
+      
+      {/* Combined navigation and actions into a single container for proper alignment */}
       <div className="ml-auto flex items-center gap-4">
-        <Button asChild variant="ghost" className="hidden lg:flex">
-            <Link href="/login" prefetch={false}>
-                Cloud-x.in Login
-            </Link>
-        </Button>
+        
+        {/* Desktop navigation now uses a dropdown */}
+        <nav className="hidden lg:flex items-center gap-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost">
+                Menu
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link href="/products">Products</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/pricing">Pricing</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/about">About</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/contact">Contact</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Button asChild variant="ghost">
+              <Link href="/login" prefetch={false}>
+                  Cloud-x.in Login
+              </Link>
+          </Button>
+        </nav>
+
+        {/* Mobile menu trigger */}
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="lg:hidden">
