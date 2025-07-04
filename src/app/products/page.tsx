@@ -61,7 +61,7 @@ export default function ProductsPage() {
         </motion.div>
 
         {/* Virtual Private Servers */}
-        <div className="mt-20 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+        <div id="vps" className="mt-20 scroll-mt-20 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
           <motion.div
             variants={textFromLeft}
             initial="hidden"
@@ -90,7 +90,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Dedicated Servers */}
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+        <div id="dedicated" className="mt-24 scroll-mt-20 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
           <motion.div 
             className="order-last md:order-first"
             variants={imageFromLeft}
@@ -120,7 +120,7 @@ export default function ProductsPage() {
         </div>
         
         {/* Accounting on Cloud */}
-        <div id="cloud-x" className="mt-24 pt-10 grid md:grid-cols-2 gap-12 items-center bg-secondary -mx-4 sm:-mx-6 lg:-mx-8 p-4 sm:p-6 lg:p-12 rounded-lg overflow-hidden">
+        <div id="cloud-x" className="mt-24 scroll-mt-20 pt-10 grid md:grid-cols-2 gap-12 items-center bg-secondary -mx-4 sm:-mx-6 lg:-mx-8 p-4 sm:p-6 lg:p-12 rounded-lg overflow-hidden">
           <motion.div
             variants={textFromLeft}
             initial="hidden"
@@ -152,7 +152,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Web Hosting */}
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+        <div id="web-hosting" className="mt-24 scroll-mt-20 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
            <motion.div 
             className="order-last md:order-first"
             variants={imageFromLeft}
@@ -182,7 +182,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Server Colocation */}
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+        <div id="colocation" className="mt-24 scroll-mt-20 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
           <motion.div
             variants={textFromLeft}
             initial="hidden"
@@ -211,7 +211,7 @@ export default function ProductsPage() {
         </div>
         
         {/* Apex Private Cloud */}
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+        <div id="apex-cloud" className="mt-24 scroll-mt-20 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
            <motion.div 
             className="order-last md:order-first"
             variants={imageFromLeft}
