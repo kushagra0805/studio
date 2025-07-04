@@ -26,6 +26,7 @@ import { saveAs } from 'file-saver';
 const rdpFormSchema = z.object({
   securityCode: z.string().optional(),
   username: z.string().min(1, "Username is required."),
+  password: z.string().optional(),
 })
 
 // Schema for Web Portal form
@@ -43,20 +44,30 @@ function RdpForm() {
         defaultValues: {
             securityCode: "",
             username: "Administrator",
+            password: "",
         },
     })
 
     function onSubmit(data: z.infer<typeof rdpFormSchema>) {
-        const { securityCode, username } = data;
+        const { securityCode, username, password } = data;
         const hostname = 'cloud-x.in';
         const fullAddress = securityCode ? `${hostname}:${securityCode}` : hostname;
         
-        const rdpFileContent = [
+        const rdpFileContentLines = [
             `full address:s:${fullAddress}`,
             `username:s:${username}`,
-            'prompt for credentials:i:1',
             'authentication level:i:2',
-        ].join('\n');
+        ];
+
+        // If a password is provided, we tell the RDP client not to prompt.
+        // This relies on the user having saved the credential locally in Windows Credential Manager.
+        if (password && password.length > 0) {
+            rdpFileContentLines.push('prompt for credentials:i:0');
+        } else {
+            rdpFileContentLines.push('prompt for credentials:i:1');
+        }
+        
+        const rdpFileContent = rdpFileContentLines.join('\n');
 
         const blob = new Blob([rdpFileContent], { type: 'application/rdp;charset=utf-8' });
         saveAs(blob, 'connection.rdp');
@@ -101,15 +112,29 @@ function RdpForm() {
                                 <FormControl>
                                 <Input placeholder="e.g., Administrator" {...field} />
                                 </FormControl>
-                                <FormDescription className="flex items-center gap-1.5 text-xs">
-                                <KeyRound className="h-3 w-3" />
-                                You will be prompted for your password upon connection.
+                                <FormDescription>
+                                     Your username for the remote machine.
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
                             )}
                         />
-                        <div className="pt-12" />
+                         <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="flex items-center gap-2"><KeyRound /> Password (optional)</FormLabel>
+                                    <FormControl>
+                                        <Input type="password" placeholder="Enter password to skip prompt" {...field} value={field.value ?? ''} />
+                                    </FormControl>
+                                    <FormDescription>
+                                       Enter password to attempt connecting without a prompt. Requires credentials to be saved in your local RDP client.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
                         <Button type="submit" size="lg" className="w-full">
                             <Download className="mr-2 h-4 w-4" /> Download RDP File
                         </Button>
