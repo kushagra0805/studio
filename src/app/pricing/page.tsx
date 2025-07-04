@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 const vpsPlans = [
   {
     name: "VPS Starter",
-    price: "$20",
+    price: "₹1,499",
     description: "Ideal for development and small applications.",
     features: [
       { icon: Cpu, text: "2 vCPU Cores" },
@@ -23,7 +23,7 @@ const vpsPlans = [
   },
   {
     name: "VPS Business",
-    price: "$40",
+    price: "₹2,999",
     description: "Perfect for growing websites and applications.",
     features: [
       { icon: Cpu, text: "4 vCPU Cores" },
@@ -36,7 +36,7 @@ const vpsPlans = [
   },
   {
     name: "VPS Pro",
-    price: "$80",
+    price: "₹5,999",
     description: "For demanding applications and high traffic.",
     features: [
       { icon: Cpu, text: "8 vCPU Cores" },
@@ -49,7 +49,7 @@ const vpsPlans = [
   },
     {
     name: "VPS Enterprise",
-    price: "$160",
+    price: "₹12,999",
     description: "Maximum performance for critical workloads.",
     features: [
       { icon: Cpu, text: "16 vCPU Cores" },
@@ -65,7 +65,7 @@ const vpsPlans = [
 const webHostingPlans = [
     {
         name: "Personal",
-        price: "$5.99",
+        price: "₹449",
         description: "Great for personal sites and blogs.",
         features: [
             { icon: Globe, text: "1 Website" },
@@ -77,7 +77,7 @@ const webHostingPlans = [
     },
     {
         name: "Business",
-        price: "$9.99",
+        price: "₹799",
         description: "More power for small business websites.",
         features: [
             { icon: Globe, text: "10 Websites" },
@@ -90,7 +90,7 @@ const webHostingPlans = [
     },
     {
         name: "Pro",
-        price: "$19.99",
+        price: "₹1,599",
         description: "For agencies and multiple high-traffic sites.",
         features: [
             { icon: Globe, text: "Unlimited Websites" },
@@ -106,7 +106,7 @@ const webHostingPlans = [
 const dedicatedPlans = [
     {
         name: "DS-1",
-        price: "$149",
+        price: "₹11,999",
         description: "Entry-level dedicated power for serious projects.",
         features: [
             { icon: Cpu, text: "Intel Xeon-D 2123IT (4C/8T)" },
@@ -118,7 +118,7 @@ const dedicatedPlans = [
     },
     {
         name: "DS-2",
-        price: "$299",
+        price: "₹23,999",
         description: "High performance for demanding applications.",
         features: [
             { icon: Cpu, text: "AMD EPYC 7282 (16C/32T)" },
@@ -130,7 +130,7 @@ const dedicatedPlans = [
     },
     {
         name: "DS-3",
-        price: "$499",
+        price: "₹39,999",
         description: "Ultimate power for enterprise-level workloads.",
         features: [
             { icon: Cpu, text: "Dual Intel Xeon Silver 4314 (32C/64T)" },
