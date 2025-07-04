@@ -61,7 +61,7 @@ const orderFormSchema = z.object({
 
   userNames: z.array(z.object({
     name: z.string().min(2, "User name must be at least 2 characters."),
-  })).min(1, "At least one user is required."),
+  })).optional(),
   
   cpu: z.number().min(1).max(64).optional(),
   ram: z.number().min(2).max(128).optional(),
@@ -93,6 +93,15 @@ const orderFormSchema = z.object({
             path: ["storage"],
             message: "Storage is required for a VPS.",
           });
+        }
+    }
+    if (data.serviceType === "cloud-x") {
+        if (!data.userNames || data.userNames.length < 1) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                path: ["userNames"],
+                message: "At least one user is required for Cloud-x service.",
+            });
         }
     }
 });
@@ -312,37 +321,41 @@ export default function OrderPage() {
                     />
 
                     <div className="space-y-6 mt-6">
-                        <FormItem>
-                          <FormLabel>Number of Users/IDs: {userCount}</FormLabel>
-                          <FormControl>
-                            <Slider
-                              min={1}
-                              max={50}
-                              step={1}
-                              defaultValue={[userCount]}
-                              onValueChange={(value) => setUserCount(value[0])}
-                            />
-                          </FormControl>
-                        </FormItem>
+                        {serviceType === 'cloud-x' && (
+                            <div className="space-y-6">
+                                <FormItem>
+                                  <FormLabel>Number of Users/IDs: {userCount}</FormLabel>
+                                  <FormControl>
+                                    <Slider
+                                      min={1}
+                                      max={50}
+                                      step={1}
+                                      defaultValue={[userCount]}
+                                      onValueChange={(value) => setUserCount(value[0])}
+                                    />
+                                  </FormControl>
+                                </FormItem>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-                            {fields.map((item, index) => (
-                                <FormField
-                                    control={form.control}
-                                    key={item.id}
-                                    name={`userNames.${index}.name`}
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Name for User ID #{index + 1}</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder={`Enter name...`} {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            ))}
-                        </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                                    {fields.map((item, index) => (
+                                        <FormField
+                                            control={form.control}
+                                            key={item.id}
+                                            name={`userNames.${index}.name`}
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>Name for User ID #{index + 1}</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder={`Enter name...`} {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                         
                         {serviceType === 'vps' && (
                             <>
