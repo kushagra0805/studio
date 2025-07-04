@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { motion } from "framer-motion"
-import { LogIn } from "lucide-react"
+import { Cloud } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export default function LoginPage() {
@@ -27,10 +27,10 @@ export default function LoginPage() {
     if (username && password) {
       toast({
         title: "Login Successful",
-        description: `Welcome back, ${username}! Opening the site in a new tab...`,
+        description: `Welcome back, ${username}! Redirecting to Cloud-x.in...`,
       })
       setTimeout(() => {
-        window.open(window.location.origin, '_blank');
+        window.open('https://cloud-x.in', '_blank');
       }, 1500)
     } else {
       toast({
@@ -52,11 +52,11 @@ export default function LoginPage() {
         <Card className="bg-background shadow-xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
-              <LogIn className="h-6 w-6 text-primary" />
-              Client Portal Login
+              <Cloud className="h-6 w-6 text-primary" />
+              Cloud-x.in Login
             </CardTitle>
             <CardDescription>
-              Enter your credentials to access your account.
+              Enter your credentials to access your cloud accounting portal.
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleLogin}>
@@ -86,7 +86,7 @@ export default function LoginPage() {
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full">
-                Login
+                Login & Connect
               </Button>
             </CardFooter>
           </form>
