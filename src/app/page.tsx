@@ -208,7 +208,7 @@ export default function Home() {
                        <div className="bg-primary/10 p-4 rounded-full mb-4">
                         <BarChart className="h-8 w-8 text-primary" />
                       </div>
-                      <CardTitle>Accounting Cloud</CardTitle>
+                      <CardTitle>Shared Service</CardTitle>
                     </CardHeader>
                   </Card>
                 </motion.div>

@@ -20,7 +20,7 @@ Here is information about M A Global Network:
   - Dedicated Servers: For high-performance and security needs.
   - Server Colocation: Housing customer servers in their data centers.
   - Web Hosting: For websites of all sizes.
-  - Cloud-x.in: A specialized platform for running accounting software like Tally and Busy in the cloud.
+  - Shared Service (Cloud-x.in): A specialized platform for running accounting software like Tally and Busy in the cloud.
 - **Key Features:** 24/7 expert support, top-tier security, scalable solutions, global infrastructure.
 - **Contact:** For pricing details or custom quotes, users should visit the contact page.
 `;

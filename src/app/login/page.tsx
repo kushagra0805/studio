@@ -82,7 +82,7 @@ function RdpForm() {
         <Card className="border-none shadow-none">
             <CardHeader className="px-1 pt-6">
                 <CardTitle className="text-2xl">RDP File Login</CardTitle>
-                <CardDescription>Generate a .rdp file to connect to cloud-x.in.</CardDescription>
+                <CardDescription>Generate a .rdp file to connect to your Shared Service (cloud-x.in).</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
                 <Form {...form}>
@@ -171,7 +171,7 @@ function WebPortalForm() {
         <Card className="border-none shadow-none">
              <CardHeader className="px-1 pt-6">
                 <CardTitle className="text-2xl">Web Portal Login</CardTitle>
-                <CardDescription>Enter your code to access the web portal directly.</CardDescription>
+                <CardDescription>Enter your code to access the web portal for your Shared Service.</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
                 <Form {...form}>
@@ -217,7 +217,7 @@ export default function LoginPage() {
         <Card className="shadow-xl">
             <CardHeader className="text-center">
                 <Monitor className="mx-auto h-12 w-12 text-primary" />
-                <CardTitle className="text-3xl font-bold mt-4">Cloud-x.in Access</CardTitle>
+                <CardTitle className="text-3xl font-bold mt-4">Shared Service Login</CardTitle>
                 <CardDescription className="text-lg">
                     Choose your preferred connection method.
                 </CardDescription>

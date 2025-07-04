@@ -120,7 +120,7 @@ export default function ProductsPage() {
         </div>
         
         {/* Accounting on Cloud */}
-        <div id="cloud-x" className="mt-24 scroll-mt-20 pt-10 grid md:grid-cols-2 gap-12 items-center bg-secondary -mx-4 sm:-mx-6 lg:-mx-8 p-4 sm:p-6 lg:p-12 rounded-lg overflow-hidden">
+        <div id="shared-service" className="mt-24 scroll-mt-20 pt-10 grid md:grid-cols-2 gap-12 items-center bg-secondary -mx-4 sm:-mx-6 lg:-mx-8 p-4 sm:p-6 lg:p-12 rounded-lg overflow-hidden">
           <motion.div
             variants={textFromLeft}
             initial="hidden"
@@ -129,10 +129,10 @@ export default function ProductsPage() {
           >
             <div className="flex items-center gap-3 mb-2">
               <BarChart className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl font-bold">Cloud-x.in: Accounting on the Cloud</h2>
+              <h2 className="text-3xl font-bold">Shared Service (Cloud-x.in)</h2>
             </div>
             <p className="text-muted-foreground text-lg mb-4">
-              Move your essential accounting software like Tally, Busy, and others to the cloud with our specialized Cloud-x.in platform. Access your financial data securely from any device, anywhere, without the hassle of managing local servers.
+              Move your essential accounting software like Tally, Busy, and others to the cloud with our specialized Shared Service platform. Access your financial data securely from any device, anywhere, without the hassle of managing local servers.
             </p>
             <Button asChild>
               <Link href="/cloud-x">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>

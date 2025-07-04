@@ -299,7 +299,7 @@ export default function OrderPage() {
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-3 space-y-0">
                                     <FormControl><RadioGroupItem value="cloud-x" /></FormControl>
-                                    <FormLabel className="font-normal flex items-center gap-2"><Cloud className="h-5 w-5" />Cloud-x</FormLabel>
+                                    <FormLabel className="font-normal flex items-center gap-2"><Cloud className="h-5 w-5" />Shared Service (Cloud-x.in)</FormLabel>
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-3 space-y-0">
                                     <FormControl><RadioGroupItem value="web-hosting" /></FormControl>
