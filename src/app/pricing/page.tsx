@@ -10,13 +10,37 @@ import { motion } from "framer-motion";
 
 const vpsPlans = [
   {
+    name: "VPS Nano",
+    price: "₹499",
+    description: "Perfect for testing and very small scripts.",
+    features: [
+      { icon: Cpu, text: "1 vCPU Core" },
+      { icon: MemoryStick, text: "1 GB RAM" },
+      { icon: HardDrive, text: "20 GB NVMe SSD" },
+      { icon: Globe, text: "1 TB Bandwidth" },
+    ],
+    popular: false,
+  },
+  {
+    name: "VPS Micro",
+    price: "₹899",
+    description: "For lightweight apps and personal projects.",
+    features: [
+      { icon: Cpu, text: "1 vCPU Core" },
+      { icon: MemoryStick, text: "2 GB RAM" },
+      { icon: HardDrive, text: "40 GB NVMe SSD" },
+      { icon: Globe, text: "2 TB Bandwidth" },
+    ],
+    popular: false,
+  },
+  {
     name: "VPS Starter",
     price: "₹1,499",
     description: "Ideal for development and small applications.",
     features: [
       { icon: Cpu, text: "2 vCPU Cores" },
       { icon: MemoryStick, text: "4 GB RAM" },
-      { icon: HardDrive, text: "80 GB NVMe SSD" },
+      { icon: HardDrive, text: "40 GB NVMe SSD" },
       { icon: Globe, text: "2 TB Bandwidth" },
     ],
     popular: false,
@@ -28,7 +52,7 @@ const vpsPlans = [
     features: [
       { icon: Cpu, text: "4 vCPU Cores" },
       { icon: MemoryStick, text: "8 GB RAM" },
-      { icon: HardDrive, text: "160 GB NVMe SSD" },
+      { icon: HardDrive, text: "80 GB NVMe SSD" },
       { icon: Globe, text: "4 TB Bandwidth" },
       { icon: Check, text: "Daily Backups" },
     ],
@@ -41,7 +65,7 @@ const vpsPlans = [
     features: [
       { icon: Cpu, text: "8 vCPU Cores" },
       { icon: MemoryStick, text: "16 GB RAM" },
-      { icon: HardDrive, text: "320 GB NVMe SSD" },
+      { icon: HardDrive, text: "160 GB NVMe SSD" },
       { icon: Globe, text: "8 TB Bandwidth" },
       { icon: Check, text: "Daily Backups" },
     ],
@@ -54,7 +78,7 @@ const vpsPlans = [
     features: [
       { icon: Cpu, text: "16 vCPU Cores" },
       { icon: MemoryStick, text: "32 GB RAM" },
-      { icon: HardDrive, text: "640 GB NVMe SSD" },
+      { icon: HardDrive, text: "320 GB NVMe SSD" },
       { icon: Globe, text: "10 TB Bandwidth" },
       { icon: Check, text: "Priority Support" },
     ],
@@ -71,7 +95,6 @@ const webHostingPlans = [
             { icon: Globe, text: "1 Website" },
             { icon: HardDrive, text: "50 GB SSD Storage" },
             { icon: Globe, text: "1 TB Bandwidth" },
-            { icon: Mail, text: "5 Email Accounts" },
         ],
         popular: false,
     },
@@ -83,8 +106,6 @@ const webHostingPlans = [
             { icon: Globe, text: "10 Websites" },
             { icon: HardDrive, text: "100 GB SSD Storage" },
             { icon: Globe, text: "Unmetered Bandwidth" },
-            { icon: Mail, text: "25 Email Accounts" },
-            { icon: Check, text: "Free Domain (1st Year)" },
         ],
         popular: true,
     },
@@ -96,7 +117,6 @@ const webHostingPlans = [
             { icon: Globe, text: "Unlimited Websites" },
             { icon: HardDrive, text: "200 GB NVMe Storage" },
             { icon: Globe, text: "Unmetered Bandwidth" },
-            { icon: Mail, text: "Unlimited Email Accounts" },
             { icon: Check, text: "Staging Site" },
         ],
         popular: false,
@@ -240,7 +260,7 @@ export default function PricingPage() {
 
           <TabsContent value="vps" className="mt-10">
             <motion.div 
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
