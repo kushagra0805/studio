@@ -22,7 +22,8 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
-import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server } from "lucide-react"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server, Cloud } from "lucide-react"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
@@ -48,12 +49,40 @@ const orderFormSchema = z.object({
       "Only .pdf files are accepted."
     ),
   
-  // VPS Requirements
+  // Service Requirements
+  serviceType: z.enum(["vps", "cloud-x"], {
+    required_error: "You need to select a service type.",
+  }),
   users: z.coerce.number().min(1, "At least 1 user is required."),
-  cpu: z.number().min(1).max(64),
-  ram: z.number().min(2).max(128),
-  storage: z.number().min(20).max(2048),
-})
+  cpu: z.number().min(1).max(64).optional(),
+  ram: z.number().min(2).max(128).optional(),
+  storage: z.number().min(20).max(2048).optional(),
+}).superRefine((data, ctx) => {
+    if (data.serviceType === "vps") {
+        if (data.cpu === undefined) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["cpu"],
+            message: "CPU cores are required for a VPS.",
+          });
+        }
+        if (data.ram === undefined) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["ram"],
+            message: "RAM is required for a VPS.",
+          });
+        }
+        if (data.storage === undefined) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["storage"],
+            message: "Storage is required for a VPS.",
+          });
+        }
+    }
+});
+
 
 export default function OrderPage() {
   const { toast } = useToast()
@@ -69,6 +98,7 @@ export default function OrderPage() {
           pincode: "",
           businessName: "",
           gstNumber: "",
+          serviceType: "vps",
           users: 1,
           cpu: 2,
           ram: 4,
@@ -77,6 +107,7 @@ export default function OrderPage() {
   })
 
   const fileRef = form.register("gstCertificate");
+  const serviceType = form.watch("serviceType");
 
   function onSubmit(data: z.infer<typeof orderFormSchema>) {
       console.log("Order submitted:", {
@@ -111,9 +142,9 @@ export default function OrderPage() {
         <Card className="shadow-xl">
           <CardHeader className="text-center">
             <Send className="mx-auto h-12 w-12 text-primary" />
-            <CardTitle className="text-3xl font-bold mt-4">Place Your VPS Order</CardTitle>
+            <CardTitle className="text-3xl font-bold mt-4">Place Your Order</CardTitle>
             <CardDescription className="text-lg">
-              Configure your server and provide your details to get started.
+              Configure your service and provide your details to get started.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -181,22 +212,64 @@ export default function OrderPage() {
 
                 <Separator />
 
-                {/* VPS Requirements */}
+                {/* Service Requirements */}
                 <div>
-                    <h3 className="text-xl font-semibold flex items-center gap-2 mb-4"><Server /> VPS Requirements</h3>
-                    <div className="space-y-6">
+                    <h3 className="text-xl font-semibold flex items-center gap-2 mb-4"><Server /> Service Requirements</h3>
+                    <FormField
+                        control={form.control}
+                        name="serviceType"
+                        render={({ field }) => (
+                            <FormItem className="space-y-3">
+                            <FormLabel>Select Service Type</FormLabel>
+                            <FormControl>
+                                <RadioGroup
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                                className="flex flex-col md:flex-row gap-4"
+                                >
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                    <FormControl>
+                                    <RadioGroupItem value="vps" />
+                                    </FormControl>
+                                    <FormLabel className="font-normal flex items-center gap-2">
+                                        <Server className="h-5 w-5" />
+                                        Virtual Private Server (VPS)
+                                    </FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                    <FormControl>
+                                    <RadioGroupItem value="cloud-x" />
+                                    </FormControl>
+                                    <FormLabel className="font-normal flex items-center gap-2">
+                                        <Cloud className="h-5 w-5" />
+                                        Cloud-x Shared Service
+                                    </FormLabel>
+                                </FormItem>
+                                </RadioGroup>
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <div className="space-y-6 mt-6">
                         <FormField control={form.control} name="users" render={({ field }) => (
-                            <FormItem><FormLabel>Number of Users/IDs: {field.value}</FormLabel><FormControl><Slider min={1} max={50} step={1} defaultValue={[field.value]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
+                            <FormItem><FormLabel>Number of Users/IDs: {field.value}</FormLabel><FormControl><Slider min={1} max={50} step={1} defaultValue={[field.value ?? 1]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
                         )} />
-                         <FormField control={form.control} name="cpu" render={({ field }) => (
-                            <FormItem><FormLabel className="flex items-center gap-2"><Cpu />CPU Cores: {field.value}</FormLabel><FormControl><Slider min={1} max={64} step={1} defaultValue={[field.value]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
-                        )} />
-                         <FormField control={form.control} name="ram" render={({ field }) => (
-                            <FormItem><FormLabel className="flex items-center gap-2"><MemoryStick />RAM (GB): {field.value}</FormLabel><FormControl><Slider min={2} max={128} step={2} defaultValue={[field.value]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
-                        )} />
-                        <FormField control={form.control} name="storage" render={({ field }) => (
-                            <FormItem><FormLabel className="flex items-center gap-2"><HardDrive />Storage (GB): {field.value}</FormLabel><FormControl><Slider min={20} max={2048} step={10} defaultValue={[field.value]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
-                        )} />
+                        
+                        {serviceType === 'vps' && (
+                            <>
+                                <FormField control={form.control} name="cpu" render={({ field }) => (
+                                    <FormItem><FormLabel className="flex items-center gap-2"><Cpu />CPU Cores: {field.value}</FormLabel><FormControl><Slider min={1} max={64} step={1} defaultValue={[field.value ?? 2]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
+                                )} />
+                                <FormField control={form.control} name="ram" render={({ field }) => (
+                                    <FormItem><FormLabel className="flex items-center gap-2"><MemoryStick />RAM (GB): {field.value}</FormLabel><FormControl><Slider min={2} max={128} step={2} defaultValue={[field.value ?? 4]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
+                                )} />
+                                <FormField control={form.control} name="storage" render={({ field }) => (
+                                    <FormItem><FormLabel className="flex items-center gap-2"><HardDrive />Storage (GB): {field.value}</FormLabel><FormControl><Slider min={20} max={2048} step={10} defaultValue={[field.value ?? 80]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
+                                )} />
+                            </>
+                        )}
                     </div>
                 </div>
 
