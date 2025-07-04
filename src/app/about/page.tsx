@@ -41,7 +41,7 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400">
             About M A Global Network
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
@@ -69,7 +69,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
             <motion.div variants={itemVariants} className="text-center">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mx-auto mb-4">
                  <Eye className="h-8 w-8" />
               </div>
               <h2 className="text-2xl font-bold">Our Vision</h2>
@@ -153,7 +153,7 @@ export default function AboutPage() {
                     <p className="mt-2 text-muted-foreground">We build our systems for 99.99% uptime, ensuring your services are always available when you need them most.</p>
                 </motion.div>
                 <motion.div variants={itemVariants} className="p-6 bg-background rounded-lg shadow-md text-center">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
+                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mx-auto mb-4">
                         <Lightbulb className="h-8 w-8" />
                     </div>
                     <h3 className="text-xl font-bold">Continuous Innovation</h3>

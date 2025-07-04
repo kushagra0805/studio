@@ -60,7 +60,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="space-y-4">
-                  <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl xl:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">
+                  <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl xl:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400">
                     M A Global Network
                   </h1>
                    <p className="max-w-[600px] text-muted-foreground md:text-xl">
@@ -128,7 +128,7 @@ export default function Home() {
                  <p className="text-muted-foreground mt-2">Our team is always available to help you with any issues.</p>
                </motion.div>
                <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
-                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mb-4">
                     <ShieldCheck className="h-8 w-8" />
                  </div>
                  <h3 className="text-xl font-bold">Top-Tier Security</h3>
@@ -142,7 +142,7 @@ export default function Home() {
                  <p className="text-muted-foreground mt-2">Grow your infrastructure as your business expands.</p>
                </motion.div>
                <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
-                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mb-4">
                     <Globe className="h-8 w-8" />
                  </div>
                  <h3 className="text-xl font-bold">Global Infrastructure</h3>
@@ -193,8 +193,8 @@ export default function Home() {
                 >
                   <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
                     <CardHeader className="flex flex-col items-center">
-                       <div className="bg-primary/10 p-4 rounded-full mb-4">
-                        <Globe className="h-8 w-8 text-primary" />
+                       <div className="bg-accent/10 p-4 rounded-full mb-4">
+                        <Globe className="h-8 w-8 text-accent" />
                       </div>
                       <CardTitle>Web Hosting</CardTitle>
                     </CardHeader>
@@ -223,8 +223,8 @@ export default function Home() {
                 >
                   <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
                     <CardHeader className="flex flex-col items-center">
-                       <div className="bg-primary/10 p-4 rounded-full mb-4">
-                        <BarChart className="h-8 w-8 text-primary" />
+                       <div className="bg-accent/10 p-4 rounded-full mb-4">
+                        <BarChart className="h-8 w-8 text-accent" />
                       </div>
                       <CardTitle>Shared Service</CardTitle>
                     </CardHeader>

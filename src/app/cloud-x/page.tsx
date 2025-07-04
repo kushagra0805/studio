@@ -39,7 +39,7 @@ export default function CloudXPage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
            >
             <div className="inline-block rounded-lg bg-primary/10 px-4 py-2 mb-4">
-                <h2 className="text-xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">
+                <h2 className="text-xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400">
                     Shared Service (Cloud-x.in)
                 </h2>
             </div>
@@ -99,7 +99,7 @@ export default function CloudXPage() {
             <motion.div variants={fadeIn}>
               <Card className="text-center h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 text-accent mb-4">
                     <Zap className="h-8 w-8" />
                   </div>
                   <CardTitle>Blazing-Fast Speed</CardTitle>
