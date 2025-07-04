@@ -2,6 +2,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -24,6 +25,7 @@ import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server, Cloud } from "lucide-react"
+import { Checkbox } from "@/components/ui/checkbox"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
@@ -57,6 +59,11 @@ const orderFormSchema = z.object({
   cpu: z.number().min(1).max(64).optional(),
   ram: z.number().min(2).max(128).optional(),
   storage: z.number().min(20).max(2048).optional(),
+  
+  // Terms
+  termsAccepted: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms and conditions to proceed." }),
+  }),
 }).superRefine((data, ctx) => {
     if (data.serviceType === "vps") {
         if (data.cpu === undefined) {
@@ -103,6 +110,7 @@ export default function OrderPage() {
           cpu: 2,
           ram: 4,
           storage: 80,
+          termsAccepted: false,
       },
   })
 
@@ -273,7 +281,38 @@ export default function OrderPage() {
                     </div>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full mt-8">
+                <Separator />
+                
+                <FormField
+                  control={form.control}
+                  name="termsAccepted"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel className="font-normal">
+                          By checking this box, you agree to our{' '}
+                          <Link href="/terms" target="_blank" className="font-medium text-primary underline-offset-4 hover:underline">
+                            Terms of Service
+                          </Link>{' '}
+                          and{' '}
+                          <Link href="/privacy" target="_blank" className="font-medium text-primary underline-offset-4 hover:underline">
+                            Privacy Policy
+                          </Link>
+                          .
+                        </FormLabel>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
+
+                <Button type="submit" size="lg" className="w-full">
                   Submit Order <Send className="ml-2 h-4 w-4" />
                 </Button>
               </form>
