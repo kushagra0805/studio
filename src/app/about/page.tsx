@@ -113,9 +113,9 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                  <img
-                  src="https://placehold.co/500x350.png"
-                  width="500"
-                  height="350"
+                  src="https://placehold.co/450x315.png"
+                  width="450"
+                  height="315"
                   alt="Our Journey"
                   data-ai-hint="journey path"
                   className="mx-auto rounded-xl object-cover"

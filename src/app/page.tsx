@@ -72,9 +72,9 @@ export default function Home() {
                 whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
               >
                 <img
-                  src="https://placehold.co/600x450.png"
-                  width="600"
-                  height="450"
+                  src="https://placehold.co/500x375.png"
+                  width="500"
+                  height="375"
                   alt="Cloud Infrastructure"
                   data-ai-hint="futuristic network"
                   className="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover"

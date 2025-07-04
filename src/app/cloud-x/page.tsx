@@ -170,7 +170,9 @@ export default function CloudXPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <img
-              src="https://placehold.co/500x450.png"
+              src="https://placehold.co/450x405.png"
+              width="450"
+              height="405"
               alt="Cloud-x.in workflow"
               data-ai-hint="workflow diagram"
               className="mx-auto rounded-xl object-cover"
