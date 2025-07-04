@@ -76,7 +76,7 @@ export default function ProductsPage() {
               Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions give you full root access, guaranteed resources, and the ability to scale up as you grow. Perfect for web applications, development environments, and small business servers.
             </p>
             <Button asChild>
-              <Link href="/pricing">Explore VPS Pricing <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing#vps">Explore VPS Pricing <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
           <motion.div
@@ -114,7 +114,7 @@ export default function ProductsPage() {
               For ultimate performance and security, nothing beats a dedicated server. You get an entire physical server dedicated to your applications, with no noisy neighbors. Ideal for high-traffic websites, large databases, and enterprise applications.
             </p>
              <Button asChild>
-              <Link href="/pricing">Explore Dedicated Pricing <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing#dedicated">Explore Dedicated Pricing <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
         </div>
@@ -134,9 +134,6 @@ export default function ProductsPage() {
             <p className="text-muted-foreground text-lg mb-4">
               Move your essential accounting software like Tally, Busy, and others to the cloud with our specialized Cloud-x.in platform. Access your financial data securely from any device, anywhere, without the hassle of managing local servers.
             </p>
-             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                Run Your Accounting on the Cloud with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">Cloud-x.in</span>
-              </h2>
             <Button asChild>
               <Link href="/cloud-x">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
@@ -176,7 +173,7 @@ export default function ProductsPage() {
              Fast, reliable, and secure hosting for your websites. From personal blogs to large e-commerce stores, our web hosting plans are designed for speed and come with everything you need to get online, backed by our 24/7 expert support.
             </p>
              <Button asChild>
-              <Link href="/pricing">Explore Hosting Pricing<ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing#web-hosting">Explore Hosting Pricing<ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
         </div>
@@ -197,7 +194,7 @@ export default function ProductsPage() {
               House your own server hardware in our world-class data centers. We provide the secure space, power, cooling, and network connectivity, so you can benefit from our enterprise-grade infrastructure without the high cost of building your own.
             </p>
              <Button asChild>
-              <Link href="/contact">Contact for Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing#colocation">Contact for Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
           <motion.div
@@ -235,7 +232,7 @@ export default function ProductsPage() {
               Take full control of your infrastructure with a dedicated, on-premises cloud solution built exclusively for your business. We design and deploy a private cloud environment right at your location, tailored to your unique security, performance, and compliance requirements.
             </p>
              <Button asChild>
-              <Link href="/contact">Design Your Cloud <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/pricing#on-premise-cloud">Design Your Cloud <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
         </div>

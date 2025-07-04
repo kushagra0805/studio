@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -138,7 +139,7 @@ export default function OrderPage() {
         submittedAt: new Date(),
       };
       // remove the FileList from the data before saving
-      delete orderData.gstCertificate;
+      delete (orderData as any).gstCertificate;
 
       await addDoc(collection(db, "orders"), orderData);
 

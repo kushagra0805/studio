@@ -198,7 +198,7 @@ export default function Home() {
                   </Card>
                 </motion.div>
               </Link>
-              <Link href="/products#cloud-x" className="block">
+              <Link href="/cloud-x" className="block">
                 <motion.div 
                   variants={itemVariants}
                   whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}

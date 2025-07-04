@@ -337,7 +337,7 @@ export default function PricingPage() {
           </p>
         </motion.div>
 
-        <Tabs defaultValue="vps" className="w-full mt-12">
+        <Tabs defaultValue="vps" className="w-full mt-12" id="vps">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -363,7 +363,7 @@ export default function PricingPage() {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="web-hosting" className="mt-10">
+          <TabsContent value="web-hosting" className="mt-10" id="web-hosting">
             <motion.div 
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
               variants={containerVariants}
@@ -374,7 +374,7 @@ export default function PricingPage() {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="dedicated" className="mt-10">
+          <TabsContent value="dedicated" className="mt-10" id="dedicated">
             <motion.div 
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
               variants={containerVariants}
@@ -385,7 +385,7 @@ export default function PricingPage() {
             </motion.div>
           </TabsContent>
           
-          <TabsContent value="colocation" className="mt-10">
+          <TabsContent value="colocation" className="mt-10" id="colocation">
             <motion.div 
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
               variants={containerVariants}
@@ -396,7 +396,7 @@ export default function PricingPage() {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="on-premise-cloud" className="mt-10">
+          <TabsContent value="on-premise-cloud" className="mt-10" id="on-premise-cloud">
             <motion.div
               variants={itemVariants}
               initial="hidden"
@@ -430,7 +430,3 @@ export default function PricingPage() {
     </div>
   );
 }
-
-    
-
-    
