@@ -23,7 +23,7 @@ const generateRandomPassword = () => {
 }
 
 export default function Home() {
-  const [scripts, setScripts] = useState<{ ps1: string; xml: string } | null>(null)
+  const [downloadInitiated, setDownloadInitiated] = useState(false);
 
   const handleFormSubmit = async (data: VmFormData) => {
     let formData = { ...data };
@@ -32,7 +32,8 @@ export default function Home() {
     }
     const ps1Script = generatePowerShellScript(formData)
     const xmlScript = generateUnattendXml(formData)
-    setScripts({ ps1: ps1Script, xml: xmlScript })
+    
+    setDownloadInitiated(false); // Reset in case of re-submission
 
     const zip = new JSZip();
     zip.file("create-vm.ps1", ps1Script);
@@ -58,6 +59,7 @@ The script will create and configure your VM. If you chose a random password, it
 
     const zipBlob = await zip.generateAsync({ type: "blob" });
     saveAs(zipBlob, `${formData.vmName}-automation-package.zip`);
+    setDownloadInitiated(true);
   }
 
   return (
@@ -68,7 +70,7 @@ The script will create and configure your VM. If you chose a random password, it
           HyperAutomate
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
-          Configure your virtual machine and generate the PowerShell automation script instantly.
+          Configure your virtual machine and generate your automation package instantly.
         </p>
       </header>
 
@@ -77,7 +79,7 @@ The script will create and configure your VM. If you chose a random password, it
           <VmForm onSubmit={handleFormSubmit} />
         </div>
         <div>
-          <ScriptDisplay scripts={scripts} />
+          <ScriptDisplay downloadInitiated={downloadInitiated} />
         </div>
       </div>
     </main>

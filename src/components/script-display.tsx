@@ -7,43 +7,25 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Copy, FileCode, FileText, Check } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useState } from "react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { CheckCircle, FileCode, Terminal } from "lucide-react"
 
 interface ScriptDisplayProps {
-  scripts: { ps1: string; xml: string } | null
+  downloadInitiated: boolean
 }
 
-export function ScriptDisplay({ scripts }: ScriptDisplayProps) {
-  const { toast } = useToast()
-  const [copied, setCopied] = useState<"ps1" | "xml" | null>(null)
-
-  const handleCopy = (text: string | null, type: "ps1" | "xml") => {
-    if (!text) return
-    navigator.clipboard.writeText(text).then(() => {
-      toast({
-        title: "Copied to clipboard!",
-        description: `The ${type === "ps1" ? "PowerShell script" : "XML config"} is ready to use.`,
-      })
-      setCopied(type)
-      setTimeout(() => setCopied(null), 2000)
-    })
-  }
-
-  if (!scripts) {
+export function ScriptDisplay({ downloadInitiated }: ScriptDisplayProps) {
+  if (!downloadInitiated) {
     return (
       <Card className="h-full flex flex-col items-center justify-center text-center shadow-lg">
         <CardHeader>
-          <CardTitle>Generated Scripts</CardTitle>
+          <CardTitle>Automation Package</CardTitle>
           <CardDescription>
-            Your PowerShell and XML configuration files will appear here.
+            Your downloadable package will be ready once you complete the form.
           </CardDescription>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col items-center justify-center">
-            <FileCode className="h-24 w-24 text-muted-foreground/50 mb-4" />
+          <FileCode className="h-24 w-24 text-muted-foreground/50 mb-4" />
           <p className="text-muted-foreground">
             Complete the form to get started.
           </p>
@@ -55,60 +37,48 @@ export function ScriptDisplay({ scripts }: ScriptDisplayProps) {
   return (
     <Card className="shadow-lg h-full">
       <CardHeader>
-        <CardTitle>Your Automation Scripts</CardTitle>
+        <CardTitle className="flex items-center gap-2 text-green-600">
+          <CheckCircle />
+          Package Downloaded!
+        </CardTitle>
         <CardDescription>
-          Use these files to create and configure your virtual machine.
+          Follow these steps on your Hyper-V server to deploy your VM.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue="powershell" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="powershell">
-              <FileCode className="mr-2 h-4 w-4" />
-              create-vm.ps1
-            </TabsTrigger>
-            <TabsTrigger value="xml">
-              <FileText className="mr-2 h-4 w-4" />
-              unattend.xml
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="powershell">
-            <div className="relative mt-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute right-2 top-2 h-7 w-7"
-                onClick={() => handleCopy(scripts.ps1, "ps1")}
-              >
-                {copied === "ps1" ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-                <span className="sr-only">Copy PowerShell Script</span>
-              </Button>
-              <pre className="bg-muted/50 rounded-md p-4 max-h-[500px] overflow-auto">
-                <code className="font-code text-sm text-foreground">
-                  {scripts.ps1}
-                </code>
-              </pre>
-            </div>
-          </TabsContent>
-          <TabsContent value="xml">
-            <div className="relative mt-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute right-2 top-2 h-7 w-7"
-                onClick={() => handleCopy(scripts.xml, "xml")}
-              >
-                {copied === "xml" ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-                <span className="sr-only">Copy XML Config</span>
-              </Button>
-              <pre className="bg-muted/50 rounded-md p-4 max-h-[500px] overflow-auto">
-                <code className="font-code text-sm text-foreground">
-                  {scripts.xml}
-                </code>
-              </pre>
-            </div>
-          </TabsContent>
-        </Tabs>
+        <Alert>
+          <Terminal className="h-4 w-4" />
+          <AlertTitle>Next Steps on Your Hyper-V Server</AlertTitle>
+          <AlertDescription>
+            <ol className="list-decimal list-inside space-y-3 mt-2">
+              <li>
+                Transfer and unzip the downloaded package to a folder (e.g.,{" "}
+                <code className="font-code bg-muted px-1 py-0.5 rounded">C:\HyperV-Automation</code>).
+              </li>
+              <li>
+                Place your Windows Server ISO file inside the{" "}
+                <code className="font-code bg-muted px-1 py-0.5 rounded">OS_ISOs</code> folder.
+              </li>
+              <li>
+                <strong>Important:</strong> Open the{" "}
+                <code className="font-code bg-muted px-1 py-0.5 rounded">create-vm.ps1</code> script and update the{" "}
+                <code className="font-code bg-muted px-1 py-0.5 rounded">$isoName</code> variable on line 13 to match your ISO's filename.
+              </li>
+               <li>
+                (Optional) Place any files you want on the new VM's desktop into the{" "}
+                <code className="font-code bg-muted px-1 py-0.5 rounded">Deploy</code> folder.
+              </li>
+              <li>
+                Open PowerShell <strong>as an Administrator</strong>, navigate to your folder, and run the script:{" "}
+                <code className="font-code bg-muted px-1 py-0.5 rounded">.\create-vm.ps1</code>
+              </li>
+            </ol>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Your VM will now be created in Hyper-V Manager. If you chose a random password, it will be saved in a{" "}
+              <code className="font-code bg-muted px-1 py-0.5 rounded">credentials.csv</code> file.
+            </p>
+          </AlertDescription>
+        </Alert>
       </CardContent>
     </Card>
   )
