@@ -55,31 +55,41 @@ export function Chatbot() {
           )}
         </AnimatePresence>
 
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-            delay: 0.5,
-          }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Button
-            size="icon"
-            className="rounded-full h-16 w-16 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-2xl transition-all duration-300"
-            aria-label={isOpen ? "Close chat" : "Open chat"}
-            onClick={toggleChat}
-          >
-            {isOpen ? (
-              <X className="h-8 w-8 text-primary-foreground" />
-            ) : (
-              <MessageSquare className="h-8 w-8 text-primary-foreground" />
+        <div className="relative">
+            <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
+                    delay: 0.5,
+                }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="relative z-10"
+            >
+            <Button
+                size="icon"
+                className="rounded-full h-16 w-16 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-2xl transition-all duration-300"
+                aria-label={isOpen ? "Close chat" : "Open chat"}
+                onClick={toggleChat}
+            >
+                {isOpen ? (
+                <X className="h-8 w-8 text-primary-foreground" />
+                ) : (
+                <MessageSquare className="h-8 w-8 text-primary-foreground" />
+                )}
+            </Button>
+            </motion.div>
+
+            {/* The Ping Animation */}
+            {!isOpen && (
+                <span className="absolute top-0 left-0 h-16 w-16">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                </span>
             )}
-          </Button>
-        </motion.div>
+        </div>
       </div>
     </div>
   )
