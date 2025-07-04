@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import { Cloud } from "lucide-react"
 
@@ -21,7 +22,7 @@ export function Footer() {
             <nav className="flex flex-col gap-2">
               <Link href="/products#vps" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Virtual Servers</Link>
               <Link href="/products#dedicated" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Dedicated Servers</Link>
-              <Link href="/products#cloud-x" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Cloud-x Accounting</Link>
+              <Link href="/cloud-x" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Cloud-x.in</Link>
               <Link href="/products#web-hosting" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Web Hosting</Link>
               <Link href="/products#colocation" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Colocation</Link>
               <Link href="/products#on-premise-cloud" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>On-premise Cloud</Link>

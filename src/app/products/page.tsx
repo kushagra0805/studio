@@ -138,7 +138,7 @@ export default function ProductsPage() {
                 Run Your Accounting on the Cloud with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">Cloud-x.in</span>
               </h2>
             <Button asChild>
-              <Link href="/contact">Request a Demo <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/cloud-x">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </motion.div>
           <motion.div

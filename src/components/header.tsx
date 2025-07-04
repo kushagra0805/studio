@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -23,6 +24,9 @@ export function Header() {
         <nav className="hidden lg:flex items-center gap-6">
           <Link href="/products" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
             Products
+          </Link>
+          <Link href="/cloud-x" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+            Cloud-x.in
           </Link>
           <Link href="/pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
             Pricing
@@ -61,6 +65,9 @@ export function Header() {
               </Link>
               <Link href="/products" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Products
+              </Link>
+              <Link href="/cloud-x" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
+                Cloud-x.in
               </Link>
               <Link href="/pricing" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Pricing

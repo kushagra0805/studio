@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -225,7 +226,7 @@ export default function Home() {
                 Cloud-x.in is our specialized cloud platform designed for accounting applications like Tally and Busy. Enjoy secure, reliable access to your financial data from anywhere, with performance you can count on.
               </p>
               <Button asChild>
-                <Link href="/products#cloud-x" prefetch={false}>
+                <Link href="/cloud-x" prefetch={false}>
                   Learn More about Cloud-x.in <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
