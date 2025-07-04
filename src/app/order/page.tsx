@@ -24,14 +24,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { User, Home, Briefcase, FileText, Cpu, MemoryStick, HardDrive, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building } from "lucide-react"
+import { User, Home, Briefcase, FileText, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, PackageSelect } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { db, storage } from "@/lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
+
+const vpsPlans = [ "VPS Nano", "VPS Micro", "VPS Starter", "VPS Business", "VPS Pro", "VPS Enterprise", "VPS Elite", "Custom" ];
+const webHostingPlans = [ "Starter", "Personal", "Business", "Pro", "Custom" ];
+const dedicatedPlans = [ "DS-Essential", "DS-Standard", "DS-Advanced", "DS-Elite", "Custom" ];
+const colocationPlans = [ "Per U", "Quarter Rack", "Half Rack", "Full Rack", "Custom" ];
 
 const orderFormSchema = z.object({
   // Personal Info
@@ -58,52 +64,50 @@ const orderFormSchema = z.object({
   serviceType: z.enum(["vps", "cloud-x", "web-hosting", "dedicated-server", "colocation"], {
     required_error: "You need to select a service type.",
   }),
+  
+  // Plan selections
+  vpsPlan: z.string().optional(),
+  webHostingPlan: z.string().optional(),
+  dedicatedServerPlan: z.string().optional(),
+  colocationPlan: z.string().optional(),
 
+  // Custom requirements
+  customRequirements: z.string().min(10, { message: "Please provide more details for your custom request (min 10 characters)." }).optional().or(z.literal("")),
+
+  // Cloud-x users
   userNames: z.array(z.object({
     name: z.string().min(2, "User name must be at least 2 characters."),
   })).optional(),
-  
-  cpu: z.number().min(1).max(64).optional(),
-  ram: z.number().min(2).max(128).optional(),
-  storage: z.number().min(20).max(2048).optional(),
   
   // Terms
   termsAccepted: z.literal(true, {
     errorMap: () => ({ message: "You must accept the terms and conditions to proceed." }),
   }),
 }).superRefine((data, ctx) => {
-    if (data.serviceType === "vps") {
-        if (data.cpu === undefined) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            path: ["cpu"],
-            message: "CPU cores are required for a VPS.",
-          });
-        }
-        if (data.ram === undefined) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            path: ["ram"],
-            message: "RAM is required for a VPS.",
-          });
-        }
-        if (data.storage === undefined) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            path: ["storage"],
-            message: "Storage is required for a VPS.",
-          });
-        }
-    }
     if (data.serviceType === "cloud-x") {
         if (!data.userNames || data.userNames.length < 1) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
                 path: ["userNames"],
-                message: "At least one user is required for Cloud-x service.",
+                message: "At least one user is required for Shared Service.",
             });
         }
     }
+    
+    const checkPlan = (service: string, plan: string | undefined, path: "vpsPlan" | "webHostingPlan" | "dedicatedServerPlan" | "colocationPlan") => {
+        if (data.serviceType === service) {
+            if (!plan || plan === "") {
+                ctx.addIssue({ code: z.ZodIssueCode.custom, path: [path], message: `Please select a plan.` });
+            } else if (plan === 'Custom' && (!data.customRequirements || data.customRequirements.length < 10)) {
+                ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['customRequirements'], message: 'Please describe your custom requirements (min 10 characters).' });
+            }
+        }
+    };
+    
+    checkPlan('vps', data.vpsPlan, 'vpsPlan');
+    checkPlan('web-hosting', data.webHostingPlan, 'webHostingPlan');
+    checkPlan('dedicated-server', data.dedicatedServerPlan, 'dedicatedServerPlan');
+    checkPlan('colocation', data.colocationPlan, 'colocationPlan');
 });
 
 
@@ -124,10 +128,12 @@ export default function OrderPage() {
           businessName: "",
           gstNumber: "",
           serviceType: "vps",
+          vpsPlan: "",
+          webHostingPlan: "",
+          dedicatedServerPlan: "",
+          colocationPlan: "",
+          customRequirements: "",
           userNames: [{ name: "" }],
-          cpu: 2,
-          ram: 4,
-          storage: 80,
           termsAccepted: false,
       },
   })
@@ -152,6 +158,17 @@ export default function OrderPage() {
 
   const fileRef = form.register("gstCertificate");
   const serviceType = form.watch("serviceType");
+
+  const vpsPlan = form.watch("vpsPlan");
+  const webHostingPlan = form.watch("webHostingPlan");
+  const dedicatedServerPlan = form.watch("dedicatedServerPlan");
+  const colocationPlan = form.watch("colocationPlan");
+
+  const showCustomRequirements = 
+    (serviceType === 'vps' && vpsPlan === 'Custom') ||
+    (serviceType === 'web-hosting' && webHostingPlan === 'Custom') ||
+    (serviceType === 'dedicated-server' && dedicatedServerPlan === 'Custom') ||
+    (serviceType === 'colocation' && colocationPlan === 'Custom');
 
   async function onSubmit(data: z.infer<typeof orderFormSchema>) {
     setIsSubmitting(true);
@@ -321,6 +338,38 @@ export default function OrderPage() {
                     />
 
                     <div className="space-y-6 mt-6">
+                        {serviceType === 'vps' && (
+                            <FormField control={form.control} name="vpsPlan" render={({ field }) => (
+                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select VPS Plan</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a VPS plan..." /></SelectTrigger></FormControl>
+                                <SelectContent>{vpsPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                </Select><FormMessage /></FormItem>
+                            )} />
+                        )}
+                        {serviceType === 'web-hosting' && (
+                            <FormField control={form.control} name="webHostingPlan" render={({ field }) => (
+                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select Web Hosting Plan</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a hosting plan..." /></SelectTrigger></FormControl>
+                                <SelectContent>{webHostingPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                </Select><FormMessage /></FormItem>
+                            )} />
+                        )}
+                        {serviceType === 'dedicated-server' && (
+                            <FormField control={form.control} name="dedicatedServerPlan" render={({ field }) => (
+                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select Dedicated Server Plan</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a dedicated server..." /></SelectTrigger></FormControl>
+                                <SelectContent>{dedicatedPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                </Select><FormMessage /></FormItem>
+                            )} />
+                        )}
+                        {serviceType === 'colocation' && (
+                             <FormField control={form.control} name="colocationPlan" render={({ field }) => (
+                                <FormItem><FormLabel className="flex items-center gap-2"><PackageSelect />Select Colocation Plan</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choose a colocation option..." /></SelectTrigger></FormControl>
+                                <SelectContent>{colocationPlans.map(plan => <SelectItem key={plan} value={plan}>{plan}</SelectItem>)}</SelectContent>
+                                </Select><FormMessage /></FormItem>
+                            )} />
+                        )}
                         {serviceType === 'cloud-x' && (
                             <div className="space-y-6">
                                 <FormItem>
@@ -335,7 +384,6 @@ export default function OrderPage() {
                                     />
                                   </FormControl>
                                 </FormItem>
-
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                                     {fields.map((item, index) => (
                                         <FormField
@@ -357,18 +405,23 @@ export default function OrderPage() {
                             </div>
                         )}
                         
-                        {serviceType === 'vps' && (
-                            <>
-                                <FormField control={form.control} name="cpu" render={({ field }) => (
-                                    <FormItem><FormLabel className="flex items-center gap-2"><Cpu />CPU Cores: {field.value}</FormLabel><FormControl><Slider min={1} max={64} step={1} defaultValue={[field.value ?? 2]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
-                                )} />
-                                <FormField control={form.control} name="ram" render={({ field }) => (
-                                    <FormItem><FormLabel className="flex items-center gap-2"><MemoryStick />RAM (GB): {field.value}</FormLabel><FormControl><Slider min={2} max={128} step={2} defaultValue={[field.value ?? 4]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
-                                )} />
-                                <FormField control={form.control} name="storage" render={({ field }) => (
-                                    <FormItem><FormLabel className="flex items-center gap-2"><HardDrive />Storage (GB): {field.value}</FormLabel><FormControl><Slider min={20} max={2048} step={10} defaultValue={[field.value ?? 80]} onValueChange={(value) => field.onChange(value[0])} /></FormControl><FormMessage /></FormItem>
-                                )} />
-                            </>
+                        {showCustomRequirements && (
+                            <FormField control={form.control} name="customRequirements" render={({ field }) => (
+                                <FormItem>
+                                <FormLabel>Custom Requirements</FormLabel>
+                                <FormControl>
+                                    <Textarea
+                                        placeholder="Please describe your custom hardware, software, or service needs..."
+                                        className="min-h-[120px]"
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormDescription>
+                                    Our team will review your request and contact you with a custom quote.
+                                </FormDescription>
+                                <FormMessage />
+                                </FormItem>
+                            )} />
                         )}
                     </div>
                 </div>
