@@ -6,12 +6,30 @@ import { ScriptDisplay } from "@/components/script-display"
 import { generatePowerShellScript, generateUnattendXml } from "@/lib/script-generator"
 import { Bot } from "lucide-react"
 
+const generateRandomPassword = () => {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    let password = "";
+    for (let i = 0; i < 14; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    // Ensure password has at least one of each required type
+    if (!/[a-z]/.test(password)) password += 'a';
+    if (!/[A-Z]/.test(password)) password += 'Z';
+    if (!/\d/.test(password)) password += '1';
+    if (!/[!@#$%^&*()]/.test(password)) password += '!';
+    return password.slice(0, 14);
+}
+
 export default function Home() {
   const [scripts, setScripts] = useState<{ ps1: string; xml: string } | null>(null)
 
   const handleFormSubmit = (data: VmFormData) => {
-    const ps1Script = generatePowerShellScript(data)
-    const xmlScript = generateUnattendXml(data)
+    let formData = { ...data };
+    if (formData.passwordOption === 'random') {
+      formData.password = generateRandomPassword();
+    }
+    const ps1Script = generatePowerShellScript(formData)
+    const xmlScript = generateUnattendXml(formData)
     setScripts({ ps1: ps1Script, xml: xmlScript })
   }
 

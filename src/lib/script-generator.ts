@@ -1,21 +1,7 @@
 import type { VmFormData } from "@/components/vm-form";
 
-const generateRandomPassword = () => {
-    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
-    let password = "";
-    for (let i = 0; i < 14; i++) {
-        password += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    // Ensure password has at least one of each required type
-    if (!/[a-z]/.test(password)) password += 'a';
-    if (!/[A-Z]/.test(password)) password += 'Z';
-    if (!/\d/.test(password)) password += '1';
-    if (!/[!@#$%^&*()]/.test(password)) password += '!';
-    return password.slice(0, 14);
-}
-
 export function generatePowerShellScript(data: VmFormData): string {
-    const vmPassword = data.passwordOption === 'random' ? generateRandomPassword() : data.password;
+    const vmPassword = data.password;
 
     return `
 # HyperAutomate - Generated PowerShell Script
@@ -127,7 +113,7 @@ try {
         New-ISOFile -Path $autounattendIsoPath -SourcePath $tempIsoDir
     } else {
         Write-Warning "Could not create ISO automatically. You may need to install the 'Windows Server Essentials Experience' role for the New-ISOFile cmdlet, or create the ISO manually."
-        Write-Warning "For now, pausing script. Please manually create an ISO named 'autounattend.iso' in '$vhdPath' containing the 'unattend.xml' and 'Deploy' folder, then press Enter."
+        Write-Warning "For now, pausing script. Please manually create an ISO named 'autounattend.iso' in '$vhdPath' containing the 'autounattend.xml' and 'Deploy' folder, then press Enter."
         Read-Host
     }
 } catch {
@@ -170,7 +156,7 @@ Write-Host "RDP will be enabled and files deployed as per the unattend.xml confi
 }
 
 export function generateUnattendXml(data: VmFormData): string {
-    const password = data.passwordOption === 'random' ? generateRandomPassword() : data.password;
+    const password = data.password;
     
     // Simplified OS Image index mapping
     const osImageMap: { [key: string]: string } = {
@@ -181,6 +167,8 @@ export function generateUnattendXml(data: VmFormData): string {
         "Windows Server 2025": "2",
     };
     const imageIndex = osImageMap[data.os] || "2";
+
+    const copyCommand = `powershell.exe -Command "$vol = Get-Volume | Where-Object { $_.FileSystem -eq 'CDFS' -and (Test-Path ($_.DriveLetter + ':\\autounattend.xml')) } | Select-Object -First 1; if ($vol) { $sourcePath = $vol.DriveLetter + ':\\Deploy\\'; $destPath = 'C:\\Users\\Administrator\\Desktop\\Deploy\\'; if (Test-Path $sourcePath) { Copy-Item -Path $sourcePath -Destination $destPath -Recurse -Force; } }"`;
 
     return `<?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
@@ -304,13 +292,13 @@ export function generateUnattendXml(data: VmFormData): string {
                 <!-- Command to set static IP -->
                 <SynchronousCommand wcm:action="add">
                     <Order>3</Order>
-                    <CommandLine>powershell.exe -Command "Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | New-NetIPAddress -IPAddress ${data.ipAddress} -PrefixLength 24 -DefaultGateway 192.168.1.1"</CommandLine>
-                    <Description>Set Static IP Address (gateway assumed as .1)</Description>
+                    <CommandLine>powershell.exe -Command "Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | New-NetIPAddress -IPAddress ${data.ipAddress} -PrefixLength 24 -DefaultGateway ${data.gateway}"</CommandLine>
+                    <Description>Set Static IP Address</Description>
                 </SynchronousCommand>
                 <!-- Command to copy deployment folder -->
                 <SynchronousCommand wcm:action="add">
                     <Order>4</Order>
-                    <CommandLine>powershell.exe -Command "$dvd = Get-VMDvdDrive -VMName \\"${data.vmName}\\" | Where-Object { $_.Path -like '*autounattend.iso' }; $driveLetter = ($dvd | Get-Disk | Get-Partition | Get-Volume).DriveLetter; if ($driveLetter) { Copy-Item -Path \\"$($driveLetter):\\Deploy\\" -Destination \\"C:\\Users\\Administrator\\Desktop\\Deploy\\" -Recurse -Force }"</CommandLine>
+                    <CommandLine>${copyCommand.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</CommandLine>
                     <Description>Copy Deployment Folder to Desktop</Description>
                 </SynchronousCommand>
             </FirstLogonCommands>

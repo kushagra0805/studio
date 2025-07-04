@@ -40,6 +40,7 @@ import {
   Network,
   Server,
   Wrench,
+  Globe,
 } from "lucide-react"
 import { useState } from "react"
 
@@ -54,6 +55,7 @@ const formSchema = z.object({
   passwordOption: z.enum(["random", "defined"]),
   password: z.string().optional(),
   ipAddress: z.string().ip({ version: "v4", message: "Invalid IPv4 address." }),
+  gateway: z.string().ip({ version: "v4", message: "Invalid IPv4 address." }),
 }).refine(data => {
     if (data.passwordOption === 'defined') {
         return data.password && data.password.length >= 8;
@@ -87,6 +89,7 @@ export function VmForm({ onSubmit }: VmFormProps) {
       passwordOption: "random",
       password: "",
       ipAddress: "192.168.1.100",
+      gateway: "192.168.1.1",
     },
   })
 
@@ -209,28 +212,6 @@ export function VmForm({ onSubmit }: VmFormProps) {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormField
                 control={form.control}
-                name="networkCard"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Network />Virtual Network</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a network" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="Default Switch">Default Switch</SelectItem>
-                        <SelectItem value="External Network">External Network</SelectItem>
-                        <SelectItem value="Internal Only">Internal Only</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
                 name="os"
                 render={({ field }) => (
                   <FormItem>
@@ -253,20 +234,58 @@ export function VmForm({ onSubmit }: VmFormProps) {
                   </FormItem>
                 )}
               />
-            </div>
-             <FormField
+               <FormField
                 control={form.control}
-                name="ipAddress"
+                name="networkCard"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2">Static IPv4 Address</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., 192.168.1.100" {...field} />
-                    </FormControl>
+                    <FormLabel className="flex items-center gap-2"><Network />Virtual Network</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a network" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Default Switch">Default Switch</SelectItem>
+                        <SelectItem value="External Network">External Network</SelectItem>
+                        <SelectItem value="Internal Only">Internal Only</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+            </div>
+             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                 <FormField
+                    control={form.control}
+                    name="ipAddress"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2"><Globe />Static IPv4 Address</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g., 192.168.1.100" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="gateway"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">Default Gateway</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g., 192.168.1.1" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+             </div>
+
 
             <Separator />
             
