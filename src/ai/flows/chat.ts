@@ -31,11 +31,11 @@ Here is information about MA Global Network:
       content: [{text: msg.content}]
   }));
 
-  const {output} = await ai.generate({
+  const response = await ai.generate({
     system: systemPrompt,
     history: genkitHistory,
     prompt: query,
   });
 
-  return output as string;
+  return response.text;
 }
