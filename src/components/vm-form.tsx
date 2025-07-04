@@ -46,8 +46,6 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 
-const ipv4Regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-
 const formSchema = z.object({
   vmName: z.string().min(1, "VM name is required.").max(50),
   diskSize: z.number().min(20, "Disk must be at least 20GB.").max(2048),
@@ -58,8 +56,8 @@ const formSchema = z.object({
   os: z.string().min(1, "Operating system is required."),
   passwordOption: z.enum(["random", "defined"]),
   password: z.string().optional(),
-  ipAddress: z.string().regex(ipv4Regex, { message: "Invalid IPv4 address." }),
-  gateway: z.string().regex(ipv4Regex, { message: "Invalid IPv4 address." }),
+  ipAddress: z.string().regex(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/, { message: "Invalid IPv4 address." }),
+  gateway: z.string().regex(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/, { message: "Invalid IPv4 address." }),
 }).refine(data => {
     if (data.passwordOption === 'defined') {
         return data.password && data.password.length >= 8;
