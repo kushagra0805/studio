@@ -41,7 +41,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="space-y-4">
-                  <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl xl:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">
+                  <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl xl:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500">
                     MA Global Network
                   </h1>
                    <p className="max-w-[600px] text-muted-foreground md:text-xl">
@@ -219,7 +219,7 @@ export default function Home() {
             >
               <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm font-semibold text-primary">Cloud-x.in</div>
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                Run Your Accounting on the Cloud with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">Cloud-x.in</span>
+                Run Your Accounting on the Cloud with <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500">Cloud-x.in</span>
               </h2>
               <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Cloud-x.in is our specialized cloud platform designed for accounting applications like Tally and Busy. Enjoy secure, reliable access to your financial data from anywhere, with performance you can count on.

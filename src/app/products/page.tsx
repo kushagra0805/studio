@@ -133,6 +133,9 @@ export default function ProductsPage() {
             <p className="text-muted-foreground text-lg mb-4">
               Move your essential accounting software like Tally, Busy, and others to the cloud with our specialized Cloud-x.in platform. Access your financial data securely from any device, anywhere, without the hassle of managing local servers.
             </p>
+             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Run Your Accounting on the Cloud with <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500">Cloud-x.in</span>
+              </h2>
             <Button asChild>
               <Link href="/contact">Request a Demo <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
