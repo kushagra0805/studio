@@ -26,7 +26,7 @@ export function Chatbot() {
               className="mb-2"
             >
               <div className="relative rounded-lg bg-primary text-primary-foreground px-4 py-2 shadow-lg">
-                <p className="text-sm font-medium">I am here to help you</p>
+                <p className="text-sm font-medium">We are here to help you</p>
                 {/* Arrow pointing to the button */}
                 <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 
                   border-t-8 border-t-transparent

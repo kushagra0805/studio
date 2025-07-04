@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview A chatbot flow for M A Global Network.
@@ -22,7 +23,7 @@ Here is information about M A Global Network:
   - Web Hosting: For websites of all sizes.
   - Shared Service (Cloud-x.in): A specialized platform for running accounting software like Tally and Busy in the cloud.
 - **Key Features:** 24/7 expert support, top-tier security, scalable solutions, global infrastructure.
-- **Contact:** For pricing details or custom quotes, users should visit the contact page.
+- **Contact:** For pricing details, custom quotes, or to speak with a live agent, users should use the options in the "Live Support" tab.
 `;
 
   // Map the simple history to the Genkit Message format
