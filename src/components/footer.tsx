@@ -24,7 +24,7 @@ export function Footer() {
               <Link href="/products#cloud-x" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Cloud-x Accounting</Link>
               <Link href="/products#web-hosting" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Web Hosting</Link>
               <Link href="/products#colocation" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Colocation</Link>
-              <Link href="/products#apex-cloud" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Apex Private Cloud</Link>
+              <Link href="/products#on-premise-cloud" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>On-premise Cloud</Link>
             </nav>
           </div>
 

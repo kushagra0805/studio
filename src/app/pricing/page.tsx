@@ -234,7 +234,7 @@ export default function PricingPage() {
               <TabsTrigger value="web-hosting" className="py-2">Web Hosting</TabsTrigger>
               <TabsTrigger value="dedicated" className="py-2">Dedicated Servers</TabsTrigger>
               <TabsTrigger value="colocation" className="py-2">Colocation</TabsTrigger>
-              <TabsTrigger value="apex-cloud" className="py-2">Apex Private Cloud</TabsTrigger>
+              <TabsTrigger value="on-premise-cloud" className="py-2">On-premise Cloud</TabsTrigger>
             </TabsList>
           </motion.div>
 
@@ -300,7 +300,7 @@ export default function PricingPage() {
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="apex-cloud" className="mt-10">
+          <TabsContent value="on-premise-cloud" className="mt-10">
             <motion.div
               variants={itemVariants}
               initial="hidden"
@@ -308,7 +308,7 @@ export default function PricingPage() {
             >
                 <Card className="shadow-lg max-w-4xl mx-auto">
                     <CardHeader>
-                        <CardTitle className="text-3xl flex items-center gap-3"><CloudCog className="h-8 w-8 text-primary" />Apex Private Cloud</CardTitle>
+                        <CardTitle className="text-3xl flex items-center gap-3"><CloudCog className="h-8 w-8 text-primary" />On-premise Cloud</CardTitle>
                         <CardDescription>Your own private cloud, deployed on-premises at your business location for ultimate control and security.</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -318,7 +318,7 @@ export default function PricingPage() {
                             <li className="flex items-center"><Network className="h-6 w-6 text-primary mr-3" /><span>Fully managed by our experts or co-managed with your IT team.</span></li>
                             <li className="flex items-center"><Check className="h-6 w-6 text-primary mr-3" /><span>Scalable architecture that grows with your business.</span></li>
                         </ul>
-                        <p className="mt-6 text-muted-foreground">Apex Private Cloud is the ideal solution for businesses requiring maximum data sovereignty, performance, and customized infrastructure. Let us build the perfect cloud for you.</p>
+                        <p className="mt-6 text-muted-foreground">On-premise Cloud is the ideal solution for businesses requiring maximum data sovereignty, performance, and customized infrastructure. Let us build the perfect cloud for you.</p>
                     </CardContent>
                     <CardFooter>
                         <Button asChild size="lg" className="w-full md:w-auto">
