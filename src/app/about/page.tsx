@@ -87,57 +87,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </div>
-
-       <div className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-             <h2 className="text-3xl font-extrabold tracking-tight text-center sm:text-4xl">
-              Meet Our Team
-            </h2>
-            <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground text-center">
-              A dedicated group of experts passionate about technology and customer service.
-            </p>
-          </div>
-          <motion.div 
-            className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-             <motion.div variants={itemVariants} whileHover={{ y: -5, scale: 1.03 }} className="h-full">
-              <Card className="p-6 text-center h-full shadow-md hover:shadow-xl transition-shadow">
-                  <Avatar className="w-24 h-24 mx-auto mb-4">
-                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="male portrait" />
-                      <AvatarFallback>JD</AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-xl font-bold">John Doe</h3>
-                  <p className="text-primary">CEO & Founder</p>
-              </Card>
-            </motion.div>
-            <motion.div variants={itemVariants} whileHover={{ y: -5, scale: 1.03 }} className="h-full">
-              <Card className="p-6 text-center h-full shadow-md hover:shadow-xl transition-shadow">
-                  <Avatar className="w-24 h-24 mx-auto mb-4">
-                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="female portrait" />
-                      <AvatarFallback>JS</AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-xl font-bold">Jane Smith</h3>
-                  <p className="text-primary">Head of Engineering</p>
-              </Card>
-            </motion.div>
-            <motion.div variants={itemVariants} whileHover={{ y: -5, scale: 1.03 }} className="h-full">
-              <Card className="p-6 text-center h-full shadow-md hover:shadow-xl transition-shadow">
-                  <Avatar className="w-24 h-24 mx-auto mb-4">
-                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="professional portrait" />
-                      <AvatarFallback>PS</AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-xl font-bold">Peter Jones</h3>
-                  <p className="text-primary">Support Lead</p>
-              </Card>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
     </div>
   );
 }
