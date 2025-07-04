@@ -35,34 +35,34 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
 
 const vpsPlans = [
-  { name: "VPS Nano", description: "Perfect for testing and very small scripts." },
-  { name: "VPS Micro", description: "For lightweight apps and personal projects." },
-  { name: "VPS Starter", description: "Ideal for development and small applications." },
-  { name: "VPS Business", description: "Perfect for growing websites and applications." },
-  { name: "VPS Pro", description: "For demanding applications and high traffic." },
-  { name: "VPS Enterprise", description: "Maximum performance for critical workloads." },
-  { name: "VPS Elite", description: "For large-scale enterprise deployments." },
+  { name: "VPS Nano", description: "1 vCPU, 1 GB RAM, 20 GB NVMe" },
+  { name: "VPS Micro", description: "1 vCPU, 2 GB RAM, 40 GB NVMe" },
+  { name: "VPS Starter", description: "2 vCPU, 4 GB RAM, 80 GB NVMe" },
+  { name: "VPS Business", description: "4 vCPU, 8 GB RAM, 160 GB NVMe" },
+  { name: "VPS Pro", description: "8 vCPU, 16 GB RAM, 320 GB NVMe" },
+  { name: "VPS Enterprise", description: "16 vCPU, 32 GB RAM, 640 GB NVMe" },
+  { name: "VPS Elite", description: "24 vCPU, 64 GB RAM, 1.2 TB NVMe" },
   { name: "Custom", description: "Tailored specs for your unique needs." },
 ];
 const webHostingPlans = [
-  { name: "Starter", description: "Perfect for a static landing page or basic blog." },
-  { name: "Personal", description: "Great for personal sites and growing blogs." },
-  { name: "Business", description: "More power for small business websites." },
-  { name: "Pro", description: "For agencies and multiple high-traffic sites." },
+  { name: "Starter", description: "1 Website, 20 GB SSD, Unmetered B/W" },
+  { name: "Personal", description: "5 Websites, 50 GB SSD, Unmetered B/W" },
+  { name: "Business", description: "10 Websites, 100 GB NVMe, Daily Backups" },
+  { name: "Pro", description: "Unlimited Websites, 200 GB NVMe, Daily Backups" },
   { name: "Custom", description: "Custom hosting solution for specific requirements." },
 ];
 const dedicatedPlans = [
-  { name: "DS-Essential", description: "Entry-level dedicated power for serious projects." },
-  { name: "DS-Standard", description: "A solid foundation for growing applications." },
-  { name: "DS-Advanced", description: "High performance for demanding applications." },
-  { name: "DS-Elite", description: "Ultimate power for enterprise-level workloads." },
+  { name: "DS-Essential", description: "Xeon E-2336, 32 GB RAM, 2x 250 GB SATA SSD" },
+  { name: "DS-Standard", description: "Xeon-D 2123IT, 32 GB RAM, 2x 512 GB NVMe SSD" },
+  { name: "DS-Advanced", description: "AMD EPYC 7282, 64 GB RAM, 2x 1 TB NVMe SSD" },
+  { name: "DS-Elite", description: "Dual Xeon Silver 4314, 128 GB RAM, 2x 2 TB NVMe SSD" },
   { name: "Custom", description: "Custom dedicated server configuration." },
 ];
 const colocationPlans = [
-  { name: "Per U", description: "Ideal for single servers or small network appliances." },
-  { name: "Quarter Rack", description: "For small businesses with multiple servers." },
-  { name: "Half Rack", description: "Ample space and power for growing infrastructure." },
-  { name: "Full Rack", description: "Complete, secure cabinet for mission-critical hardware." },
+  { name: "Per U", description: "1U Space, 1 Amp Power, 5 TB B/W" },
+  { name: "Quarter Rack", description: "10U Space, 5 Amps Power, 10 TB B/W" },
+  { name: "Half Rack", description: "21U Space, 10 Amps Power, 20 TB B/W" },
+  { name: "Full Rack", description: "42U Space, 20 Amps Power, 30 TB B/W" },
   { name: "Custom", description: "Custom colocation space and power." },
 ];
 
@@ -514,5 +514,7 @@ export default function OrderPage() {
     </div>
   );
 }
+
+    
 
     
