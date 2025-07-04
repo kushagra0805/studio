@@ -3,8 +3,8 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ArrowRight, Server, Database, Globe, Shield, Zap, Cloud, BarChart, LifeBuoy, ShieldCheck, Scaling } from "lucide-react"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { ArrowRight, Server, Database, Globe, Shield, Zap, Cloud, BarChart, LifeBuoy, ShieldCheck, Scaling, Quote } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function Home() {
@@ -29,10 +29,28 @@ export default function Home() {
     }
   };
 
+  const testimonials = [
+    {
+      quote: "M A Global Network's VPS is incredibly fast and reliable. Their 24/7 support team is a lifesaver, always responsive and knowledgeable. We migrated our entire infrastructure and haven't looked back.",
+      name: "Rohan Sharma",
+      company: "Tech Solutions Inc.",
+    },
+    {
+      quote: "The Shared Service for Tally has transformed our accounting workflow. Accessing our data from anywhere is a game-changer for our distributed team. The setup was seamless and performance is excellent.",
+      name: "Priya Patel",
+      company: "Growth Ventures",
+    },
+    {
+      quote: "We chose their colocation service for the top-tier security and robust infrastructure. The peace of mind knowing our hardware is in a world-class data center is invaluable. Highly recommended.",
+      name: "Ankit Desai",
+      company: "DataSecure Ltd.",
+    },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <main className="flex-1">
-        <section className="w-full py-24 md:py-32 lg:py-40 xl:py-48">
+        <section className="w-full py-20 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-24">
               <motion.div 
@@ -72,12 +90,12 @@ export default function Home() {
                 whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
               >
                 <img
-                  src="https://placehold.co/500x375.png"
-                  width="500"
-                  height="375"
+                  src="https://placehold.co/450x338.png"
+                  width="450"
+                  height="338"
                   alt="Cloud Infrastructure"
                   data-ai-hint="futuristic network"
-                  className="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover"
+                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
                 />
               </motion.div>
             </div>
@@ -216,6 +234,41 @@ export default function Home() {
             </div>
           </div>
         </motion.section>
+
+        <motion.section 
+          id="testimonials" 
+          className="w-full py-12 md:py-24 lg:py-32"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Trusted by Businesses Like Yours</h2>
+                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    Read what our clients have to say about our services and support.
+                 </p>
+              </div>
+            </div>
+             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12">
+                {testimonials.map((testimonial, index) => (
+                  <motion.div variants={itemVariants} key={index}>
+                    <Card className="h-full bg-secondary/50">
+                        <CardContent className="pt-6">
+                            <Quote className="h-8 w-8 text-primary mb-4" />
+                            <p className="text-muted-foreground mb-4">{testimonial.quote}</p>
+                            <p className="font-semibold">{testimonial.name}</p>
+                            <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                        </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+             </div>
+          </div>
+        </motion.section>
+        
       </main>
     </div>
   )

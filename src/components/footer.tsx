@@ -44,6 +44,10 @@ export function Footer() {
             <nav className="flex flex-col gap-2">
               <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Terms of Service</Link>
               <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Privacy Policy</Link>
+              <Link href="/aup" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Acceptable Use Policy</Link>
+              <Link href="/sla" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Service Level Agreement</Link>
+              <Link href="/msa" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Master Service Agreement</Link>
+              <Link href="/colocation-policy" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4" prefetch={false}>Colocation Policy</Link>
             </nav>
           </div>
         </div>

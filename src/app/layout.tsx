@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Chatbot } from '@/components/chatbot';
+import { WhatsAppChat } from '@/components/whatsapp-chat';
 
 export const metadata: Metadata = {
   title: 'M A Global Network - Cloud Services',
@@ -27,6 +28,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppChat />
         <Chatbot />
         <Toaster />
       </body>
