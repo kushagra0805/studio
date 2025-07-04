@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Cloud } from "lucide-react"
 
 export function Header() {
@@ -49,6 +49,9 @@ export function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
+            <SheetHeader>
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+            </SheetHeader>
             <div className="grid gap-2 py-6">
               <Link href="/" className="flex w-full items-center py-3 text-xl font-bold" prefetch={false} onClick={closeSheet}>
                 Home
