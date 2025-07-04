@@ -1,23 +1,72 @@
+"use client"
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Server, Database, Globe, Building, BarChart } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const textFromLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" }
+  }
+};
+
+const imageFromRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" }
+  }
+};
+
+const textFromRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" }
+  }
+};
+
+const imageFromLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" }
+  }
+};
 
 export default function ProductsPage() {
   return (
     <div className="bg-background text-foreground">
       <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             Our Cloud Solutions
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
             Infrastructure built for performance, reliability, and scale. Find the perfect fit for your needs.
           </p>
-        </div>
+        </motion.div>
 
         {/* Virtual Private Servers */}
-        <div className="mt-20 grid md:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="mt-20 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+          <motion.div
+            variants={textFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <div className="flex items-center gap-3 mb-2">
               <Server className="h-8 w-8 text-primary" />
               <h2 className="text-3xl font-bold">Virtual Private Servers (VPS)</h2>
@@ -28,18 +77,34 @@ export default function ProductsPage() {
             <Button asChild>
               <Link href="/pricing">View VPS Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            variants={imageFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <img src="https://placehold.co/500x350.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" data-ai-hint="server racks" />
-          </div>
+          </motion.div>
         </div>
 
         {/* Dedicated Servers */}
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-last md:order-first">
+        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+          <motion.div 
+            className="order-last md:order-first"
+            variants={imageFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
              <img src="https://placehold.co/500x350.png" alt="Dedicated Servers" className="rounded-lg shadow-md" data-ai-hint="data center aisle" />
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            variants={textFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <div className="flex items-center gap-3 mb-2">
               <Database className="h-8 w-8 text-primary" />
               <h2 className="text-3xl font-bold">Dedicated Servers</h2>
@@ -50,12 +115,17 @@ export default function ProductsPage() {
              <Button asChild>
               <Link href="/pricing">View Dedicated Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
         
         {/* Accounting on Cloud */}
-        <div id="cloud-x" className="mt-24 pt-10 grid md:grid-cols-2 gap-12 items-center bg-secondary -mx-4 sm:-mx-6 lg:-mx-8 p-4 sm:p-6 lg:p-12 rounded-lg">
-          <div>
+        <div id="cloud-x" className="mt-24 pt-10 grid md:grid-cols-2 gap-12 items-center bg-secondary -mx-4 sm:-mx-6 lg:-mx-8 p-4 sm:p-6 lg:p-12 rounded-lg overflow-hidden">
+          <motion.div
+            variants={textFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <div className="flex items-center gap-3 mb-2">
               <BarChart className="h-8 w-8 text-primary" />
               <h2 className="text-3xl font-bold">Cloud-x.in: Accounting on the Cloud</h2>
@@ -66,18 +136,34 @@ export default function ProductsPage() {
             <Button asChild>
               <Link href="/contact">Request a Demo <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+             variants={imageFromRight}
+             initial="hidden"
+             whileInView="visible"
+             viewport={{ once: true, amount: 0.3 }}
+          >
             <img src="https://placehold.co/500x350.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" data-ai-hint="business charts" />
-          </div>
+          </motion.div>
         </div>
 
         {/* Web Hosting */}
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
-           <div className="order-last md:order-first">
+        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+           <motion.div 
+            className="order-last md:order-first"
+            variants={imageFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+           >
              <img src="https://placehold.co/500x350.png" alt="Web Hosting" className="rounded-lg shadow-md" data-ai-hint="website code" />
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            variants={textFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <div className="flex items-center gap-3 mb-2">
               <Globe className="h-8 w-8 text-primary" />
               <h2 className="text-3xl font-bold">Web Hosting</h2>
@@ -88,12 +174,17 @@ export default function ProductsPage() {
              <Button asChild>
               <Link href="/pricing">View Hosting Plans <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
 
         {/* Server Colocation */}
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center overflow-hidden">
+          <motion.div
+            variants={textFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <div className="flex items-center gap-3 mb-2">
               <Building className="h-8 w-8 text-primary" />
               <h2 className="text-3xl font-bold">Server Colocation</h2>
@@ -104,10 +195,15 @@ export default function ProductsPage() {
              <Button asChild>
               <Link href="/contact">Contact for Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            variants={imageFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <img src="https://placehold.co/500x350.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server room" />
-          </div>
+          </motion.div>
         </div>
 
       </div>

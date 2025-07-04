@@ -67,7 +67,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
               >
                 <img
                   src="https://placehold.co/600x400.png"
@@ -101,8 +102,11 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 mt-12">
-              <motion.div variants={itemVariants}>
-                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+              <motion.div 
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
+              >
+                <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardHeader className="flex flex-col items-center">
                      <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Server className="h-8 w-8 text-primary" />
@@ -111,8 +115,11 @@ export default function Home() {
                   </CardHeader>
                 </Card>
               </motion.div>
-               <motion.div variants={itemVariants}>
-                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+               <motion.div 
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
+               >
+                <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardHeader className="flex flex-col items-center">
                      <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Globe className="h-8 w-8 text-primary" />
@@ -121,8 +128,11 @@ export default function Home() {
                   </CardHeader>
                 </Card>
               </motion.div>
-               <motion.div variants={itemVariants}>
-                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+               <motion.div 
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
+               >
+                <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardHeader className="flex flex-col items-center">
                      <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Database className="h-8 w-8 text-primary" />
@@ -131,8 +141,11 @@ export default function Home() {
                   </CardHeader>
                 </Card>
               </motion.div>
-               <motion.div variants={itemVariants}>
-                <Card className="h-full bg-background/60 text-center hover:shadow-lg transition-all duration-300">
+               <motion.div 
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
+               >
+                <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardHeader className="flex flex-col items-center">
                      <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <BarChart className="h-8 w-8 text-primary" />
@@ -171,7 +184,8 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
             >
               <img
                 src="https://placehold.co/550x310.png"
