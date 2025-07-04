@@ -24,8 +24,7 @@ import { saveAs } from 'file-saver';
 
 // Schema for RDP form
 const rdpFormSchema = z.object({
-  hostname: z.string().min(1, "Hostname or IP address is required."),
-  port: z.string().optional(),
+  securityCode: z.string().optional(),
   username: z.string().min(1, "Username is required."),
 })
 
@@ -42,15 +41,15 @@ function RdpForm() {
     const form = useForm<z.infer<typeof rdpFormSchema>>({
         resolver: zodResolver(rdpFormSchema),
         defaultValues: {
-            hostname: "",
-            port: "3389",
+            securityCode: "",
             username: "Administrator",
         },
     })
 
     function onSubmit(data: z.infer<typeof rdpFormSchema>) {
-        const { hostname, port, username } = data;
-        const fullAddress = port ? `${hostname}:${port}` : hostname;
+        const { securityCode, username } = data;
+        const hostname = 'cloud-x.in';
+        const fullAddress = securityCode ? `${hostname}:${securityCode}` : hostname;
         
         const rdpFileContent = [
             `full address:s:${fullAddress}`,
@@ -72,33 +71,23 @@ function RdpForm() {
         <Card className="border-none shadow-none">
             <CardHeader className="px-1 pt-6">
                 <CardTitle className="text-2xl">RDP File Login</CardTitle>
-                <CardDescription>Generate a .rdp file to connect with your desktop client.</CardDescription>
+                <CardDescription>Generate a .rdp file to connect to cloud-x.in.</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <FormField
+                         <FormField
                             control={form.control}
-                            name="hostname"
+                            name="securityCode"
                             render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="flex items-center gap-2"><Server /> Hostname or IP</FormLabel>
+                                <FormLabel className="flex items-center gap-2"><Shield /> Security Code (optional)</FormLabel>
                                 <FormControl>
-                                <Input placeholder="e.g., 192.168.1.50 or my-vm.cloud-x.in" {...field} />
+                                <Input type="number" placeholder="If provided by support" {...field} />
                                 </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="port"
-                            render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Port (optional)</FormLabel>
-                                <FormControl>
-                                <Input type="number" placeholder="Default: 3389" {...field} />
-                                </FormControl>
+                                <FormDescription>
+                                    This is the port number for your RDP connection.
+                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                             )}
@@ -120,6 +109,7 @@ function RdpForm() {
                             </FormItem>
                             )}
                         />
+                        <div className="pt-12" />
                         <Button type="submit" size="lg" className="w-full">
                             <Download className="mr-2 h-4 w-4" /> Download RDP File
                         </Button>
