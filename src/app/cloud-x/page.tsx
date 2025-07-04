@@ -77,7 +77,7 @@ export default function CloudXPage() {
             </p>
           </motion.div>
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -93,19 +93,6 @@ export default function CloudXPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">Access your Tally or Busy data from your office, home, or on the go from any device.</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-             <motion.div variants={fadeIn}>
-              <Card className="text-center h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    <ShieldCheck className="h-8 w-8" />
-                  </div>
-                  <CardTitle>Bank-Grade Security</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">Your data is protected with end-to-end encryption, firewalls, and daily backups.</p>
                 </CardContent>
               </Card>
             </motion.div>
