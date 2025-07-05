@@ -35,14 +35,15 @@ Follow these steps to get the website running on your computer.
 
 The website needs API keys to connect to its backend services (Firebase and Google AI).
 
-1.  Find the file named `.env.local.example` in the project.
-2.  Make a copy of this file in the same directory and rename it to `.env`.
-3.  Follow the instructions in the `required-apis.txt` file to get your API keys from Firebase and Google AI Studio.
-4.  Paste your keys into the `.env` file. **This step is essential for the contact forms and AI chatbot to work.**
+1.  Find the file named `.env.local.example` in the project's **main folder**.
+2.  Make a copy of this file in the **same directory** and rename the copy to just `.env`.
+3.  The new `.env` file should be in the root of your project, right alongside `package.json` and the `src` folder.
+4.  Follow the instructions in the `required-apis.txt` file to get your API keys from Firebase and Google AI Studio.
+5.  Paste your keys into the `.env` file. **This step is essential for the contact forms and AI chatbot to work.**
 
 ### Step 4: Run the Development Servers
 
-To run the entire application locally, you will need to open **two separate terminals** in your code editor.
+To run the entire application locally, you will need to open **two separate terminals** in your code editor. This allows you to run both the website (front-end) and the AI services (back-end) at the same time.
 
 **In your FIRST terminal, run the website:**
 ```bash
