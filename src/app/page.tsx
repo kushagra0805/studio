@@ -179,7 +179,7 @@ export default function Home() {
                   variants={itemVariants}
                   whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
                 >
-                  <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <Card className="h-full bg-background/60 text-center">
                     <CardHeader className="flex flex-col items-center">
                        <div className="bg-primary/10 p-4 rounded-full mb-4">
                         <Server className="h-8 w-8 text-primary" />
@@ -194,7 +194,7 @@ export default function Home() {
                   variants={itemVariants}
                   whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
                 >
-                  <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <Card className="h-full bg-background/60 text-center">
                     <CardHeader className="flex flex-col items-center">
                        <div className="bg-accent/10 p-4 rounded-full mb-4">
                         <Globe className="h-8 w-8 text-accent" />
@@ -209,7 +209,7 @@ export default function Home() {
                   variants={itemVariants}
                   whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
                 >
-                  <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <Card className="h-full bg-background/60 text-center">
                     <CardHeader className="flex flex-col items-center">
                        <div className="bg-primary/10 p-4 rounded-full mb-4">
                         <Database className="h-8 w-8 text-primary" />
@@ -224,7 +224,7 @@ export default function Home() {
                   variants={itemVariants}
                   whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
                 >
-                  <Card className="h-full bg-background/60 text-center shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <Card className="h-full bg-background/60 text-center">
                     <CardHeader className="flex flex-col items-center">
                        <div className="bg-accent/10 p-4 rounded-full mb-4">
                         <BarChart className="h-8 w-8 text-accent" />

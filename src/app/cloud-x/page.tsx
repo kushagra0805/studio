@@ -84,7 +84,7 @@ export default function CloudXPage() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div variants={fadeIn}>
-              <Card className="text-center h-full hover:shadow-lg transition-shadow">
+              <Card className="text-center h-full">
                 <CardHeader>
                   <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                     <Globe className="h-8 w-8" />
@@ -97,7 +97,7 @@ export default function CloudXPage() {
               </Card>
             </motion.div>
             <motion.div variants={fadeIn}>
-              <Card className="text-center h-full hover:shadow-lg transition-shadow">
+              <Card className="text-center h-full">
                 <CardHeader>
                   <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 text-accent mb-4">
                     <Zap className="h-8 w-8" />
@@ -110,7 +110,7 @@ export default function CloudXPage() {
               </Card>
             </motion.div>
              <motion.div variants={fadeIn}>
-              <Card className="text-center h-full hover:shadow-lg transition-shadow">
+              <Card className="text-center h-full">
                 <CardHeader>
                   <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                     <Server className="h-8 w-8" />

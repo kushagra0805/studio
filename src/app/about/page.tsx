@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -145,26 +145,38 @@ export default function AboutPage() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-                <motion.div variants={itemVariants} className="p-6 bg-background rounded-lg shadow-md text-center">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
-                        <ShieldCheck className="h-8 w-8" />
-                    </div>
-                    <h3 className="text-xl font-bold">Uncompromising Reliability</h3>
-                    <p className="mt-2 text-muted-foreground">We build our systems for 99% uptime, ensuring your services are always available when you need them most.</p>
+                <motion.div variants={itemVariants}>
+                    <Card className="text-center h-full">
+                        <CardContent className="pt-6">
+                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
+                                <ShieldCheck className="h-8 w-8" />
+                            </div>
+                            <h3 className="text-xl font-bold">Uncompromising Reliability</h3>
+                            <p className="mt-2 text-muted-foreground">We build our systems for 99% uptime, ensuring your services are always available when you need them most.</p>
+                        </CardContent>
+                    </Card>
                 </motion.div>
-                <motion.div variants={itemVariants} className="p-6 bg-background rounded-lg shadow-md text-center">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mx-auto mb-4">
-                        <Lightbulb className="h-8 w-8" />
-                    </div>
-                    <h3 className="text-xl font-bold">Continuous Innovation</h3>
-                    <p className="mt-2 text-muted-foreground">We are constantly exploring new technologies to provide our clients with the fastest, most secure, and most efficient solutions.</p>
+                <motion.div variants={itemVariants}>
+                     <Card className="text-center h-full">
+                        <CardContent className="pt-6">
+                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mx-auto mb-4">
+                                <Lightbulb className="h-8 w-8" />
+                            </div>
+                            <h3 className="text-xl font-bold">Continuous Innovation</h3>
+                            <p className="mt-2 text-muted-foreground">We are constantly exploring new technologies to provide our clients with the fastest, most secure, and most efficient solutions.</p>
+                        </CardContent>
+                    </Card>
                 </motion.div>
-                 <motion.div variants={itemVariants} className="p-6 bg-background rounded-lg shadow-md text-center">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
-                        <HeartHandshake className="h-8 w-8" />
-                    </div>
-                    <h3 className="text-xl font-bold">Customer-Centric Support</h3>
-                    <p className="mt-2 text-muted-foreground">Your success is our success. Our expert team is dedicated to providing friendly, responsive, and effective support 24/7.</p>
+                 <motion.div variants={itemVariants}>
+                     <Card className="text-center h-full">
+                        <CardContent className="pt-6">
+                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
+                                <HeartHandshake className="h-8 w-8" />
+                            </div>
+                            <h3 className="text-xl font-bold">Customer-Centric Support</h3>
+                            <p className="mt-2 text-muted-foreground">Your success is our success. Our expert team is dedicated to providing friendly, responsive, and effective support 24/7.</p>
+                        </CardContent>
+                    </Card>
                 </motion.div>
             </motion.div>
           </div>

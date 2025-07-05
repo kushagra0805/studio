@@ -78,7 +78,7 @@ export default function ContactPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <Card className="shadow-xl">
+        <Card>
           <CardHeader className="text-center">
             <Mail className="mx-auto h-12 w-12 text-primary" />
             <CardTitle className="text-3xl font-bold mt-4">Contact Us</CardTitle>

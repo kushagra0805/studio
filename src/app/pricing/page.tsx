@@ -285,7 +285,7 @@ const PlanCard = ({ plan }: { plan: any }) => (
         whileHover={{ y: -8, transition: { duration: 0.2 } }}
         className="flex flex-col h-full"
     >
-        <Card className={`flex flex-col flex-grow ${plan.popular ? 'border-primary border-2 shadow-primary/20 shadow-lg' : 'shadow-md hover:shadow-xl transition-shadow'}`}>
+        <Card className={`flex flex-col flex-grow ${plan.popular ? 'border-primary border-2 shadow-primary/20 shadow-xl' : ''}`}>
             {plan.popular && (
                 <div className="text-center py-1 bg-primary text-primary-foreground font-semibold rounded-t-lg -mt-px">
                     Most Popular
@@ -402,7 +402,7 @@ export default function PricingPage() {
               initial="hidden"
               animate="visible"
             >
-                <Card className="shadow-lg max-w-4xl mx-auto">
+                <Card>
                     <CardHeader>
                         <CardTitle className="text-3xl flex items-center gap-3"><CloudCog className="h-8 w-8 text-primary" />On-premise Cloud</CardTitle>
                         <CardDescription>Your own private cloud, deployed on-premises at your business location for ultimate control and security.</CardDescription>
