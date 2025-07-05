@@ -40,17 +40,21 @@ The website needs API keys to connect to its backend services (Firebase and Goog
 3.  Follow the instructions in the `required-apis.txt` file to get your API keys from Firebase and Google AI Studio.
 4.  Paste your keys into the `.env` file. **This step is essential for the contact forms and AI chatbot to work.**
 
-### Step 4: Run the Development Server
+### Step 4: Run the Development Servers
 
-Now you are ready to start the website. Run the following command in your terminal:
+To run the entire application locally, you will need to open **two separate terminals** in your code editor.
 
+**In your FIRST terminal, run the website:**
 ```bash
 npm run dev
 ```
+This will start the local development server for the website. You can now view it by opening this URL in your web browser: **[http://localhost:9002](http://localhost:9002)**
 
-This will start the local development server. You can now view your website by opening the following URL in your web browser:
-
-**[http://localhost:9002](http://localhost:9002)**
+**In your SECOND terminal, run the AI backend:**
+```bash
+npm run genkit:dev
+```
+This starts the local development server for the Genkit AI flows, which powers the chatbot. This allows you to test your AI features locally.
 
 Any changes you make to the code will automatically be reflected in the browser.
 
@@ -72,6 +76,7 @@ The website code is already configured to use these file paths, so you do not ne
 In the project directory, you can run:
 
 -   `npm run dev`: Runs the app in development mode.
+-   `npm run genkit:dev`: Runs the local Genkit AI development server.
 -   `npm run build`: Builds the app for production.
 -   `npm start`: Starts a production server (after running `npm run build`).
 -   `npm run lint`: Lints the code for potential errors.
