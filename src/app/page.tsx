@@ -63,7 +63,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <div className="space-y-4">
-                <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl xl:text-7xl/none text-primary">
+                <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl lg:text-6xl text-primary whitespace-nowrap">
                   M A Global Network
                 </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
