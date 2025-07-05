@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
 import Link from 'next/link';
 import { ArrowUp, Bot, Loader2, User, X, Contact, MessageSquareText } from "lucide-react";
-import { chat } from "@/ai/flows/chat";
+import { chat } from "../ai/flows/chat";
 import type { ChatMessage } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import {
