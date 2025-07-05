@@ -265,7 +265,7 @@ export default function OrderPage() {
         <Card>
           <CardHeader className="text-center">
             <Send className="mx-auto h-12 w-12 text-primary" />
-            <CardTitle className="text-3xl font-bold mt-4">Place Your Order</CardTitle>
+            <CardTitle>Place Your Order</CardTitle>
             <CardDescription className="text-lg">
               Configure your service and provide your details to get started.
             </CardDescription>

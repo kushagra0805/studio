@@ -81,7 +81,7 @@ export default function ContactPage() {
         <Card>
           <CardHeader className="text-center">
             <Mail className="mx-auto h-12 w-12 text-primary" />
-            <CardTitle className="text-3xl font-bold mt-4">Contact Us</CardTitle>
+            <CardTitle>Contact Us</CardTitle>
             <CardDescription className="text-lg">
               Have a question or need a custom quote? We'd love to hear from you.
             </CardDescription>

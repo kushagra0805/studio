@@ -60,8 +60,6 @@ function RdpForm() {
             'authentication level:i:2',
         ];
 
-        // If a password is provided, we tell the RDP client not to prompt.
-        // This relies on the user having saved the credential locally in Windows Credential Manager.
         if (password && password.length > 0) {
             rdpFileContentLines.push('prompt for credentials:i:0');
         } else {
@@ -82,7 +80,7 @@ function RdpForm() {
     return (
         <Card className="border-none shadow-none">
             <CardHeader className="px-1 pt-6">
-                <CardTitle className="text-2xl">RDP File Login</CardTitle>
+                <CardTitle>RDP File Login</CardTitle>
                 <CardDescription>Generate a .rdp file to connect to your Shared Service (cloud-x.in).</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
@@ -171,7 +169,7 @@ function WebPortalForm() {
     return (
         <Card className="border-none shadow-none">
              <CardHeader className="px-1 pt-6">
-                <CardTitle className="text-2xl">Web Portal Login</CardTitle>
+                <CardTitle>Web Portal Login</CardTitle>
                 <CardDescription>Enter your security code to access the web portal for your Shared Service.</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
@@ -218,7 +216,7 @@ export default function LoginPage() {
         <Card>
             <CardHeader className="text-center">
                 <Image src="/logos/cloud-x/logo.svg" alt="Cloud-x Logo" width={60} height={60} className="mx-auto" />
-                <CardTitle className="text-3xl font-bold mt-4">Shared Service Login</CardTitle>
+                <CardTitle>Shared Service Login</CardTitle>
                 <CardDescription className="text-lg">
                     Choose your preferred connection method.
                 </CardDescription>

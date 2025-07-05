@@ -282,7 +282,6 @@ const itemVariants = {
 const PlanCard = ({ plan }: { plan: any }) => (
     <motion.div
         variants={itemVariants}
-        whileHover={{ y: -8, transition: { duration: 0.2 } }}
         className="flex flex-col h-full"
     >
         <Card className={`flex flex-col flex-grow ${plan.popular ? 'border-primary border-2 shadow-primary/20 shadow-xl' : ''}`}>
@@ -292,7 +291,7 @@ const PlanCard = ({ plan }: { plan: any }) => (
                 </div>
             )}
             <CardHeader className="text-center">
-                <CardTitle className="text-3xl">{plan.name}</CardTitle>
+                <CardTitle>{plan.name}</CardTitle>
                 <CardDescription>{plan.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-grow">
@@ -404,7 +403,7 @@ export default function PricingPage() {
             >
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-3xl flex items-center gap-3"><CloudCog className="h-8 w-8 text-primary" />On-premise Cloud</CardTitle>
+                        <div className="flex items-center gap-3"><CloudCog className="h-8 w-8 text-primary" /><CardTitle>On-premise Cloud</CardTitle></div>
                         <CardDescription>Your own private cloud, deployed on-premises at your business location for ultimate control and security.</CardDescription>
                     </CardHeader>
                     <CardContent>

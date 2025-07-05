@@ -260,7 +260,7 @@ export default function Home() {
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12">
               {testimonials.map((testimonial, index) => (
                 <motion.div variants={itemVariants} key={index}>
-                  <Card className="h-full bg-secondary/60 shadow-sm hover:shadow-md transition-shadow">
+                  <Card className="h-full bg-secondary/60 shadow-sm">
                       <CardContent className="pt-6">
                           <Quote className="h-8 w-8 text-primary mb-4" />
                           <p className="text-muted-foreground mb-4">{testimonial.quote}</p>
