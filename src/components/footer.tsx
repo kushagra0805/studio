@@ -3,9 +3,14 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useEffect, useState } from "react";
 
 export function Footer() {
-  const year = new Date().getFullYear();
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   return (
     <footer className="border-t bg-secondary/50">

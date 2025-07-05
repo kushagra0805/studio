@@ -1,9 +1,15 @@
 
 "use client";
 
-const lastUpdated = 'October 16, 2024';
+import { useEffect, useState } from 'react';
 
 export default function SlaPage() {
+  const [lastUpdated, setLastUpdated] = useState('');
+
+  useEffect(() => {
+    setLastUpdated('October 16, 2024');
+  }, []);
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
       <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
