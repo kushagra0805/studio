@@ -8,8 +8,15 @@ import { Chatbot } from '@/components/chatbot';
 import { CookieBanner } from '@/components/cookie-banner';
 
 export const metadata: Metadata = {
-  title: 'M A Global Network - Cloud Services',
+  title: {
+    default: "M A Global Network - Cloud Services",
+    template: "%s | M A Global Network"
+  },
   description: 'Your trusted partner for VMs, dedicated servers, colocation, and web hosting.',
+  icons: {
+    icon: "/logos/m-a-global/favicon.ico",
+    apple: "/logos/m-a-global/apple-touch-icon.png",
+  }
 };
 
 export default function RootLayout({

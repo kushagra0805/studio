@@ -2,7 +2,7 @@
 "use client"
 
 import Link from "next/link"
-import { Cloud } from "lucide-react"
+import Image from "next/image"
 import { useState, useEffect } from "react";
 
 export function Footer() {
@@ -18,7 +18,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 text-center md:text-left md:grid-cols-4">
           <div className="md:col-span-1 flex flex-col items-center md:items-start">
             <Link href="/" className="flex items-center gap-2 mb-4" prefetch={false}>
-              <Cloud className="h-7 w-7 text-primary" />
+              <Image src="/logos/m-a-global/logo.svg" alt="M A Global Network Logo" width={28} height={28} />
               <span className="text-xl font-bold text-foreground">M A Global Network</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">

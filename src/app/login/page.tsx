@@ -17,9 +17,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/hooks/use-toast"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Monitor, User, Server, Download, KeyRound, Shield, Link as LinkIcon } from "lucide-react";
+import { User, Server, Download, KeyRound, Shield, Link as LinkIcon } from "lucide-react";
 import { saveAs } from 'file-saver';
 
 // Schema for RDP form
@@ -216,7 +217,7 @@ export default function LoginPage() {
       >
         <Card>
             <CardHeader className="text-center">
-                <Monitor className="mx-auto h-12 w-12 text-primary" />
+                <Image src="/logos/cloud-x/logo.svg" alt="Cloud-x Logo" width={60} height={60} className="mx-auto" />
                 <CardTitle className="text-3xl font-bold mt-4">Shared Service Login</CardTitle>
                 <CardDescription className="text-lg">
                     Choose your preferred connection method.

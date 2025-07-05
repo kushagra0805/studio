@@ -97,6 +97,7 @@ export default function Home() {
                 height="400"
                 alt="Cloud Infrastructure"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-2xl"
+                priority
               />
             </motion.div>
           </div>
