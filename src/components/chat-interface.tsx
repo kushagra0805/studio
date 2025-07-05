@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useRef, useEffect, type FormEvent } from "react";
@@ -203,7 +202,7 @@ export function ChatInterface({ onClose }: ChatInterfaceProps) {
                     Our support team is ready to help you with any questions you may have.
                 </p>
                 <div className="w-full space-y-4">
-                    <Button asChild className="w-full" size="lg">
+                    <Button asChild className="w-full bg-[#25D366] hover:bg-[#1EAE54] text-primary-foreground" size="lg">
                         <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                             <WhatsAppIcon /> Chat on WhatsApp
                         </Link>

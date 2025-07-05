@@ -1,4 +1,8 @@
-<svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0ZM70.5338 73.3331L50 50L70.5338 26.6669L80.801 33.3331V66.6669L70.5338 73.3331Z" fill="#0075FF"/>
-<path d="M29.4662 26.6669L50 50L29.4662 73.3331L19.199 66.6669V33.3331L29.4662 26.6669Z" fill="#0075FF"/>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="16" cy="9.6" r="3.2" fill="hsl(var(--primary))"/>
+<circle cx="9.6" cy="22.4" r="3.2" fill="hsl(var(--primary))"/>
+<circle cx="22.4" cy="22.4" r="3.2" fill="hsl(var(--primary))"/>
+<path d="M14.72 12.16L11.52 19.84" stroke="hsl(var(--primary))" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M17.28 12.16L20.48 19.84" stroke="hsl(var(--primary))" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M12.48 22.4H19.52" stroke="hsl(var(--primary))" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
