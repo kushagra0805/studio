@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  webpack: (config) => {
+    // This alias is necessary to solve an issue with the `handlebars` package,
+    // which is a dependency of Genkit. It forces Webpack to use the pre-compiled
+    // browser-compatible version of the library, preventing startup errors.
+    config.resolve.alias.handlebars = 'handlebars/dist/handlebars.js';
+    return config;
+  },
 };
 
 export default nextConfig;
