@@ -153,7 +153,7 @@ export default function Home() {
               </motion.div>
             </div>
         </div>
-      </motion.section>
+      </section>
 
       <motion.section 
         id="services" 
@@ -236,7 +236,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       <section 
         id="testimonials" 
