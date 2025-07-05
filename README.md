@@ -1,6 +1,6 @@
 # M A Global Network - Cloud Services Website
 
-This is a modern, full-stack website built with Next.js, React, TypeScript, and Tailwind CSS. It features a complete set of pages for a cloud services provider, including dynamic forms connected to a Firebase backend and an AI-powered chatbot.
+This is a modern, full-stack website built with Next.js, React, TypeScript, and Tailwind CSS. It features a complete set of pages for a cloud services provider, including dynamic forms connected to a Firebase backend.
 
 ## Prerequisites
 
@@ -33,29 +33,21 @@ Follow these steps to get the website running on your computer.
 
 ### Step 3: Configure Environment Variables (API Keys)
 
-The website needs API keys to connect to its backend services (Firebase and Google AI).
+The website needs API keys to connect to its Firebase backend services.
 
 1.  Find the file named `.env.local.example` in the project's **main folder**.
 2.  Make a copy of this file in the **same directory** and rename the copy to just `.env`.
 3.  The new `.env` file should be in the root of your project, right alongside `package.json` and the `src` folder.
-4.  Follow the instructions in the `required-apis.txt` file to get your API keys from Firebase and Google AI Studio.
-5.  Paste your keys into the `.env` file. **This step is essential for the contact forms and AI chatbot to work.**
+4.  Follow the instructions in the `required-apis.txt` file to get your API keys from Firebase.
+5.  Paste your keys into the `.env` file. **This step is essential for the contact forms and order forms to work.**
 
-### Step 4: Run the Development Servers
+### Step 4: Run the Development Server
 
-To run the entire application locally, you will need to open **two separate terminals** in your code editor. This allows you to run both the website (front-end) and the AI services (back-end) at the same time.
-
-**In your FIRST terminal, run the website:**
+**In your terminal, run the website:**
 ```bash
 npm run dev
 ```
 This will start the local development server for the website. You can now view it by opening this URL in your web browser: **[http://localhost:9002](http://localhost:9002)**
-
-**In your SECOND terminal, run the AI backend:**
-```bash
-npm run genkit:dev
-```
-This starts the local development server for the Genkit AI flows, which powers the chatbot. This allows you to test your AI features locally.
 
 Any changes you make to the code will automatically be reflected in the browser.
 
@@ -77,7 +69,6 @@ The website code is already configured to use these file paths, so you do not ne
 In the project directory, you can run:
 
 -   `npm run dev`: Runs the app in development mode.
--   `npm run genkit:dev`: Runs the local Genkit AI development server.
 -   `npm run build`: Builds the app for production.
 -   `npm start`: Starts a production server (after running `npm run build`).
 -   `npm run lint`: Lints the code for potential errors.

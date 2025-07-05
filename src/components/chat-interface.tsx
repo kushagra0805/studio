@@ -1,21 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect, type FormEvent } from "react";
 import Link from 'next/link';
-import { ArrowUp, Bot, Loader2, User, X, Contact, MessageSquareText } from "lucide-react";
-import { chat } from "../ai/flows/chat";
-import type { ChatMessage } from "../lib/types";
+import { X, Contact, MessageSquareText } from "lucide-react";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Input } from "./ui/input";
-import { ScrollArea } from "./ui/scroll-area";
-import { motion, AnimatePresence } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 // Helper for WhatsApp link
 const WhatsAppIcon = () => (
@@ -31,82 +19,13 @@ interface ChatInterfaceProps {
   onClose: () => void;
 }
 
-const CHAT_HISTORY_KEY = 'ma_global_chat_history';
-
 export function ChatInterface({ onClose }: ChatInterfaceProps) {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-
-  // Load chat history from localStorage on initial render
-  useEffect(() => {
-    try {
-      const savedHistory = localStorage.getItem(CHAT_HISTORY_KEY);
-      if (savedHistory) {
-        setMessages(JSON.parse(savedHistory));
-      }
-    } catch (error) {
-      console.error("Could not load chat history:", error);
-    }
-  }, []);
-
-  // Save chat history to localStorage whenever it changes
-  useEffect(() => {
-    try {
-      localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messages));
-    } catch (error)      {
-      console.error("Could not save chat history:", error);
-    }
-  }, [messages]);
-
-  useEffect(() => {
-    // Scroll to the bottom when messages change
-    if (scrollAreaRef.current) {
-      const viewport = scrollAreaRef.current.querySelector(
-        "div[data-radix-scroll-area-viewport]"
-      );
-      if (viewport) {
-        viewport.scrollTop = viewport.scrollHeight;
-      }
-    }
-  }, [messages, isLoading]);
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
-
-    const userMessage: ChatMessage = { role: "user", content: input };
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
-    const currentInput = input;
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      // Pass only the recent history to avoid large payloads
-      const historyToSend = newMessages.slice(-10);
-      const response = await chat(historyToSend, currentInput);
-      const botMessage: ChatMessage = { role: "model", content: response };
-      setMessages((prev) => [...prev, botMessage]);
-    } catch (error) {
-      console.error("Chat error:", error);
-      const errorMessage: ChatMessage = {
-        role: "model",
-        content: "Sorry, something went wrong. Please try again.",
-      };
-      setMessages((prev) => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
-    <Card className="w-[380px] h-[550px] flex flex-col shadow-2xl rounded-xl">
+    <Card className="w-[380px] h-auto flex flex-col shadow-2xl rounded-xl">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div className="flex items-center gap-2">
-          <Bot className="h-6 w-6 text-primary" />
-          <CardTitle>M A Global Support</CardTitle>
+          <MessageSquareText className="h-6 w-6 text-primary" />
+          <CardTitle>Live Support</CardTitle>
         </div>
         <Button
           variant="ghost"
@@ -117,108 +36,26 @@ export function ChatInterface({ onClose }: ChatInterfaceProps) {
           <X className="h-5 w-5" />
         </Button>
       </CardHeader>
-      <CardContent className="flex-1 flex flex-col overflow-hidden p-0">
-        <Tabs defaultValue="ai" className="w-full h-full flex flex-col">
-          <TabsList className="grid w-full grid-cols-2 mx-auto px-4">
-            <TabsTrigger value="ai">AI Assistant</TabsTrigger>
-            <TabsTrigger value="live">Live Support</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="ai" className="flex-1 flex flex-col overflow-hidden m-0">
-             <ScrollArea className="flex-1 h-full p-4" ref={scrollAreaRef}>
-                <div className="space-y-4">
-                    <AnimatePresence>
-                    {messages.map((message, index) => (
-                        <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className={`flex items-start gap-3 ${
-                            message.role === "user" ? "justify-end" : ""
-                        }`}
-                        >
-                        {message.role === "model" && (
-                            <Bot className="h-6 w-6 text-primary shrink-0" />
-                        )}
-                        <div
-                            className={`rounded-lg px-3 py-2 max-w-[80%] text-sm break-words ${
-                            message.role === "user"
-                                ? "bg-primary text-primary-foreground"
-                                : "bg-secondary"
-                            }`}
-                        >
-                            {message.content}
-                        </div>
-                        {message.role === "user" && (
-                            <User className="h-6 w-6 shrink-0" />
-                        )}
-                        </motion.div>
-                    ))}
-                    {isLoading && (
-                        <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="flex items-start gap-3"
-                        >
-                        <Bot className="h-6 w-6 text-primary shrink-0" />
-                        <div className="rounded-lg px-3 py-2 bg-secondary flex items-center justify-center">
-                            <Loader2 className="h-5 w-5 animate-spin text-primary" />
-                        </div>
-                        </motion.div>
-                    )}
-                    </AnimatePresence>
-                </div>
-            </ScrollArea>
-            <div className="p-4 border-t">
-                <form onSubmit={handleSubmit} className="flex w-full items-center gap-2">
-                <Input
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Ask about our services..."
-                    autoComplete="off"
-                    disabled={isLoading}
-                    onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                        handleSubmit(e);
-                    }
-                    }}
-                />
-                <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
-                    <ArrowUp className="h-5 w-5" />
-                    <span className="sr-only">Send</span>
-                </Button>
-                </form>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="live" className="flex-1 m-0">
-            <div className="p-6 flex flex-col items-center justify-center text-center h-full">
-                <MessageSquareText className="h-16 w-16 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Talk to a Human</h3>
-                <p className="text-muted-foreground mb-6">
-                    Our support team is ready to help you with any questions you may have.
-                </p>
-                <div className="w-full space-y-4">
-                    <Button asChild className="w-full bg-[#25D366] hover:bg-[#1EAE54] text-white" size="lg">
-                        <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                            <WhatsAppIcon /> Chat on WhatsApp
-                        </Link>
-                    </Button>
-                    <Button asChild variant="outline" className="w-full" size="lg">
-                        <Link href="/contact">
-                            <Contact className="h-5 w-5" /> Contact Form
-                        </Link>
-                    </Button>
-                </div>
-                 <p className="text-xs text-muted-foreground mt-8">
-                    Our team is available 24/7 to assist you.
-                </p>
-            </div>
-          </TabsContent>
-        </Tabs>
+      <CardContent className="p-6 flex flex-col items-center justify-center text-center">
+        <h3 className="text-xl font-semibold mb-2">Talk to a Human</h3>
+        <p className="text-muted-foreground mb-6">
+            Our support team is ready to help you with any questions you may have.
+        </p>
+        <div className="w-full space-y-4">
+            <Button asChild className="w-full bg-[#25D366] hover:bg-[#1EAE54] text-white" size="lg">
+                <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    <WhatsAppIcon /> Chat on WhatsApp
+                </Link>
+            </Button>
+            <Button asChild variant="outline" className="w-full" size="lg">
+                <Link href="/contact">
+                    <Contact className="h-5 w-5" /> Contact Form
+                </Link>
+            </Button>
+        </div>
+         <p className="text-xs text-muted-foreground mt-8">
+            Our team is available 24/7 to assist you.
+        </p>
       </CardContent>
     </Card>
   );
