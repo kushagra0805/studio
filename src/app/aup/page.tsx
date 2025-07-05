@@ -1,29 +1,9 @@
 
 "use client";
 
-import type { Metadata } from 'next';
-import { useState, useEffect } from 'react';
-
-// export const metadata: Metadata = {
-//   title: 'Acceptable Use Policy | M A Global Network',
-//   description: 'Read the Acceptable Use Policy for M A Global Network, detailing acceptable and prohibited uses of our services.',
-// };
+const lastUpdated = 'October 16, 2024';
 
 export default function AupPage() {
-  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
-
-  // Since we cannot use hooks in metadata, we set a static date
-  // and can update it here if needed, though it's better to keep it static
-  // for SEO purposes.
-  // useEffect(() => {
-  //   setLastUpdated(new Date().toLocaleDateString('en-US', {
-  //     year: 'numeric',
-  //     month: 'long',
-  //     day: 'numeric',
-  //   }));
-  // }, []);
-
-
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
       <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
@@ -41,7 +21,7 @@ export default function AupPage() {
               <strong>Illegal Use:</strong> M A Global Network's services may not be used for illegal purposes, or in support of illegal activities. M A Global Network reserves the right to cooperate with legal authorities and/or injured third parties in the investigation of any suspected crime or civil wrong.
             </li>
             <li>
-              <strong>Harm to Minors:</strong> Use of the M A Global Network service to harm, or attempt to harm, minors in any way, including, but not limited to child pornography or child abuse.
+              <strong>Harm to Minors:</strong> Use of the M A Global Network service to harm, or attempt to harm, minors in any way, including, but not to limited to child pornography or child abuse.
             </li>
             <li>
               <strong>Spamming and Unsolicited Email:</strong> Sending unsolicited bulk and/or commercial messages over the Internet (known as "spamming"). It is not only harmful because of its negative impact on consumer attitudes toward M A Global Network, but also because it can overload M A Global Network's network and disrupt service to M A Global Network's customers.

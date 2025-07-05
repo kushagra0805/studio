@@ -1,17 +1,9 @@
 
 "use client";
 
-import type { Metadata } from 'next';
-import { useState, useEffect } from 'react';
-
-// export const metadata: Metadata = {
-//   title: 'Service Level Agreement | M A Global Network',
-//   description: 'Read the Service Level Agreement for M A Global Network, detailing our commitments to service availability and performance.',
-// };
+const lastUpdated = 'October 16, 2024';
 
 export default function SlaPage() {
-  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
-
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
       <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">

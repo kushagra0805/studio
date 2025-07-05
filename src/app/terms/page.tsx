@@ -1,17 +1,9 @@
 
 "use client";
 
-import type { Metadata } from 'next';
-import { useState, useEffect } from 'react';
-
-// export const metadata: Metadata = {
-//   title: 'Terms of Service | M A Global Network',
-//   description: 'Read the Terms of Service for using M A Global Network products and services.',
-// };
+const lastUpdated = 'October 16, 2024';
 
 export default function TermsPage() {
-  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
-
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
       <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
@@ -35,7 +27,7 @@ export default function TermsPage() {
             </ul>
 
             <h2 className="text-2xl font-bold mt-8 mb-4 border-b pb-2">4. Acceptable Use Policy</h2>
-            <p>You agree not to use the Service for any unlawful or prohibited activities, including but not limited to:</p>
+            <p>You agree not to use the Service for any unlawful or prohibited activities, including but not to limited to:</p>
             <ul className="list-disc list-inside space-y-2 pl-4">
                 <li>Hosting or distributing illegal content, such as pirated software, child pornography, or material that infringes on intellectual property rights.</li>
                 <li>Sending unsolicited bulk email (spam) or engaging in phishing scams.</li>
@@ -53,10 +45,10 @@ export default function TermsPage() {
             <p>You agree to pay for the services in advance for the billing cycle you have selected. Failure to pay on time may result in the suspension or termination of your services. All payments are non-refundable unless otherwise stated in a specific service agreement.</p>
 
             <h2 className="text-2xl font-bold mt-8 mb-4 border-b pb-2">7. Limitation of Liability</h2>
-            <p>In no event will M A Global Network, its directors, employees, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage.</p>
+            <p>In no event will M A Global Network, its directors, employees, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including but not to limited to, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage.</p>
 
             <h2 className="text-2xl font-bold mt-8 mb-4 border-b pb-2">8. Disclaimer of Warranties</h2>
-            <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis. Your use of the Service is at your sole risk. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance.</p>
+            <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis. Your use of the Service is at your sole risk. The Service is provided without warranties of any kind, whether express or implied, including, but not to limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance.</p>
 
             <h2 className="text-2xl font-bold mt-8 mb-4 border-b pb-2">9. Changes to Terms</h2>
             <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. We will provide reasonable notice of any changes by posting the new Terms of Service on this page. Your continued use of the Service after any such changes constitutes your acceptance of the new Terms of Service.</p>
