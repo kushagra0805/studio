@@ -43,7 +43,7 @@ export default function CloudXPage() {
                     Shared Service (Cloud-x.in)
                 </h2>
             </div>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-primary">
               Your Accounting, Unleashed on the Cloud
             </h1>
             <p className="mt-6 max-w-3xl mx-auto text-xl text-muted-foreground">
