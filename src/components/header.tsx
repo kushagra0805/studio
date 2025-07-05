@@ -23,19 +23,19 @@ export function Header() {
       <div className="ml-auto flex items-center gap-4">
         
         <nav className="hidden lg:flex items-center gap-6">
-          <Link href="/products" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+          <Link href="/products" className="text-sm font-medium text-muted-foreground transition-all duration-200 hover:text-primary inline-block hover:-translate-y-px" prefetch={false}>
             Products
           </Link>
-          <Link href="/pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+          <Link href="/pricing" className="text-sm font-medium text-muted-foreground transition-all duration-200 hover:text-primary inline-block hover:-translate-y-px" prefetch={false}>
             Pricing
           </Link>
-           <Link href="/order" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+           <Link href="/order" className="text-sm font-medium text-muted-foreground transition-all duration-200 hover:text-primary inline-block hover:-translate-y-px" prefetch={false}>
             Order
           </Link>
-          <Link href="/about" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+          <Link href="/about" className="text-sm font-medium text-muted-foreground transition-all duration-200 hover:text-primary inline-block hover:-translate-y-px" prefetch={false}>
             About
           </Link>
-          <Link href="/contact" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary" prefetch={false}>
+          <Link href="/contact" className="text-sm font-medium text-muted-foreground transition-all duration-200 hover:text-primary inline-block hover:-translate-y-px" prefetch={false}>
             Contact
           </Link>
            <Button asChild>
