@@ -4,18 +4,18 @@ import { useState, useRef, useEffect, type FormEvent } from "react";
 import Link from 'next/link';
 import { ArrowUp, Bot, Loader2, User, X, Contact, MessageSquareText } from "lucide-react";
 import { chat } from "../ai/flows/chat";
-import type { ChatMessage } from "@/lib/types";
-import { Button } from "@/components/ui/button";
+import type { ChatMessage } from "../lib/types";
+import { Button } from "./ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from "./ui/card";
+import { Input } from "./ui/input";
+import { ScrollArea } from "./ui/scroll-area";
 import { motion, AnimatePresence } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 // Helper for WhatsApp link
 const WhatsAppIcon = () => (

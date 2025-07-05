@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, CloudCog, Layers, Hand } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";

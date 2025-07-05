@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Button } from "../components/ui/button"
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 import { Server, Database, Globe, BarChart, LifeBuoy, ShieldCheck, Scaling, Quote } from "lucide-react"
 import { motion } from "framer-motion"
 

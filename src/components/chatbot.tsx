@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button"
 import { MessageSquare, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"

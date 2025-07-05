@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../components/ui/accordion';
 import { CheckCircle, Globe, Server, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 

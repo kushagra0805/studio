@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
 import {
   Form,
   FormControl,
@@ -14,21 +14,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
+} from "../../components/ui/form"
+import { Input } from "../../components/ui/input"
+import { Textarea } from "../../components/ui/textarea"
+import { useToast } from "../../hooks/use-toast"
 import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from "@/components/ui/separator"
-import { Slider } from "@/components/ui/slider"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Separator } from "../../components/ui/separator"
+import { Slider } from "../../components/ui/slider"
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
 import { User, Home, Briefcase, FileText, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, Package, Cpu, MemoryStick, HardDrive } from "lucide-react"
-import { Checkbox } from "@/components/ui/checkbox"
-import { db, storage } from "@/lib/firebase"
+import { Checkbox } from "../../components/ui/checkbox"
+import { db, storage } from "../../lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ["application/pdf"];

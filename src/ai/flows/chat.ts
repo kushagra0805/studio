@@ -6,7 +6,7 @@
  */
 import {ai} from '../genkit';
 import type {Message} from 'genkit';
-import type { ChatMessage } from '@/lib/types';
+import type { ChatMessage } from '../../lib/types';
 
 export async function chat(history: ChatMessage[], query: string): Promise<string> {
   const systemPrompt = `You are a friendly and helpful customer support assistant for M A Global Network, a cloud services provider.

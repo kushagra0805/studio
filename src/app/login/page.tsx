@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
 import {
   Form,
   FormControl,
@@ -12,13 +12,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { useToast } from "@/hooks/use-toast"
+} from "../../components/ui/form"
+import { Input } from "../../components/ui/input"
+import { useToast } from "../../hooks/use-toast"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { User, Download, KeyRound, Shield, Link as LinkIcon } from "lucide-react";
 import { saveAs } from 'file-saver';
 

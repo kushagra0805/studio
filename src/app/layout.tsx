@@ -1,10 +1,10 @@
 import type {Metadata} from 'next';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
-import { Chatbot } from '@/components/chatbot';
-import { CookieBanner } from '@/components/cookie-banner';
+import { Toaster } from "../components/ui/toaster"
+import { Header } from '../components/header';
+import { Footer } from '../components/footer';
+import { Chatbot } from '../components/chatbot';
+import { CookieBanner } from '../components/cookie-banner';
 
 export const metadata: Metadata = {
   title: {

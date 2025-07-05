@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../components/ui/button';
 import { ArrowRight, Server, Database, Globe, Building, BarChart, CloudCog } from 'lucide-react';
 import { motion } from 'framer-motion';
 

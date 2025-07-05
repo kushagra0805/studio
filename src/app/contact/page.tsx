@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
 import {
   Form,
   FormControl,
@@ -13,14 +13,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
+} from "../../components/ui/form"
+import { Input } from "../../components/ui/input"
+import { Textarea } from "../../components/ui/textarea"
+import { useToast } from "../../hooks/use-toast"
 import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Mail, Send, User, MessageSquare, Loader2 } from "lucide-react";
-import { db } from "@/lib/firebase"
+import { db } from "../../lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
 
 const contactFormSchema = z.object({
