@@ -24,7 +24,7 @@ import { saveAs } from 'file-saver';
 
 // Schema for RDP form
 const rdpFormSchema = z.object({
-  securityCode: z.string().optional(),
+  securityCode: z.string().min(1, "Security Code is required."),
   username: z.string().min(1, "Username is required."),
   password: z.string().optional(),
 })
@@ -92,7 +92,7 @@ function RdpForm() {
                             name="securityCode"
                             render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="flex items-center gap-2"><Shield /> Security Code (optional)</FormLabel>
+                                <FormLabel className="flex items-center gap-2"><Shield /> Security Code</FormLabel>
                                 <FormControl>
                                 <Input type="number" placeholder="If provided by support" {...field} />
                                 </FormControl>
