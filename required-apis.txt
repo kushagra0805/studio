@@ -14,20 +14,11 @@ To make the entire website fully operational, you will need to enable the follow
         - **Purpose:** Stores all file uploads, such as the GST certificates submitted through the "Order" form.
         - **How to Enable:** Go to your Firebase project, click on "Storage" in the left menu, and follow the setup instructions.
 
-2.  **Google AI Services (for Genkit):**
-    This is used to power the AI Chatbot feature.
-
-    *   **Vertex AI API (or Google AI for Developers API):**
-        - **Purpose:** This API gives the chatbot access to Google's Gemini models, which it uses to understand questions and provide answers. The Genkit framework on this site is configured to use this.
-        - **How to Enable:** This is typically enabled automatically when you create a Google Cloud project associated with your Firebase project. You will need to get an API key from Google AI Studio (https://aistudio.google.com/app/apikey) and add it to your `.env` file as `GOOGLE_API_KEY`.
-
 ---
 **Summary of Steps:**
 
 1.  Create a Firebase project.
 2.  Enable Firestore and Storage within that project.
 3.  Copy your Firebase web app configuration keys into the `.env` file.
-4.  Generate a Google AI API Key from AI Studio.
-5.  Add the Google AI API key to your `.env` file.
 
 Once these steps are complete, all features of the website will be fully functional.
