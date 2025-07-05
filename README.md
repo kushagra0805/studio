@@ -1,3 +1,4 @@
+
 # M A Global Network - Cloud Services Website
 
 This is a modern, full-stack website built with Next.js, React, TypeScript, and Tailwind CSS. It features a complete set of pages for a cloud services provider, including dynamic forms connected to a Firebase backend and an AI-powered chatbot.
