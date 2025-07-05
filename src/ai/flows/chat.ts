@@ -4,7 +4,7 @@
  *
  * - chat - A function that handles the chatbot conversation.
  */
-import {ai} from '@/ai/genkit';
+import {ai} from '../genkit';
 import type {Message} from 'genkit';
 import type { ChatMessage } from '@/lib/types';
 
