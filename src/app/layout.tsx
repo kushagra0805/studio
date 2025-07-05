@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Chatbot } from '@/components/chatbot';
+import { CookieBanner } from '@/components/cookie-banner';
 
 export const metadata: Metadata = {
   title: 'M A Global Network - Cloud Services',
@@ -29,6 +30,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <Chatbot />
+        <CookieBanner />
         <Toaster />
       </body>
     </html>
