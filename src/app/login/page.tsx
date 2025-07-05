@@ -31,7 +31,7 @@ const rdpFormSchema = z.object({
 
 // Schema for Web Portal form
 const webPortalFormSchema = z.object({
-    accessCode: z.string().min(1, "Access Code is required."),
+    accessCode: z.string().min(1, "Security Code is required."),
 });
 
 
@@ -97,7 +97,7 @@ function RdpForm() {
                                 <Input type="number" placeholder="If provided by support" {...field} />
                                 </FormControl>
                                 <FormDescription>
-                                    This is the port number for your RDP connection.
+                                    Enter the security code provided by our support team.
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
@@ -171,7 +171,7 @@ function WebPortalForm() {
         <Card className="border-none shadow-none">
              <CardHeader className="px-1 pt-6">
                 <CardTitle className="text-2xl">Web Portal Login</CardTitle>
-                <CardDescription>Enter your code to access the web portal for your Shared Service.</CardDescription>
+                <CardDescription>Enter your security code to access the web portal for your Shared Service.</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
                 <Form {...form}>
@@ -181,12 +181,12 @@ function WebPortalForm() {
                             name="accessCode"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="flex items-center gap-2"><Shield /> Access Code</FormLabel>
+                                    <FormLabel className="flex items-center gap-2"><Shield /> Security Code</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Enter your assigned access code" {...field} />
+                                        <Input placeholder="Enter your assigned security code" {...field} />
                                     </FormControl>
                                     <FormDescription>
-                                        This is the port number provided to you for web access.
+                                        Enter the security code provided to you for web access.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
