@@ -1,17 +1,34 @@
 
-import type { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Acceptable Use Policy | M A Global Network',
-  description: 'Read the Acceptable Use Policy for M A Global Network, detailing acceptable and prohibited uses of our services.',
-};
+import type { Metadata } from 'next';
+import { useState, useEffect } from 'react';
+
+// export const metadata: Metadata = {
+//   title: 'Acceptable Use Policy | M A Global Network',
+//   description: 'Read the Acceptable Use Policy for M A Global Network, detailing acceptable and prohibited uses of our services.',
+// };
 
 export default function AupPage() {
+  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
+
+  // Since we cannot use hooks in metadata, we set a static date
+  // and can update it here if needed, though it's better to keep it static
+  // for SEO purposes.
+  // useEffect(() => {
+  //   setLastUpdated(new Date().toLocaleDateString('en-US', {
+  //     year: 'numeric',
+  //     month: 'long',
+  //     day: 'numeric',
+  //   }));
+  // }, []);
+
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Acceptable Use Policy (AUP)</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: October 16, 2024</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: {lastUpdated}</p>
         
         <div className="space-y-6 text-foreground">
           <p>This Acceptable Use Policy ("AUP") document, including the following list of Prohibited Activities, is an integral part of your hosting agreement with M A Global Network. If you engage in any of the activities prohibited by this AUP document, M A Global Network may suspend or terminate your account.</p>

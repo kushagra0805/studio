@@ -1,17 +1,22 @@
 
-import type { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Master Service Agreement | M A Global Network',
-  description: 'Read the Master Service Agreement for M A Global Network, which governs the terms of our service relationship.',
-};
+import type { Metadata } from 'next';
+import { useState, useEffect } from 'react';
+
+// export const metadata: Metadata = {
+//   title: 'Master Service Agreement | M A Global Network',
+//   description: 'Read the Master Service Agreement for M A Global Network, which governs the terms of our service relationship.',
+// };
 
 export default function MsaPage() {
+  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Master Service Agreement (MSA)</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: October 16, 2024</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: {lastUpdated}</p>
         
         <div className="space-y-6 text-foreground">
             <p>This Master Services Agreement ("Agreement" or "MSA") is entered into by and between M A Global Network ("Company", "we", "us") and the person or entity who has signed up for our Services ("Customer", "you"). This Agreement governs the provision and use of all services offered by M A Global Network (the "Services").</p>

@@ -1,10 +1,8 @@
-# Products Page Images
+This folder contains images for the "Products" page.
 
-This folder contains images used on the Products Page (`src/app/products/page.tsx`).
-
-- `vps.png`
-- `dedicated.png`
-- `shared-service.png`
-- `web-hosting.png`
-- `colocation.png`
-- `on-premise.png`
+- colocation.png (530x340)
+- dedicated.png (530x340)
+- on-premise.png (530x340)
+- shared-service.png (530x340)
+- vps.png (530x340)
+- web-hosting.png (530x340)

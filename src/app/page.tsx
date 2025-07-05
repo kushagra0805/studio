@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { ArrowRight, Server, Database, Globe, BarChart, LifeBuoy, ShieldCheck, Scaling, Quote } from "lucide-react"
+import { Server, Database, Globe, BarChart, LifeBuoy, ShieldCheck, Scaling, Quote } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function Home() {
@@ -92,7 +92,8 @@ export default function Home() {
               whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
             >
               <Image
-                src="/images/home/hero-image.png"
+                src="https://placehold.co/550x400.png"
+                data-ai-hint="cloud infrastructure"
                 width="550"
                 height="400"
                 alt="Cloud Infrastructure"

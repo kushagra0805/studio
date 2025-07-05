@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { ArrowRight, CheckCircle, Cloud, Globe, Laptop, Server, ShieldCheck, Zap, BarChart } from "lucide-react";
+import { CheckCircle, Globe, Server, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
 const fadeIn = {
@@ -171,7 +171,8 @@ export default function CloudXPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <Image
-              src="/images/cloud-x/workflow.png"
+              src="https://placehold.co/450x405.png"
+              data-ai-hint="workflow diagram"
               width="450"
               height="405"
               alt="Shared Service workflow"

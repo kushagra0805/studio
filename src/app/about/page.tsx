@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -114,7 +114,8 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                  <Image
-                  src="/images/about/story.png"
+                  src="https://placehold.co/450x315.png"
+                  data-ai-hint="teamwork journey"
                   width="450"
                   height="315"
                   alt="Our Journey"

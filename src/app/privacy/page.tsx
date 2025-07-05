@@ -1,17 +1,22 @@
 
-import type { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | M A Global Network',
-  description: 'Read the Privacy Policy for M A Global Network, detailing how we collect, use, and protect your data.',
-};
+import type { Metadata } from 'next';
+import { useState, useEffect } from 'react';
+
+// export const metadata: Metadata = {
+//   title: 'Privacy Policy | M A Global Network',
+//   description: 'Read the Privacy Policy for M A Global Network, detailing how we collect, use, and protect your data.',
+// };
 
 export default function PrivacyPage() {
+  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: October 16, 2024</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: {lastUpdated}</p>
         
         <div className="space-y-6 text-foreground">
             <p>M A Global Network ("us", "we", "our") operates the M A Global Network website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>

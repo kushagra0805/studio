@@ -1,17 +1,22 @@
 
-import type { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | M A Global Network',
-  description: 'Read the Terms of Service for using M A Global Network products and services.',
-};
+import type { Metadata } from 'next';
+import { useState, useEffect } from 'react';
+
+// export const metadata: Metadata = {
+//   title: 'Terms of Service | M A Global Network',
+//   description: 'Read the Terms of Service for using M A Global Network products and services.',
+// };
 
 export default function TermsPage() {
+  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Terms of Service</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: October 16, 2024</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: {lastUpdated}</p>
 
         <div className="space-y-6 text-foreground">
             <h2 className="text-2xl font-bold mt-8 mb-4 border-b pb-2">1. Agreement to Terms</h2>

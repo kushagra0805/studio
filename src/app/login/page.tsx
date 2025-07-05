@@ -20,7 +20,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User, Server, Download, KeyRound, Shield, Link as LinkIcon } from "lucide-react";
+import { User, Download, KeyRound, Shield, Link as LinkIcon } from "lucide-react";
 import { saveAs } from 'file-saver';
 
 // Schema for RDP form

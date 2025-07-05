@@ -1,5 +1,3 @@
-# Home Page Images
+This folder contains images for the "Home" page.
 
-This folder contains images used on the Home Page (`src/app/page.tsx`).
-
-- `hero-image.png` (550x400)
+- hero-image.png (550x400)

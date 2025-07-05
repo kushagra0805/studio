@@ -1,17 +1,22 @@
 
-import type { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Colocation Policy | M A Global Network',
-  description: 'Read the Colocation Policy for M A Global Network, detailing rules and procedures for customers housing equipment in our data centers.',
-};
+import type { Metadata } from 'next';
+import { useState, useEffect } from 'react';
+
+// export const metadata: Metadata = {
+//   title: 'Colocation Policy | M A Global Network',
+//   description: 'Read the Colocation Policy for M A Global Network, detailing rules and procedures for customers housing equipment in our data centers.',
+// };
 
 export default function ColocationPolicyPage() {
+  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Colocation Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: October 16, 2024</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: {lastUpdated}</p>
         
         <div className="space-y-6 text-foreground">
             <p>This Colocation Policy applies to all customers ("Customer", "you") who lease space and services to house their own equipment in a M A Global Network ("Company", "we", "us") data center facility. This policy is an addendum to the Master Service Agreement (MSA) and Acceptable Use Policy (AUP).</p>

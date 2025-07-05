@@ -6,7 +6,7 @@ import Image from "next/image"
 import { useState, useEffect } from "react";
 
 export function Footer() {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [year, setYear] = useState<number | null>(null);
 
   useEffect(() => {
     setYear(new Date().getFullYear());
@@ -63,7 +63,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t">
           <p className="text-sm text-muted-foreground text-center">
-            &copy; {year} M A Global Network. All rights reserved.
+            {year ? `© ${year} M A Global Network. All rights reserved.` : `© M A Global Network. All rights reserved.`}
           </p>
         </div>
       </div>

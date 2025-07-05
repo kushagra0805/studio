@@ -1,17 +1,22 @@
 
-import type { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Service Level Agreement | M A Global Network',
-  description: 'Read the Service Level Agreement for M A Global Network, detailing our commitments to service availability and performance.',
-};
+import type { Metadata } from 'next';
+import { useState, useEffect } from 'react';
+
+// export const metadata: Metadata = {
+//   title: 'Service Level Agreement | M A Global Network',
+//   description: 'Read the Service Level Agreement for M A Global Network, detailing our commitments to service availability and performance.',
+// };
 
 export default function SlaPage() {
+  const [lastUpdated, setLastUpdated] = useState('October 16, 2024');
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-lg shadow-md p-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Service Level Agreement (SLA)</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: October 16, 2024</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: {lastUpdated}</p>
 
         <div className="space-y-6 text-foreground">
             <p>This Service Level Agreement ("SLA") is a part of the Master Service Agreement ("MSA") between M A Global Network ("we", "us") and you ("Customer", "you"). This SLA defines the service level commitments for the services provided by M A Global Network.</p>
