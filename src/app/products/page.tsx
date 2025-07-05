@@ -2,6 +2,7 @@
 "use client"
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Server, Database, Globe, Building, BarChart, CloudCog } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -85,7 +86,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="/images/products/vps.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" data-ai-hint="glowing server" />
+            <Image width="530" height="340" src="/images/products/vps.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" />
           </motion.div>
         </div>
 
@@ -98,7 +99,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-             <img src="/images/products/dedicated.png" alt="Dedicated Servers" className="rounded-lg shadow-md" data-ai-hint="data center" />
+             <Image width="530" height="340" src="/images/products/dedicated.png" alt="Dedicated Servers" className="rounded-lg shadow-md" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -144,7 +145,7 @@ export default function ProductsPage() {
              whileInView="visible"
              viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="/images/products/shared-service.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" data-ai-hint="cloud accounting" />
+            <Image width="530" height="340" src="/images/products/shared-service.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" />
           </motion.div>
         </div>
 
@@ -157,7 +158,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
            >
-             <img src="/images/products/web-hosting.png" alt="Web Hosting" className="rounded-lg shadow-md" data-ai-hint="modern website" />
+             <Image width="530" height="340" src="/images/products/web-hosting.png" alt="Web Hosting" className="rounded-lg shadow-md" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -203,7 +204,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="/images/products/colocation.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server racks" />
+            <Image width="530" height="340" src="/images/products/colocation.png" alt="Server Colocation" className="rounded-lg shadow-md" />
           </motion.div>
         </div>
         
@@ -216,7 +217,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
            >
-             <img src="/images/products/on-premise.png" alt="On-premise Cloud" className="rounded-lg shadow-md" data-ai-hint="private secure cloud" />
+             <Image width="530" height="340" src="/images/products/on-premise.png" alt="On-premise Cloud" className="rounded-lg shadow-md" />
           </motion.div>
           <motion.div
             variants={textFromRight}

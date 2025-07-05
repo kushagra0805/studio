@@ -2,6 +2,7 @@
 "use client"
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight } from "lucide-react";
@@ -112,12 +113,11 @@ export default function AboutPage() {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
-                 <img
+                 <Image
                   src="/images/about/story.png"
                   width="450"
                   height="315"
                   alt="Our Journey"
-                  data-ai-hint="journey path"
                   className="mx-auto rounded-xl object-cover"
                 />
             </motion.div>

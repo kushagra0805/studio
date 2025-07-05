@@ -1,8 +1,17 @@
 
+"use client"
+
 import Link from "next/link"
 import { Cloud } from "lucide-react"
+import { useState, useEffect } from "react";
 
 export function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="border-t bg-secondary/50">
       <div className="container mx-auto py-12 px-4 md:px-6">
@@ -54,7 +63,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t">
           <p className="text-sm text-muted-foreground text-center">
-            &copy; {new Date().getFullYear()} M A Global Network. All rights reserved.
+            &copy; {year} M A Global Network. All rights reserved.
           </p>
         </div>
       </div>

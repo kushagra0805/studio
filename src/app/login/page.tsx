@@ -31,7 +31,7 @@ const rdpFormSchema = z.object({
 
 // Schema for Web Portal form
 const webPortalFormSchema = z.object({
-    accessCode: z.string().min(1, "Security Code is required."),
+    securityCode: z.string().min(1, "Security Code is required."),
 });
 
 
@@ -51,7 +51,7 @@ function RdpForm() {
     function onSubmit(data: z.infer<typeof rdpFormSchema>) {
         const { securityCode, username, password } = data;
         const hostname = 'cloud-x.in';
-        const fullAddress = securityCode ? `${hostname}:${securityCode}` : hostname;
+        const fullAddress = `${hostname}:${securityCode}`;
         
         const rdpFileContentLines = [
             `full address:s:${fullAddress}`,
@@ -94,7 +94,7 @@ function RdpForm() {
                             <FormItem>
                                 <FormLabel className="flex items-center gap-2"><Shield /> Security Code</FormLabel>
                                 <FormControl>
-                                <Input type="number" placeholder="If provided by support" {...field} />
+                                <Input type="number" placeholder="Enter the security code" {...field} />
                                 </FormControl>
                                 <FormDescription>
                                     Enter the security code provided by our support team.
@@ -153,16 +153,16 @@ function WebPortalForm() {
     const form = useForm<z.infer<typeof webPortalFormSchema>>({
         resolver: zodResolver(webPortalFormSchema),
         defaultValues: {
-            accessCode: "",
+            securityCode: "",
         },
     })
 
     function onSubmit(data: z.infer<typeof webPortalFormSchema>) {
-        const url = `https://cloud-x.in:${data.accessCode}`;
+        const url = `https://cloud-x.in:${data.securityCode}`;
         window.open(url, '_blank');
         toast({
             title: "Redirecting...",
-            description: `Opening your secure portal in a new tab.`,
+            description: "Opening your portal in a new tab. If it doesn't open, please check your pop-up blocker.",
         })
         form.reset();
     }
@@ -178,7 +178,7 @@ function WebPortalForm() {
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                          <FormField
                             control={form.control}
-                            name="accessCode"
+                            name="securityCode"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="flex items-center gap-2"><Shield /> Security Code</FormLabel>

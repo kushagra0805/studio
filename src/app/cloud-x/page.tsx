@@ -2,6 +2,7 @@
 "use client"
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -169,12 +170,11 @@ export default function CloudXPage() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <img
+            <Image
               src="/images/cloud-x/workflow.png"
               width="450"
               height="405"
               alt="Shared Service workflow"
-              data-ai-hint="workflow diagram"
               className="mx-auto rounded-xl object-cover"
             />
           </motion.div>
