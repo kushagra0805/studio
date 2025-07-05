@@ -113,7 +113,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                  <img
-                  src="https://placehold.co/450x315.png"
+                  src="/images/about-story.png"
                   width="450"
                   height="315"
                   alt="Our Journey"

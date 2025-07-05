@@ -1,0 +1,15 @@
+This folder is where you should upload your website's images.
+
+The website is currently looking for the following files in this folder. Please upload your images with these exact names:
+
+- about-story.png (Used on the About Us page)
+- cloud-x-workflow.png (Used on the Cloud-x page)
+- hero-image.png (Used on the Home page)
+- product-vps.png (Used on the Products page)
+- product-dedicated.png (Used on the Products page)
+- product-shared-service.png (Used on the Products page)
+- product-web-hosting.png (Used on the Products page)
+- product-colocation.png (Used on the Products page)
+- product-on-premise.png (Used on the Products page)
+
+You can replace these placeholder images with your own professional brand imagery. Once you upload a file here (e.g., 'hero-image.png'), the website will automatically display it.

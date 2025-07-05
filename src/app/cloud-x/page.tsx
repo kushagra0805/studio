@@ -170,7 +170,7 @@ export default function CloudXPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <img
-              src="https://placehold.co/450x405.png"
+              src="/images/cloud-x-workflow.png"
               width="450"
               height="405"
               alt="Shared Service workflow"
