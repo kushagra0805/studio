@@ -39,7 +39,7 @@ export default function CloudXPage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
            >
             <div className="inline-block rounded-lg bg-primary/10 px-4 py-2 mb-4">
-                <h2 className="text-xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400">
+                <h2 className="text-xl font-bold tracking-tighter text-primary">
                     Shared Service (Cloud-x.in)
                 </h2>
             </div>
