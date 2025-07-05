@@ -99,7 +99,7 @@ export default function CloudXPage() {
             <motion.div variants={fadeIn}>
               <Card className="text-center h-full">
                 <CardHeader>
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 text-accent mb-4">
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                     <Zap className="h-8 w-8" />
                   </div>
                   <CardTitle>Blazing-Fast Speed</CardTitle>
@@ -170,7 +170,7 @@ export default function CloudXPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <img
-              src="/images/cloud-x-workflow.png"
+              src="/images/cloud-x/workflow.png"
               width="450"
               height="405"
               alt="Shared Service workflow"

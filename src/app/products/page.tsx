@@ -85,7 +85,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="/images/product-vps.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" data-ai-hint="glowing server" />
+            <img src="/images/products/vps.png" alt="Virtual Private Servers" className="rounded-lg shadow-md" data-ai-hint="glowing server" />
           </motion.div>
         </div>
 
@@ -98,7 +98,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-             <img src="/images/product-dedicated.png" alt="Dedicated Servers" className="rounded-lg shadow-md" data-ai-hint="data center" />
+             <img src="/images/products/dedicated.png" alt="Dedicated Servers" className="rounded-lg shadow-md" data-ai-hint="data center" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -144,7 +144,7 @@ export default function ProductsPage() {
              whileInView="visible"
              viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="/images/product-shared-service.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" data-ai-hint="cloud accounting" />
+            <img src="/images/products/shared-service.png" alt="Accounting on the Cloud" className="rounded-lg shadow-md" data-ai-hint="cloud accounting" />
           </motion.div>
         </div>
 
@@ -157,7 +157,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
            >
-             <img src="/images/product-web-hosting.png" alt="Web Hosting" className="rounded-lg shadow-md" data-ai-hint="modern website" />
+             <img src="/images/products/web-hosting.png" alt="Web Hosting" className="rounded-lg shadow-md" data-ai-hint="modern website" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -203,7 +203,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <img src="/images/product-colocation.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server racks" />
+            <img src="/images/products/colocation.png" alt="Server Colocation" className="rounded-lg shadow-md" data-ai-hint="server racks" />
           </motion.div>
         </div>
         
@@ -216,7 +216,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
            >
-             <img src="/images/product-on-premise.png" alt="On-premise Cloud" className="rounded-lg shadow-md" data-ai-hint="private secure cloud" />
+             <img src="/images/products/on-premise.png" alt="On-premise Cloud" className="rounded-lg shadow-md" data-ai-hint="private secure cloud" />
           </motion.div>
           <motion.div
             variants={textFromRight}

@@ -69,7 +69,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
             <motion.div variants={itemVariants} className="text-center">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mx-auto mb-4">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
                  <Eye className="h-8 w-8" />
               </div>
               <h2 className="text-2xl font-bold">Our Vision</h2>
@@ -113,7 +113,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                  <img
-                  src="/images/about-story.png"
+                  src="/images/about/story.png"
                   width="450"
                   height="315"
                   alt="Our Journey"
@@ -159,7 +159,7 @@ export default function AboutPage() {
                 <motion.div variants={itemVariants}>
                      <Card className="text-center h-full">
                         <CardContent className="pt-6">
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mx-auto mb-4">
+                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
                                 <Lightbulb className="h-8 w-8" />
                             </div>
                             <h3 className="text-xl font-bold">Continuous Innovation</h3>

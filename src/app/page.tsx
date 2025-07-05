@@ -53,7 +53,7 @@ export default function Home() {
         <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-secondary -z-10"></div>
             <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-20"></div>
-            <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-20"></div>
+            <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-20"></div>
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-24 items-center">
               <motion.div 
@@ -93,7 +93,7 @@ export default function Home() {
                 whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
               >
                 <img
-                  src="/images/hero-image.png"
+                  src="/images/home/hero-image.png"
                   width="550"
                   height="400"
                   alt="Cloud Infrastructure"
@@ -131,7 +131,7 @@ export default function Home() {
                  <p className="text-muted-foreground mt-2">Our team is always available to help you with any issues.</p>
                </motion.div>
                <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
-                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mb-4">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
                     <ShieldCheck className="h-8 w-8" />
                  </div>
                  <h3 className="text-xl font-bold">Top-Tier Security</h3>
@@ -145,7 +145,7 @@ export default function Home() {
                  <p className="text-muted-foreground mt-2">Grow your infrastructure as your business expands.</p>
                </motion.div>
                <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
-                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent/10 text-accent mb-4">
+                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
                     <Globe className="h-8 w-8" />
                  </div>
                  <h3 className="text-xl font-bold">Global Infrastructure</h3>
@@ -196,8 +196,8 @@ export default function Home() {
                 >
                   <Card className="h-full bg-background/60 text-center">
                     <CardHeader className="flex flex-col items-center">
-                       <div className="bg-accent/10 p-4 rounded-full mb-4">
-                        <Globe className="h-8 w-8 text-accent" />
+                       <div className="bg-primary/10 p-4 rounded-full mb-4">
+                        <Globe className="h-8 w-8 text-primary" />
                       </div>
                       <CardTitle>Web Hosting</CardTitle>
                     </CardHeader>
@@ -226,8 +226,8 @@ export default function Home() {
                 >
                   <Card className="h-full bg-background/60 text-center">
                     <CardHeader className="flex flex-col items-center">
-                       <div className="bg-accent/10 p-4 rounded-full mb-4">
-                        <BarChart className="h-8 w-8 text-accent" />
+                       <div className="bg-primary/10 p-4 rounded-full mb-4">
+                        <BarChart className="h-8 w-8 text-primary" />
                       </div>
                       <CardTitle>Shared Service</CardTitle>
                     </CardHeader>
@@ -240,7 +240,7 @@ export default function Home() {
 
         <section 
           id="testimonials" 
-          className="w-full py-12 md:py-24 lg:py-32 bg-secondary"
+          className="w-full py-12 md:py-24 lg:py-32"
         >
           <motion.div 
             className="container px-4 md:px-6"
@@ -260,7 +260,7 @@ export default function Home() {
              <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12">
                 {testimonials.map((testimonial, index) => (
                   <motion.div variants={itemVariants} key={index}>
-                    <Card className="h-full bg-background/80">
+                    <Card className="h-full bg-secondary/60">
                         <CardContent className="pt-6">
                             <Quote className="h-8 w-8 text-primary mb-4" />
                             <p className="text-muted-foreground mb-4">{testimonial.quote}</p>
