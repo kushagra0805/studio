@@ -7,52 +7,51 @@ import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 import { Server, Database, Globe, BarChart, LifeBuoy, ShieldCheck, Scaling, Quote } from "lucide-react"
 import { motion } from "framer-motion"
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6
+    }
+  }
+};
+
+const testimonials = [
+  {
+    quote: "M A Global Network's VPS is incredibly fast and reliable. Their 24/7 support team is a lifesaver, always responsive and knowledgeable. We migrated our entire infrastructure and haven't looked back.",
+    name: "Rohan Sharma",
+    company: "Tech Solutions Inc.",
+  },
+  {
+    quote: "The Shared Service for Tally has transformed our accounting workflow. Accessing our data from anywhere is a game-changer for our distributed team. The setup was seamless and performance is excellent.",
+    name: "Priya Patel",
+    company: "Growth Ventures",
+  },
+  {
+    quote: "We chose their colocation service for the top-tier security and robust infrastructure. The peace of mind knowing our hardware is in a world-class data center is invaluable. Highly recommended.",
+    name: "Ankit Desai",
+    company: "DataSecure Ltd.",
+  },
+];
+
 export default function Home() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6
-      }
-    }
-  };
-
-  const testimonials = [
-    {
-      quote: "M A Global Network's VPS is incredibly fast and reliable. Their 24/7 support team is a lifesaver, always responsive and knowledgeable. We migrated our entire infrastructure and haven't looked back.",
-      name: "Rohan Sharma",
-      company: "Tech Solutions Inc.",
-    },
-    {
-      quote: "The Shared Service for Tally has transformed our accounting workflow. Accessing our data from anywhere is a game-changer for our distributed team. The setup was seamless and performance is excellent.",
-      name: "Priya Patel",
-      company: "Growth Ventures",
-    },
-    {
-      quote: "We chose their colocation service for the top-tier security and robust infrastructure. The peace of mind knowing our hardware is in a world-class data center is invaluable. Highly recommended.",
-      name: "Ankit Desai",
-      company: "DataSecure Ltd.",
-    },
-  ];
-
   return (
     <>
       <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-secondary -z-10"></div>
           <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-20"></div>
-          <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-20"></div>
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-24 items-center">
             <motion.div 
@@ -153,7 +152,7 @@ export default function Home() {
               </motion.div>
             </div>
         </div>
-      </section>
+      </motion.section>
 
       <motion.section 
         id="services" 
@@ -236,7 +235,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section 
         id="testimonials" 
