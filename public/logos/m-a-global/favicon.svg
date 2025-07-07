@@ -1,7 +1,5 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="40" height="40" rx="8" fill="#F0F8FF"/>
-    <g transform="translate(4, 2) scale(0.8)">
-        <path d="M0 36V4H8L20 28L32 4H40V36H32V10L20 34L8 10V36H0Z" fill="#4B0082"/>
-        <path d="M10 4H30L20 24L10 4Z" fill="#8A2BE2"/>
-    </g>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M32 60C47.464 60 60 47.464 60 32C60 16.536 47.464 4 32 4C16.536 4 4 16.536 4 32C4 47.464 16.536 60 32 60Z" stroke="hsl(var(--primary))" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4 32H60" stroke="hsl(var(--primary))" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M32 4C23.9787 11.2349 19.4678 21.3482 20.2539 32C21.0401 42.6518 26.0213 52.7651 32 60C37.9787 52.7651 42.9599 42.6518 43.7461 32C44.5322 21.3482 40.0213 11.2349 32 4Z" stroke="hsl(var(--primary))" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
