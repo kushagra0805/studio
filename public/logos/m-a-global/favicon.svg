@@ -1,5 +1,11 @@
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M32 60C47.464 60 60 47.464 60 32C60 16.536 47.464 4 32 4C16.536 4 4 16.536 4 32C4 47.464 16.536 60 32 60Z" stroke="hsl(var(--primary))" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4 32H60" stroke="hsl(var(--primary))" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M32 4C23.9787 11.2349 19.4678 21.3482 20.2539 32C21.0401 42.6518 26.0213 52.7651 32 60C37.9787 52.7651 42.9599 42.6518 43.7461 32C44.5322 21.3482 40.0213 11.2349 32 4Z" stroke="hsl(var(--primary))" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:hsl(var(--primary));stop-opacity:1" />
+        <stop offset="100%" style="stop-color:hsl(var(--primary));stop-opacity:0.8" />
+    </linearGradient>
+</defs>
+<path d="M50 2C23.49 2 2 23.49 2 50C2 76.51 23.49 98 50 98C76.51 98 98 76.51 98 50C98 23.49 76.51 2 50 2ZM50 90C27.94 90 10 72.06 10 50C10 27.94 27.94 10 50 10C72.06 10 90 27.94 90 50C90 72.06 72.06 90 50 90Z" fill="url(#grad1)"/>
+<path d="M30 65L40 45L50 65L60 45L70 65" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 55H65" stroke="white" stroke-width="7" stroke-linecap="round"/>
 </svg>
