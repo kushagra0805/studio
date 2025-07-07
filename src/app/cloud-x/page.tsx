@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from 'next/link';
@@ -170,7 +171,7 @@ export default function CloudXPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <Image
-              src="https://placehold.co/450x405.png"
+              src="/images/cloud-x/workflow.png"
               data-ai-hint="workflow diagram"
               width="450"
               height="405"

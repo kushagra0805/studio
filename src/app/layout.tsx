@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   description: 'Your trusted partner for VMs, dedicated servers, colocation, and web hosting.',
   icons: {
     icon: "/logos/m-a-global/favicon.svg",
-    apple: "/logos/m-a-global/apple-touch-icon.png",
   }
 };
 

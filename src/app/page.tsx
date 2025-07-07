@@ -92,7 +92,7 @@ export default function Home() {
               whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
             >
               <Image
-                src="https://placehold.co/550x400.png"
+                src="/images/home/hero-banner.png"
                 data-ai-hint="cloud infrastructure"
                 width="550"
                 height="400"

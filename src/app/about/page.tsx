@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from 'next/link';
@@ -113,7 +114,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                  <Image
-                  src="https://placehold.co/450x315.png"
+                  src="/images/about/our-story.png"
                   data-ai-hint="teamwork journey"
                   width="450"
                   height="315"

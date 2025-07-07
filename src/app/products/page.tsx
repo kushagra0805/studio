@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from 'next/link';
@@ -85,7 +86,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <Image width="530" height="340" src="https://placehold.co/530x340.png" data-ai-hint="server racks" alt="Virtual Private Servers" className="rounded-lg shadow-md" />
+            <Image width="530" height="340" src="/images/products/vps.png" data-ai-hint="server racks" alt="Virtual Private Servers" className="rounded-lg shadow-md" />
           </motion.div>
         </div>
 
@@ -98,7 +99,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-             <Image width="530" height="340" src="https://placehold.co/530x340.png" data-ai-hint="dedicated server" alt="Dedicated Servers" className="rounded-lg shadow-md" />
+             <Image width="530" height="340" src="/images/products/dedicated.png" data-ai-hint="dedicated server" alt="Dedicated Servers" className="rounded-lg shadow-md" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -144,7 +145,7 @@ export default function ProductsPage() {
              whileInView="visible"
              viewport={{ once: true, amount: 0.3 }}
           >
-            <Image width="530" height="340" src="https://placehold.co/530x340.png" data-ai-hint="accounting software" alt="Accounting on the Cloud" className="rounded-lg shadow-md" />
+            <Image width="530" height="340" src="/images/products/shared-service.png" data-ai-hint="accounting software" alt="Accounting on the Cloud" className="rounded-lg shadow-md" />
           </motion.div>
         </div>
 
@@ -157,7 +158,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
            >
-             <Image width="530" height="340" src="https://placehold.co/530x340.png" data-ai-hint="website interface" alt="Web Hosting" className="rounded-lg shadow-md" />
+             <Image width="530" height="340" src="/images/products/web-hosting.png" data-ai-hint="website interface" alt="Web Hosting" className="rounded-lg shadow-md" />
           </motion.div>
           <motion.div
             variants={textFromRight}
@@ -203,7 +204,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <Image width="530" height="340" src="https://placehold.co/530x340.png" data-ai-hint="data center" alt="Server Colocation" className="rounded-lg shadow-md" />
+            <Image width="530" height="340" src="/images/products/colocation.png" data-ai-hint="data center" alt="Server Colocation" className="rounded-lg shadow-md" />
           </motion.div>
         </div>
         
@@ -216,7 +217,7 @@ export default function ProductsPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
            >
-             <Image width="530" height="340" src="https://placehold.co/530x340.png" data-ai-hint="private cloud" alt="On-premise Cloud" className="rounded-lg shadow-md" />
+             <Image width="530" height="340" src="/images/products/on-premise.png" data-ai-hint="private cloud" alt="On-premise Cloud" className="rounded-lg shadow-md" />
           </motion.div>
           <motion.div
             variants={textFromRight}
