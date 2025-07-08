@@ -11,7 +11,6 @@ const port = process.env.PORT || 3000;
 console.log(`[INFO] Starting Next.js server...`);
 console.log(`[INFO] Running in Production mode (dev=${dev}).`);
 
-// Create the Next.js app instance
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
