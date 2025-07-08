@@ -1,26 +1,26 @@
 // server.js
-const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 const express = require('express');
 
 const dev = process.env.NODE_ENV !== 'production';
-const hostname = 'localhost';
-const app = next({ dev, hostname });
+// When using iisnode, the PORT environment variable is used
+const port = process.env.PORT || 3000;
+const app = next({ dev });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
 
   server.all('*', (req, res) => {
-    return handle(req, res);
+    // Correctly parse the URL and pass it to the Next.js handler
+    const parsedUrl = parse(req.url, true);
+    return handle(req, res, parsedUrl);
   });
-  
-  // Use the port provided by iisnode, or default to 3000
-  const port = process.env.PORT || 3000;
   
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
+    // This will be logged in the iisnode logs
+    console.log(`> Ready on port ${port}`);
   });
 });
