@@ -14,8 +14,10 @@ app.prepare().then(() => {
   const server = express();
 
   server.all('*', (req, res) => {
-    // Log the request URL to help diagnose routing issues.
-    console.log('Request received for:', req.url);
+    // Log headers to help diagnose IIS rewrite issues.
+    // 'x-original-url' is added by iisnode and shows the URL before any rewrites.
+    console.log(`[${new Date().toISOString()}] Request received. Original URL (x-original-url): ${req.headers['x-original-url']}. Rewritten URL: ${req.url}`);
+    
     const parsedUrl = parse(req.url, true);
     return handle(req, res, parsedUrl);
   });
