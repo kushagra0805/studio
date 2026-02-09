@@ -89,7 +89,7 @@ export default function Home() {
               whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
             >
               <Image
-                src="/images/home/hero-banner.png"
+                src="https://picsum.photos/seed/cloud-network/550/400"
                 data-ai-hint="cloud infrastructure"
                 width="550"
                 height="400"
