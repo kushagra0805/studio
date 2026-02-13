@@ -89,11 +89,11 @@ export default function Home() {
               whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
             >
               <Image
-                src="https://picsum.photos/seed/ai-datacenter/550/400"
-                data-ai-hint="AI datacenter"
+                src="/images/home/hero-banner.png"
+                data-ai-hint="cloud infrastructure"
                 width="550"
                 height="400"
-                alt="AI and Data Center"
+                alt="Cloud Infrastructure"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-2xl"
                 priority
               />
@@ -272,5 +272,3 @@ export default function Home() {
     </>
   )
 }
-
-    
