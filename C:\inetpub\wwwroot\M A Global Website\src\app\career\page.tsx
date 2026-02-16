@@ -163,17 +163,17 @@ export default function CareerPage() {
                  <Card>
                     <CardHeader>
                         <CardTitle>Have Questions?</CardTitle>
-                        <CardContent className="pt-4 px-0 pb-0">
-                             <p className="text-muted-foreground mb-6">
-                                If you have any questions about careers or opportunities at M A Global Network, don't hesitate to get in touch with our HR team.
-                            </p>
-                             <Button asChild size="lg">
-                                <Link href="/contact">
-                                    Contact Us <ArrowRight className="ml-2 h-5 w-5" />
-                                </Link>
-                            </Button>
-                        </CardContent>
                     </CardHeader>
+                    <CardContent>
+                         <p className="text-muted-foreground mb-6">
+                            If you have any questions about careers or opportunities at M A Global Network, don't hesitate to get in touch with our HR team.
+                        </p>
+                         <Button asChild size="lg">
+                            <Link href="/contact">
+                                Contact Us <ArrowRight className="ml-2 h-5 w-5" />
+                            </Link>
+                        </Button>
+                    </CardContent>
                 </Card>
             </motion.div>
         </div>
