@@ -114,7 +114,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                  <Image
-                  src="/images/about/our-story.png"
+                  src="https://picsum.photos/seed/teamwork/450/315"
                   data-ai-hint="teamwork journey"
                   width="450"
                   height="315"
@@ -218,5 +218,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
-    

@@ -23,7 +23,7 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.2,
       delayChildren: 0.2,
     }
   }
@@ -183,7 +183,7 @@ export default function CloudXPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <Image
-              src="/images/cloud-x/workflow.png"
+              src="https://picsum.photos/seed/workflow/450/405"
               data-ai-hint="workflow diagram"
               width="450"
               height="405"
@@ -260,5 +260,3 @@ export default function CloudXPage() {
     </div>
   );
 }
-
-    

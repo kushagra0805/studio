@@ -183,5 +183,3 @@ export default function CareerPage() {
     </div>
   );
 }
-
-    
