@@ -1,0 +1,40 @@
+# ===================================================================
+# robots.txt for M A Global Network
+# ===================================================================
+
+# This file tells search engine crawlers which pages or files the crawler can or can't request from your site.
+
+# Default rule for all crawlers (including search engines like Google, Bing, etc.)
+# We allow full access to ensure good SEO and visibility in search results.
+User-Agent: *
+Allow: /
+
+# Disallow crawling of Next.js internal build/dev folders.
+# These files are not useful for indexing and just add noise to crawl reports.
+Disallow: /_next/
+
+# Disallow pages that are not useful for public search results,
+# such as login pages, order forms, or internal API routes.
+Disallow: /api/
+Disallow: /login
+Disallow: /order
+
+# --- AI and Data-Mining Crawlers ---
+
+# Explicitly allow major AI crawlers to access content.
+# This can be beneficial for visibility in new generative AI search experiences.
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: CCBot
+Allow: /
+
+# --- Sitemap ---
+# Provide the location of your sitemap to help crawlers
+# discover all the important pages on your site more efficiently.
+#
+# IMPORTANT: Please replace 'https://www.your-domain.com' with your actual website domain.
+Sitemap: https://www.your-domain.com/sitemap.xml
