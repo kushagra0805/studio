@@ -105,28 +105,44 @@ export default function Home() {
             </div>
           </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 mt-12">
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div 
+                variants={itemVariants} 
+                className="text-center flex flex-col items-center"
+                whileHover={{ scale: 1.1, y: -5 }}
+              >
                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
                   <LifeBuoy className="h-8 w-8" />
                 </div>
                 <h3 className="text-xl font-bold">24/7 Expert Support</h3>
                 <p className="text-muted-foreground mt-2">Our team is always available to help you with any issues.</p>
               </motion.div>
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div 
+                variants={itemVariants} 
+                className="text-center flex flex-col items-center"
+                whileHover={{ scale: 1.1, y: -5 }}
+              >
                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
                   <ShieldCheck className="h-8 w-8" />
                 </div>
                 <h3 className="text-xl font-bold">Top-Tier Security</h3>
                 <p className="text-muted-foreground mt-2">State-of-the-art security to protect your valuable data.</p>
               </motion.div>
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div 
+                variants={itemVariants} 
+                className="text-center flex flex-col items-center"
+                whileHover={{ scale: 1.1, y: -5 }}
+              >
                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
                   <Scaling className="h-8 w-8" />
                 </div>
                 <h3 className="text-xl font-bold">Scalable Solutions</h3>
                 <p className="text-muted-foreground mt-2">Grow your infrastructure as your business expands.</p>
               </motion.div>
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div 
+                variants={itemVariants} 
+                className="text-center flex flex-col items-center"
+                whileHover={{ scale: 1.1, y: -5 }}
+              >
                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4">
                   <Globe className="h-8 w-8" />
                 </div>
@@ -222,3 +238,5 @@ export default function Home() {
     </>
   )
 }
+
+    

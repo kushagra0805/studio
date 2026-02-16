@@ -61,3 +61,5 @@ export function ChatInterface({ onClose }: ChatInterfaceProps) {
     </Card>
   );
 }
+
+    
