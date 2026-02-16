@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -52,6 +53,7 @@ export function Footer() {
             <h4 className="font-semibold mb-4 text-foreground">Company</h4>
             <nav className="flex flex-col gap-2">
               <Link href="/about" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>About Us</Link>
+              <Link href="/career" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Career</Link>
               <Link href="/pricing" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Pricing</Link>
               <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Contact Us</Link>
               <Link href="/order" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Order Now</Link>

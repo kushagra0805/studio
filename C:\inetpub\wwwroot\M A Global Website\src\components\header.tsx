@@ -54,13 +54,6 @@ export function Header() {
             {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="relative text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-primary px-3 py-2" prefetch={false}>
                     {link.label}
-                    <motion.div 
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                        initial={{ scaleX: 0 }}
-                        whileHover={{ scaleX: 1 }}
-                        transition={{ duration: 0.3 }}
-                        style={{ transformOrigin: 'center' }}
-                    />
                 </Link>
             ))}
             <Button asChild className="ml-4">

@@ -1,3 +1,4 @@
+
 "use client"
 
 import { Building2, Lightbulb, TrendingUp, Users, HeartHandshake, MapPin, ArrowRight } from "lucide-react";
