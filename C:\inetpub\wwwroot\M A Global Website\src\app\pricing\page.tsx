@@ -283,10 +283,8 @@ const PlanCard = ({ plan }: { plan: any }) => (
     <motion.div
         variants={itemVariants}
         className="flex flex-col h-full"
-        whileHover={{ y: -5, scale: 1.03 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-        <Card className={`flex flex-col flex-grow ${plan.popular ? 'border-primary border-2 shadow-primary/20 shadow-xl' : ''}`}>
+        <Card className={`flex flex-col flex-grow ${plan.popular ? 'border-primary border-2 shadow-primary/20' : ''}`}>
             {plan.popular && (
                 <div className="text-center py-1 bg-primary text-primary-foreground font-semibold rounded-t-lg -mt-px">
                     Most Popular

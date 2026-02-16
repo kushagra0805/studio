@@ -49,7 +49,8 @@ export default function Home() {
     <>
       <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-secondary -z-10"></div>
-          <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-20"></div>
+          <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-20 opacity-50 animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-20 opacity-50 animate-pulse [animation-delay:4s]"></div>
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-24 items-center">
             <motion.div 
@@ -83,6 +84,7 @@ export default function Home() {
               </div>
             </motion.div>
             <motion.div
+              className="transition-all duration-300 hover:shadow-primary/20 hover:shadow-2xl rounded-xl"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -94,7 +96,7 @@ export default function Home() {
                 width="550"
                 height="400"
                 alt="AI Data Center"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover shadow-2xl"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
                 priority
               />
             </motion.div>
@@ -120,9 +122,9 @@ export default function Home() {
             </div>
           </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 mt-12">
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div variants={itemVariants} className="group text-center flex flex-col items-center">
                 <motion.div 
-                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4"
+                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4 transition-all duration-300 group-hover:shadow-primary/20 group-hover:shadow-lg"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
@@ -131,9 +133,9 @@ export default function Home() {
                 <h3 className="text-xl font-bold">24/7 Expert Support</h3>
                 <p className="text-muted-foreground mt-2">Our team is always available to help you with any issues.</p>
               </motion.div>
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div variants={itemVariants} className="group text-center flex flex-col items-center">
                 <motion.div 
-                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4"
+                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4 transition-all duration-300 group-hover:shadow-primary/20 group-hover:shadow-lg"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
@@ -142,9 +144,9 @@ export default function Home() {
                 <h3 className="text-xl font-bold">Top-Tier Security</h3>
                 <p className="text-muted-foreground mt-2">State-of-the-art security to protect your valuable data.</p>
               </motion.div>
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div variants={itemVariants} className="group text-center flex flex-col items-center">
                 <motion.div 
-                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4"
+                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4 transition-all duration-300 group-hover:shadow-primary/20 group-hover:shadow-lg"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
@@ -153,9 +155,9 @@ export default function Home() {
                 <h3 className="text-xl font-bold">Scalable Solutions</h3>
                 <p className="text-muted-foreground mt-2">Grow your infrastructure as your business expands.</p>
               </motion.div>
-              <motion.div variants={itemVariants} className="text-center flex flex-col items-center">
+              <motion.div variants={itemVariants} className="group text-center flex flex-col items-center">
                 <motion.div 
-                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4"
+                  className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-4 transition-all duration-300 group-hover:shadow-primary/20 group-hover:shadow-lg"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
@@ -190,9 +192,8 @@ export default function Home() {
             <Link href="/products#vps" className="block">
               <motion.div 
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
               >
-                <Card className="h-full bg-background/60 text-center shadow-sm hover:shadow-md transition-shadow">
+                <Card className="h-full bg-background/60 text-center">
                   <CardHeader className="flex flex-col items-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Server className="h-8 w-8 text-primary" />
@@ -205,9 +206,8 @@ export default function Home() {
             <Link href="/products#web-hosting" className="block">
               <motion.div 
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
               >
-                <Card className="h-full bg-background/60 text-center shadow-sm hover:shadow-md transition-shadow">
+                <Card className="h-full bg-background/60 text-center">
                   <CardHeader className="flex flex-col items-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Globe className="h-8 w-8 text-primary" />
@@ -220,9 +220,8 @@ export default function Home() {
             <Link href="/products#dedicated" className="block">
               <motion.div 
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
               >
-                <Card className="h-full bg-background/60 text-center shadow-sm hover:shadow-md transition-shadow">
+                <Card className="h-full bg-background/60 text-center">
                   <CardHeader className="flex flex-col items-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <Database className="h-8 w-8 text-primary" />
@@ -235,9 +234,8 @@ export default function Home() {
             <Link href="/cloud-x" className="block">
               <motion.div 
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
               >
-                <Card className="h-full bg-background/60 text-center shadow-sm hover:shadow-md transition-shadow">
+                <Card className="h-full bg-background/60 text-center">
                   <CardHeader className="flex flex-col items-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-4">
                       <BarChart className="h-8 w-8 text-primary" />
@@ -275,10 +273,8 @@ export default function Home() {
                 <motion.div 
                   variants={itemVariants} 
                   key={index}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Card className="h-full bg-secondary/60 shadow-sm transition-none">
+                  <Card className="h-full bg-secondary/60">
                       <CardContent className="pt-6">
                           <Quote className="h-8 w-8 text-primary mb-4" />
                           <p className="text-muted-foreground mb-4">{testimonial.quote}</p>
