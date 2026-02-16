@@ -33,14 +33,17 @@ const testimonials = [
   {
     quote: "M A Global Network's VPS is incredibly fast and reliable. Their 24/7 support team is a lifesaver, always responsive and knowledgeable. We migrated our entire infrastructure and haven't looked back.",
     name: "Rohan Sharma",
+    company: "Tech Solutions Inc.",
   },
   {
     quote: "The Shared Service for Tally has transformed our accounting workflow. Accessing our data from anywhere is a game-changer for our distributed team. The setup was seamless and performance is excellent.",
     name: "Priya Patel",
+    company: "Growth Ventures",
   },
   {
     quote: "We chose their colocation service for the top-tier security and robust infrastructure. The peace of mind knowing our hardware is in a world-class data center is invaluable. Highly recommended.",
     name: "Ankit Desai",
+    company: "DataSecure Ltd.",
   },
 ];
 
@@ -279,6 +282,7 @@ export default function Home() {
                           <Quote className="h-8 w-8 text-primary mb-4" />
                           <p className="text-muted-foreground mb-4">{testimonial.quote}</p>
                           <p className="font-semibold">{testimonial.name}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.company}</p>
                       </CardContent>
                   </Card>
                 </motion.div>
