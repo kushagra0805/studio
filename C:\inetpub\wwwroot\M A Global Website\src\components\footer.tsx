@@ -24,7 +24,7 @@ export function Footer() {
             <p className="text-sm text-muted-foreground max-w-xs">
               Powering your digital future with reliable and secure cloud solutions.
             </p>
-            <div className="mt-6 flex flex-col gap-3 text-sm">
+            <div className="mt-4 flex flex-col gap-3 text-sm">
                 <a href="mailto:info@cloud-x.in" className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors">
                     <Mail className="h-4 w-4" />
                     <span>info@cloud-x.in</span>
