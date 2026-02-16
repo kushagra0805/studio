@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/sla',
     '/msa',
     '/colocation-policy',
+    '/career',
   ]
  
   const staticUrls = staticRoutes.map((route) => ({
