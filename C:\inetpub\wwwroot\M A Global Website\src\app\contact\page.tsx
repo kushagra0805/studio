@@ -20,9 +20,10 @@ import { Textarea } from "../../components/ui/textarea"
 import { useToast } from "../../hooks/use-toast"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
-import { Mail, Send, User, MessageSquare, Loader2, CheckCircle } from "lucide-react";
+import { Mail, Send, User, MessageSquare, Loader2, CheckCircle, Phone } from "lucide-react";
 import { db } from "../../lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
+import { Separator } from "../../components/ui/separator"
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -105,6 +106,21 @@ export default function ContactPage() {
                     </motion.div>
                 </div>
             ) : (
+              <>
+                <div className="text-center mb-8">
+                  <h4 className="font-semibold text-lg mb-2">Or, reach us directly:</h4>
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-muted-foreground">
+                      <a href="mailto:info@cloud-x.in" className="flex items-center gap-2 hover:text-primary transition-colors">
+                          <Mail className="h-5 w-5" />
+                          <span>info@cloud-x.in</span>
+                      </a>
+                      <a href="tel:7024058800" className="flex items-center gap-2 hover:text-primary transition-colors">
+                          <Phone className="h-5 w-5" />
+                          <span>7024058800</span>
+                      </a>
+                  </div>
+                </div>
+                <Separator className="mb-8" />
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -175,6 +191,7 @@ export default function ContactPage() {
                     </Button>
                   </form>
                 </Form>
+              </>
             )}
           </CardContent>
         </Card>
