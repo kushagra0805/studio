@@ -29,24 +29,6 @@ const itemVariants = {
   }
 };
 
-const testimonials = [
-  {
-    quote: "M A Global Network's VPS is incredibly fast and reliable. Their 24/7 support team is a lifesaver, always responsive and knowledgeable. We migrated our entire infrastructure and haven't looked back.",
-    name: "Rohan Sharma",
-    company: "Tech Solutions Inc.",
-  },
-  {
-    quote: "The Shared Service for Tally has transformed our accounting workflow. Accessing our data from anywhere is a game-changer for our distributed team. The setup was seamless and performance is excellent.",
-    name: "Priya Patel",
-    company: "Growth Ventures",
-  },
-  {
-    quote: "We chose their colocation service for the top-tier security and robust infrastructure. The peace of mind knowing our hardware is in a world-class data center is invaluable. Highly recommended.",
-    name: "Ankit Desai",
-    company: "DataSecure Ltd.",
-  },
-];
-
 export default function Home() {
   return (
     <>
@@ -251,45 +233,6 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
-
-      <section 
-        id="testimonials" 
-        className="w-full py-12 md:py-24 lg:py-32"
-      >
-        <motion.div 
-          className="container px-4 md:px-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Trusted by Businesses Like Yours</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Read what our clients have to say about our services and support.
-                </p>
-            </div>
-          </div>
-            <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12">
-              {testimonials.map((testimonial, index) => (
-                <motion.div 
-                  variants={itemVariants} 
-                  key={index}
-                >
-                  <Card className="h-full bg-secondary/60">
-                      <CardContent className="pt-6">
-                          <Quote className="h-8 w-8 text-primary mb-4" />
-                          <p className="text-muted-foreground mb-4">{testimonial.quote}</p>
-                          <p className="font-semibold">{testimonial.name}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                      </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-        </motion.div>
-      </section>
     </>
   )
 }
