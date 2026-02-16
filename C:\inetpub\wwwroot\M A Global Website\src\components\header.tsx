@@ -90,11 +90,13 @@ export function Header() {
                  <span className="sr-only">Close menu</span>
                </Button>
             </SheetHeader>
-            <div className="grid gap-4 py-8">
+            <div className="grid gap-2 py-8">
               {navLinks.map((link) => (
-                 <Link key={link.href} href={link.href} className="flex w-full items-center py-2 text-2xl font-semibold" prefetch={false} onClick={closeSheet}>
-                    {link.label}
-                 </Link>
+                <motion.div whileTap={{ scale: 0.97 }} key={link.href}>
+                  <Link href={link.href} className="flex w-full items-center py-3 text-2xl font-semibold rounded-md px-2 hover:bg-secondary" prefetch={false} onClick={closeSheet}>
+                      {link.label}
+                  </Link>
+                </motion.div>
               ))}
               <Button asChild className="w-full mt-8" size="lg">
                   <Link href="/login" prefetch={false} onClick={closeSheet}>
