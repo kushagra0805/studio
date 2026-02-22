@@ -23,40 +23,51 @@ interface ChatInterfaceProps {
 
 export function ChatInterface({ onClose }: ChatInterfaceProps) {
   return (
-    <Card className="w-[380px] h-auto flex flex-col shadow-2xl rounded-xl">
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <div className="flex items-center gap-2">
-          <MessageSquareText className="h-6 w-6 text-primary" />
-          <CardTitle>Live Support</CardTitle>
+    <Card className="w-[380px] h-auto flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-3xl border-none bg-white dark:bg-slate-900 overflow-hidden">
+      <CardHeader className="flex flex-row items-center justify-between pb-6 bg-primary text-primary-foreground p-8">
+        <div className="flex items-center gap-3">
+          <div className="bg-white/20 p-2 rounded-xl">
+            <MessageSquareText className="h-6 w-6" />
+          </div>
+          <CardTitle className="text-xl">Live Support</CardTitle>
         </div>
         <Button
           variant="ghost"
           size="icon"
           onClick={onClose}
+          className="hover:bg-white/10 text-white"
           aria-label="Close chat"
         >
-          <X className="h-5 w-5" />
+          <X className="h-6 w-6" />
         </Button>
       </CardHeader>
-      <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-        <h3 className="text-xl font-semibold mb-2">Talk to a Human</h3>
-        <p className="text-muted-foreground mb-6">
-            Our support team is ready to help you with any questions you may have.
+      <CardContent className="p-8 flex flex-col items-center justify-center text-center">
+        <div className="w-20 h-20 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-6">
+            <div className="relative">
+                <div className="w-16 h-16 rounded-full overflow-hidden">
+                    <Image src="https://picsum.photos/seed/support/100/100" width={100} height={100} alt="Support" />
+                </div>
+                <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-900" />
+            </div>
+        </div>
+        <h3 className="text-2xl font-bold mb-3">Talk to an Expert</h3>
+        <p className="text-muted-foreground mb-10 text-lg">
+            Our support engineers are ready to assist you right now.
         </p>
         <div className="w-full space-y-4">
-            <Button asChild className="w-full bg-[#25D366] hover:bg-[#1EAE54] text-white" size="lg">
+            <Button asChild className="w-full h-14 rounded-2xl bg-[#25D366] hover:bg-[#1EAE54] text-white text-lg shadow-xl shadow-[#25D366]/20" size="lg">
                 <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon /> Chat on WhatsApp
                 </Link>
             </Button>
-            <Button asChild variant="outline" className="w-full" size="lg">
+            <Button asChild variant="outline" className="w-full h-14 rounded-2xl text-lg" size="lg">
                 <Link href="/contact">
                     <Contact className="h-5 w-5" /> Contact Form
                 </Link>
             </Button>
         </div>
-         <p className="text-xs text-muted-foreground mt-8">
-            Our team is available 24/7 to assist you.
+         <p className="text-sm font-medium text-muted-foreground mt-10">
+            Available 24/7/365
         </p>
       </CardContent>
     </Card>

@@ -23,5 +23,23 @@
     "width": 450,
     "height": 405,
     "hint": "workflow diagram"
+  },
+  "vpsImage": {
+    "url": "https://picsum.photos/seed/vps/600/400",
+    "width": 600,
+    "height": 400,
+    "hint": "server hardware"
+  },
+  "dedicatedImage": {
+    "url": "https://picsum.photos/seed/dedicated/600/400",
+    "width": 600,
+    "height": 400,
+    "hint": "dedicated rack"
+  },
+  "sharedServiceImage": {
+    "url": "https://picsum.photos/seed/shared/600/400",
+    "width": 600,
+    "height": 400,
+    "hint": "business cloud"
   }
 }
