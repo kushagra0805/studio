@@ -41,5 +41,23 @@
     "width": 600,
     "height": 400,
     "hint": "business cloud"
+  },
+  "webHostingImage": {
+    "url": "https://picsum.photos/seed/webhosting/600/400",
+    "width": 600,
+    "height": 400,
+    "hint": "web hosting"
+  },
+  "colocationImage": {
+    "url": "https://picsum.photos/seed/colocation/600/400",
+    "width": 600,
+    "height": 400,
+    "hint": "datacenter colocation"
+  },
+  "onPremiseCloudImage": {
+    "url": "https://picsum.photos/seed/privatecloud/600/400",
+    "width": 600,
+    "height": 400,
+    "hint": "private cloud"
   }
 }

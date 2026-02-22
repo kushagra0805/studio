@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
-import { ArrowRight, Server, Database, Globe, Building, BarChart, CloudCog, ShieldCheck, Zap, Cpu } from 'lucide-react';
+import { ArrowRight, Server, Database, Globe, Building, BarChart, CloudCog, ShieldCheck, Zap, Cpu, Network, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
 import images from '../lib/placeholder-images.json';
 
@@ -27,6 +27,60 @@ const floatingAnimation = {
 };
 
 export default function ProductsPage() {
+  const products = [
+    {
+      id: "vps",
+      title: "Virtual Private Servers",
+      icon: Server,
+      desc: "Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions give you full root access, guaranteed resources, and the ability to scale up as you grow instantly.",
+      image: images.vpsImage,
+      features: ["Intel Xeon CPUs", "NVMe SSD Storage", "Full Root Access", "DDoS Protection"]
+    },
+    {
+      id: "dedicated",
+      title: "Dedicated Power",
+      icon: Database,
+      desc: "Ultimate performance for high-load applications. Raw physical hardware with no virtualization overhead. Dedicated entirely to your success with Tier-4 reliability.",
+      image: images.dedicatedImage,
+      features: ["Bare Metal Performance", "Custom Configs", "Isolated Hardware", "High Bandwidth"],
+      reverse: true
+    },
+    {
+      id: "shared-service",
+      title: "Shared Service (Cloud-x.in)",
+      icon: BarChart,
+      desc: "Optimized accounting infrastructure for Tally, Busy, and more. Access your critical financial data from anywhere securely through our specialized cloud portal.",
+      image: images.sharedServiceImage,
+      features: ["RDP/Web Access", "Daily Backups", "Multi-user Support", "99% Uptime"]
+    },
+    {
+      id: "web-hosting",
+      title: "Web Hosting",
+      icon: Globe,
+      desc: "Fast, secure, and reliable hosting for your websites. From basic blogs to high-traffic e-commerce platforms, we provide the stability you need.",
+      image: images.webHostingImage,
+      features: ["Free SSL Certificate", "One-Click Installs", "Unmetered Bandwidth", "Managed Security"],
+      reverse: true
+    },
+    {
+      id: "colocation",
+      title: "Server Colocation",
+      icon: Building,
+      desc: "House your own hardware in our world-class Tier-4 facilities. Benefit from our redundant power, cooling, and extreme network connectivity.",
+      image: images.colocationImage,
+      features: ["Tier-4 Standards", "Redundant Power", "Biometric Security", "Remote Hands Support"]
+    },
+    {
+      id: "on-premise-cloud",
+      title: "On-premise Cloud",
+      icon: CloudCog,
+      desc: "The ultimate private cloud solution deployed at your location. Total control over your data with the expertise and management of M A Global Network.",
+      image: images.onPremiseCloudImage,
+      features: ["Data Sovereignty", "Custom Architecture", "Hybrid Connectivity", "Fully Managed Service"],
+      reverse: true
+    }
+  ];
+
   return (
     <div className="bg-background pt-20">
       <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
@@ -40,38 +94,12 @@ export default function ProductsPage() {
             Precision <span className="text-primary">Infrastructure</span>
           </h1>
           <p className="mt-8 max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground leading-relaxed">
-            High-availability cloud solutions designed for mission-critical applications. Performance without limits.
+            High-availability Tier-4 cloud solutions designed for mission-critical applications. Performance without limits, backed by a 99% Uptime Guarantee.
           </p>
         </motion.div>
 
         {/* Product Sections */}
-        {[
-          {
-            id: "vps",
-            title: "Virtual Private Servers",
-            icon: Server,
-            desc: "Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions give you full root access, guaranteed resources, and the ability to scale up as you grow instantly.",
-            image: images.vpsImage,
-            features: ["Intel Xeon CPUs", "NVMe SSD Storage", "Full Root Access", "DDoS Protection"]
-          },
-          {
-            id: "dedicated",
-            title: "Dedicated Power",
-            icon: Database,
-            desc: "Ultimate performance for high-load applications. Raw physical hardware with no virtualization overhead. Dedicated entirely to your success.",
-            image: images.dedicatedImage,
-            features: ["Bare Metal Performance", "Custom Configs", "Isolated Hardware", "High Bandwidth"],
-            reverse: true
-          },
-          {
-            id: "shared-service",
-            title: "Shared Service (Cloud-x.in)",
-            icon: BarChart,
-            desc: "Optimized accounting infrastructure for Tally, Busy, and more. Access your critical financial data from anywhere securely.",
-            image: images.sharedServiceImage,
-            features: ["RDP/Web Access", "Daily Backups", "Multi-user Support", "99.9% Uptime"]
-          }
-        ].map((product, idx) => (
+        {products.map((product, idx) => (
           <section key={product.id} id={product.id} className={`py-20 scroll-mt-24 ${product.reverse ? 'bg-slate-50 dark:bg-slate-900/40 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-20 rounded-[3rem]' : ''}`}>
             <div className={`grid md:grid-cols-2 gap-20 items-center overflow-visible`}>
               <motion.div
@@ -136,24 +164,24 @@ export default function ProductsPage() {
             >
               <h2 className="text-4xl md:text-6xl font-bold mb-8">Deploy Anywhere. Scale Everywhere.</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-16 leading-relaxed">
-                Our global network presence ensures your users get the fastest experience possible, regardless of their location.
+                Our global Tier-4 network presence ensures your users get the fastest experience possible, regardless of their location.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
                 <div className="p-8 rounded-3xl bg-secondary/50 backdrop-blur-sm border">
                     <Globe className="h-12 w-12 text-primary mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold mb-2">12+ Regions</h3>
-                    <p className="text-muted-foreground">Strategic nodes worldwide.</p>
+                    <h3 className="text-2xl font-bold mb-2">Global Presence</h3>
+                    <p className="text-muted-foreground">Strategic nodes for low latency.</p>
                 </div>
                 <div className="p-8 rounded-3xl bg-secondary/50 backdrop-blur-sm border">
                     <ShieldCheck className="h-12 w-12 text-green-500 mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold mb-2">99.9% SLAs</h3>
-                    <p className="text-muted-foreground">Enterprise uptime commitment.</p>
+                    <h3 className="text-2xl font-bold mb-2">99% Uptime SLA</h3>
+                    <p className="text-muted-foreground">Enterprise availability commitment.</p>
                 </div>
                 <div className="p-8 rounded-3xl bg-secondary/50 backdrop-blur-sm border">
                     <Cpu className="h-12 w-12 text-purple-500 mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold mb-2">NVMe Speed</h3>
-                    <p className="text-muted-foreground">Ultra-fast storage technology.</p>
+                    <h3 className="text-2xl font-bold mb-2">NVMe Performance</h3>
+                    <p className="text-muted-foreground">Ultra-fast server technology.</p>
                 </div>
               </div>
             </motion.div>

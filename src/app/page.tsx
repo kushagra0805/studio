@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "../components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
-import { Server, Database, Globe, BarChart, LifeBuoy, ShieldCheck, Scaling, Zap, ArrowRight } from "lucide-react"
+import { Server, Database, Globe, BarChart, LifeBuoy, ShieldCheck, Scaling, Zap, ArrowRight, CloudCog, Building } from "lucide-react"
 import { motion } from "framer-motion"
 import images from './lib/placeholder-images.json'
 
@@ -88,7 +88,7 @@ export default function Home() {
               variants={itemVariants}
               className="mt-6 max-w-[750px] mx-auto text-slate-300 md:text-xl lg:text-2xl leading-relaxed"
             >
-              Empowering businesses worldwide with reliable, scalable, and ultra-secure cloud infrastructure.
+              Empowering businesses worldwide with reliable, scalable, and ultra-secure Tier-4 cloud infrastructure.
             </motion.p>
             
             <motion.div
@@ -127,17 +127,19 @@ export default function Home() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Engineered for Excellence</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed">
-                Discover our specialized hosting and server solutions built on a foundation of performance.
+                Discover our specialized hosting and server solutions built on a foundation of performance and 99% uptime.
               </p>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { title: "Virtual Servers", icon: Server, link: "/products#vps", desc: "High-performance VPS with instant scaling." },
               { title: "Dedicated Power", icon: Database, link: "/products#dedicated", desc: "Raw physical performance for enterprise." },
               { title: "Shared Service", icon: BarChart, link: "/cloud-x", desc: "Accounting solutions optimized for cloud-x.in." },
-              { title: "Global Hosting", icon: Globe, link: "/products#web-hosting", desc: "Secure and fast hosting for websites." }
+              { title: "Global Hosting", icon: Globe, link: "/products#web-hosting", desc: "Secure and fast hosting for websites." },
+              { title: "Colocation", icon: Building, link: "/products#colocation", desc: "Tier-4 space for your mission-critical hardware." },
+              { title: "On-premise Cloud", icon: CloudCog, link: "/products#on-premise-cloud", desc: "Private cloud solutions at your location." }
             ].map((service, idx) => (
               <motion.div
                 key={idx}
@@ -187,9 +189,9 @@ export default function Home() {
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
                   { icon: LifeBuoy, text: "24/7 Expert Support", color: "text-blue-500" },
-                  { icon: ShieldCheck, text: "Enterprise Security", color: "text-green-500" },
+                  { icon: ShieldCheck, text: "Tier-4 Security", color: "text-green-500" },
                   { icon: Scaling, text: "Elastic Scalability", color: "text-purple-500" },
-                  { icon: Zap, text: "Ultra-Low Latency", color: "text-amber-500" }
+                  { icon: Zap, text: "99% Uptime Guarantee", color: "text-amber-500" }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 shadow-sm">
                     <item.icon className={`h-6 w-6 ${item.color}`} />
@@ -222,7 +224,7 @@ export default function Home() {
                 className="absolute -bottom-10 -right-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-2xl border hidden md:block"
               >
                 <p className="text-sm font-bold text-primary uppercase tracking-widest">Global Status</p>
-                <p className="text-2xl font-black mt-1">99.9% UPTIME</p>
+                <p className="text-2xl font-black mt-1">99% UPTIME</p>
               </motion.div>
             </motion.div>
           </div>
@@ -241,7 +243,7 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to upgrade your infrastructure?</h2>
             <p className="text-primary-foreground/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of businesses that trust M A Global Network for their mission-critical applications.
+              Join thousands of businesses that trust M A Global Network for their mission-critical applications with guaranteed 99% availability.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" variant="secondary" className="h-14 px-10 rounded-full text-lg shadow-xl shadow-black/10">
