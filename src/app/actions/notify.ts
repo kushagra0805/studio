@@ -3,7 +3,7 @@
 
 import nodemailer from 'nodemailer';
 
-const ADMIN_EMAIL = 'info@gmail.com';
+const ADMIN_EMAIL = 'info@cloud-x.in';
 
 // Note: You will need to set these environment variables in your .env file
 // for the actual sending to work. For now, it's set up to use Gmail as a common choice.

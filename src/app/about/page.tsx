@@ -9,14 +9,15 @@ import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight,
 import { motion } from "framer-motion";
 import images from '../lib/placeholder-images.json';
 
-const floatingAnimation = {
-  y: [0, -10, 0],
+const floatingAnimation = (duration = 5, delay = 0) => ({
+  y: [0, -15, 0],
   transition: {
-    duration: 5,
+    duration,
     repeat: Infinity,
-    ease: "easeInOut"
+    ease: "easeInOut",
+    delay
   }
-};
+});
 
 const itemVariants = {
   hidden: { y: 30, opacity: 0 },
@@ -41,19 +42,22 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-6">
-                Established Since 2012
-            </div>
-            <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-primary">
+            <motion.div 
+                animate={floatingAnimation(4)}
+                className="inline-block rounded-full bg-primary/10 px-6 py-2 text-sm font-bold text-primary mb-8 border border-primary/20 backdrop-blur-sm"
+            >
+                ESTABLISHED SINCE 2012
+            </motion.div>
+            <h1 className="text-5xl font-black tracking-tight sm:text-7xl md:text-8xl lg:text-9xl text-primary drop-shadow-sm">
               The Cloud Vision
             </h1>
-            <p className="mt-8 max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground leading-relaxed">
+            <p className="mt-8 max-w-4xl mx-auto text-xl md:text-3xl text-muted-foreground leading-relaxed font-medium">
               Pioneering the future of cloud infrastructure with a focus on reliability, extreme performance, and customer success.
             </p>
           </motion.div>
         </div>
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" />
       </section>
 
       {/* CEO & Founder Section */}
@@ -68,20 +72,23 @@ export default function AboutPage() {
                 className="relative z-10"
             >
               <motion.div 
-                animate={floatingAnimation}
+                animate={floatingAnimation(6)}
                 className="relative"
               >
-                <div className="absolute -inset-10 bg-primary/30 rounded-full blur-[100px] opacity-20" />
+                <div className="absolute -inset-10 bg-primary/30 rounded-full blur-[100px] opacity-20 animate-pulse" />
                 <Image
                   src={images.ceoPortrait.url}
                   width={images.ceoPortrait.width}
                   height={images.ceoPortrait.height}
                   alt="Mr. Manish Agrawal"
-                  className="rounded-3xl shadow-2xl object-cover grayscale hover:grayscale-0 transition-all duration-700 w-full max-w-[450px] mx-auto border-4 border-white/10"
+                  className="rounded-[3rem] shadow-2xl object-cover grayscale hover:grayscale-0 transition-all duration-1000 w-full max-w-[450px] mx-auto border-8 border-white/10"
                 />
-                <div className="absolute -bottom-6 -left-6 bg-primary p-6 rounded-2xl shadow-2xl hidden lg:block">
-                  <Award className="h-10 w-10 text-white" />
-                </div>
+                <motion.div 
+                    animate={floatingAnimation(4, 1)}
+                    className="absolute -bottom-8 -left-8 bg-primary p-8 rounded-[2rem] shadow-[0_20px_50px_rgba(var(--primary),0.5)] hidden lg:block border-4 border-white/10"
+                >
+                  <Award className="h-12 w-12 text-white" />
+                </motion.div>
               </motion.div>
             </motion.div>
             
@@ -91,17 +98,17 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
-              <span className="text-primary font-bold tracking-[0.2em] uppercase text-sm mb-6 block">Our Leadership</span>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">Mr. Manish Agrawal</h2>
-              <p className="text-2xl text-slate-400 mb-10 italic leading-relaxed">
+              <span className="text-primary font-black tracking-[0.4em] uppercase text-sm mb-8 block">Our Leadership</span>
+              <h2 className="text-5xl md:text-7xl font-black tracking-tight mb-10">Mr. Manish Agrawal</h2>
+              <p className="text-2xl md:text-3xl text-slate-400 mb-12 italic leading-relaxed font-medium">
                 "We don't just provide hosting; we build the engine for digital transformation. Our mission is to make enterprise-grade technology accessible to every visionary."
               </p>
-              <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+              <div className="space-y-8 text-slate-300 text-xl leading-relaxed">
                 <p>
                   As the Founder and CEO of M A Global Network, Manish Agrawal brings over 15 years of deep expertise in network architecture and high-scale computing.
                 </p>
                 <p>
-                  Under his visionary leadership, the company has transformed from a niche hosting provider into a multi-national infrastructure powerhouse, serving thousands of businesses with cutting-edge cloud solutions.
+                  Under his visionary leadership, the company has transformed into a multi-national infrastructure powerhouse, serving thousands of businesses with cutting-edge cloud solutions.
                 </p>
               </div>
             </motion.div>
@@ -121,41 +128,35 @@ export default function AboutPage() {
               visible: { transition: { staggerChildren: 0.2 } }
             }}
           >
-            <motion.div variants={itemVariants} className="group p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-700">
-              <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-blue-500/10 text-blue-500 mb-8 transition-transform group-hover:scale-110">
-                <ShieldCheck className="h-8 w-8" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4">Advanced Infrastructure</h2>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                Our services are powered by world-class data centers, ensuring maximum redundancy and physical security for your mission-critical data.
-              </p>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="group p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-700">
-              <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-purple-500/10 text-purple-500 mb-8 transition-transform group-hover:scale-110">
-                 <Zap className="h-8 w-8" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4">99% Uptime Guarantee</h2>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                We stand by our commitment to excellence with a solid 99% uptime guarantee, backed by high-availability clusters and 24/7 monitoring.
-              </p>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="group p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-700">
-              <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-green-500/10 text-green-500 mb-8 transition-transform group-hover:scale-110">
-                <Award className="h-8 w-8" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4">Certified Excellence</h2>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                M A Global Network adheres to industry-leading certifications and standards to provide secure, compliant, and efficient cloud hosting solutions.
-              </p>
-            </motion.div>
+            {[
+                { title: "Advanced Infrastructure", icon: ShieldCheck, color: "text-blue-500", bg: "bg-blue-500/10", desc: "Our services are powered by world-class data centers, ensuring maximum redundancy and physical security for your data." },
+                { title: "99% Uptime Guarantee", icon: Zap, color: "text-purple-500", bg: "bg-purple-500/10", desc: "We stand by our commitment to excellence with a solid 99% uptime guarantee, backed by high-availability clusters." },
+                { title: "Certified Excellence", icon: Award, color: "text-green-500", bg: "bg-green-500/10", desc: "M A Global Network adheres to industry-leading standards to provide secure, compliant, and efficient solutions." }
+            ].map((value, idx) => (
+                <motion.div 
+                    key={idx}
+                    variants={itemVariants} 
+                    whileHover={{ y: -10 }}
+                    className="group p-10 rounded-[3rem] bg-white dark:bg-slate-800 shadow-xl hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)] transition-all duration-500 border border-slate-100 dark:border-slate-700"
+                >
+                    <motion.div 
+                        animate={floatingAnimation(4 + idx)}
+                        className={`flex items-center justify-center h-20 w-20 rounded-[1.5rem] ${value.bg} ${value.color} mb-10 transition-transform group-hover:scale-110 shadow-inner`}
+                    >
+                        <value.icon className="h-10 w-10" />
+                    </motion.div>
+                    <h2 className="text-3xl font-black mb-6">{value.title}</h2>
+                    <p className="text-muted-foreground leading-relaxed text-xl">
+                        {value.desc}
+                    </p>
+                </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
 
       {/* Story Section */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
+      <section className="py-32 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-20 items-center">
             <motion.div
@@ -164,8 +165,8 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
-                <h2 className="text-4xl font-bold tracking-tight mb-8">Our Journey to the Cloud</h2>
-                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                <h2 className="text-5xl font-black tracking-tight mb-10">Our Journey to the Cloud</h2>
+                <div className="space-y-8 text-xl text-muted-foreground leading-relaxed">
                   <p>
                     Started in 2012 by Manish Agrawal, M A Global Network began as a solution to the complex hurdles businesses faced when moving to the web. 
                   </p>
@@ -173,8 +174,8 @@ export default function AboutPage() {
                     From our initial specialized services with Cloud-x.in to our current massive infrastructure footprint, we've never lost sight of our goal: delivering enterprise-grade power with human-level support.
                   </p>
                 </div>
-                <div className="mt-10">
-                   <Button asChild variant="outline" size="lg" className="rounded-full">
+                <div className="mt-12">
+                   <Button asChild size="lg" className="rounded-full h-16 px-10 text-xl font-bold shadow-2xl shadow-primary/20">
                      <Link href="/career">Join Our Growing Team</Link>
                    </Button>
                 </div>
@@ -186,17 +187,22 @@ export default function AboutPage() {
                 transition={{ duration: 0.8 }}
                 className="relative"
             >
-                 <Image
-                  src={images.ourStory.url}
-                  width={images.ourStory.width}
-                  height={images.ourStory.height}
-                  alt="Our Journey"
-                  className="mx-auto rounded-3xl object-cover shadow-2xl border-4 border-white dark:border-slate-800"
-                />
-                <motion.div 
-                  animate={floatingAnimation}
-                  className="absolute -top-10 -right-10 bg-primary/20 p-8 rounded-full blur-3xl -z-10"
-                />
+                 <motion.div 
+                    animate={floatingAnimation(7)}
+                    className="relative"
+                 >
+                    <Image
+                        src={images.ourStory.url}
+                        width={images.ourStory.width}
+                        height={images.ourStory.height}
+                        alt="Our Journey"
+                        className="mx-auto rounded-[3.5rem] object-cover shadow-[0_50px_100px_rgba(0,0,0,0.15)] border-8 border-white dark:border-slate-800"
+                    />
+                    <motion.div 
+                        animate={floatingAnimation(5, 1)}
+                        className="absolute -top-12 -right-12 bg-primary/20 p-12 rounded-full blur-[60px] -z-10"
+                    />
+                 </motion.div>
             </motion.div>
           </div>
         </div>

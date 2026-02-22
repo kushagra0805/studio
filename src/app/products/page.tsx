@@ -17,14 +17,15 @@ const fadeIn = {
   }
 };
 
-const floatingAnimation = {
-  y: [0, -15, 0],
+const floatingAnimation = (duration = 6, delay = 0) => ({
+  y: [0, -25, 0],
   transition: {
-    duration: 6,
+    duration,
     repeat: Infinity,
-    ease: "easeInOut"
+    ease: "easeInOut",
+    delay
   }
-};
+});
 
 export default function ProductsPage() {
   const products = [
@@ -90,18 +91,18 @@ export default function ProductsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className="text-5xl font-black tracking-tight sm:text-7xl md:text-8xl">
             Precision <span className="text-primary">Infrastructure</span>
           </h1>
-          <p className="mt-8 max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground leading-relaxed">
+          <p className="mt-8 max-w-4xl mx-auto text-xl md:text-3xl text-muted-foreground leading-relaxed font-medium">
             High-availability cloud solutions designed for mission-critical applications. Performance without limits, backed by a 99% Uptime Guarantee.
           </p>
         </motion.div>
 
         {/* Product Sections */}
         {products.map((product, idx) => (
-          <section key={product.id} id={product.id} className={`py-20 scroll-mt-24 ${product.reverse ? 'bg-slate-50 dark:bg-slate-900/40 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-20 rounded-[3rem]' : ''}`}>
-            <div className={`grid md:grid-cols-2 gap-20 items-center overflow-visible`}>
+          <section key={product.id} id={product.id} className={`py-24 scroll-mt-24 ${product.reverse ? 'bg-slate-50 dark:bg-slate-900/40 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-24 rounded-[4rem]' : ''}`}>
+            <div className={`grid md:grid-cols-2 gap-24 items-center`}>
               <motion.div
                 variants={fadeIn}
                 initial="hidden"
@@ -109,27 +110,36 @@ export default function ProductsPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 className={product.reverse ? 'order-last md:order-last' : ''}
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="bg-primary/10 p-4 rounded-2xl text-primary">
-                    <product.icon className="h-10 w-10" />
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold">{product.title}</h2>
+                <div className="flex items-center gap-6 mb-8">
+                  <motion.div 
+                    animate={floatingAnimation(4, idx * 0.2)}
+                    className="bg-primary/10 p-5 rounded-[1.5rem] text-primary shadow-inner"
+                  >
+                    <product.icon className="h-12 w-12" />
+                  </motion.div>
+                  <h2 className="text-4xl md:text-5xl font-black tracking-tight">{product.title}</h2>
                 </div>
-                <p className="text-muted-foreground text-xl mb-8 leading-relaxed">
+                <p className="text-muted-foreground text-2xl mb-10 leading-relaxed font-medium">
                   {product.desc}
                 </p>
                 
-                <div className="grid grid-cols-2 gap-4 mb-10">
+                <div className="grid grid-cols-2 gap-6 mb-12">
                    {product.features.map((feat, i) => (
-                     <div key={i} className="flex items-center gap-2 font-semibold">
-                        <Zap className="h-4 w-4 text-primary" />
+                     <motion.div 
+                        key={i} 
+                        whileHover={{ x: 5 }}
+                        className="flex items-center gap-3 font-bold text-lg"
+                     >
+                        <div className="bg-primary/10 p-1.5 rounded-lg">
+                            <Zap className="h-5 w-5 text-primary fill-primary" />
+                        </div>
                         <span>{feat}</span>
-                     </div>
+                     </motion.div>
                    ))}
                 </div>
 
-                <Button asChild size="lg" className="rounded-full h-14 px-10">
-                  <Link href="/pricing">View Pricing Plans <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                <Button asChild size="lg" className="rounded-full h-16 px-12 text-xl font-bold shadow-2xl shadow-primary/20">
+                  <Link href="/pricing">View Pricing Plans <ArrowRight className="ml-2 h-6 w-6" /></Link>
                 </Button>
               </motion.div>
 
@@ -140,14 +150,17 @@ export default function ProductsPage() {
                 transition={{ duration: 0.8 }}
                 className={product.reverse ? 'order-first md:order-first' : ''}
               >
-                <motion.div animate={floatingAnimation} className="relative">
-                    <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl opacity-30 -z-10" />
+                <motion.div 
+                    animate={floatingAnimation(5 + (idx % 2), idx * 0.5)} 
+                    className="relative"
+                >
+                    <div className="absolute -inset-10 bg-primary/20 rounded-[4rem] blur-[80px] opacity-30 -z-10" />
                     <Image 
                       width={product.image.width} 
                       height={product.image.height} 
                       src={product.image.url} 
                       alt={product.title} 
-                      className="rounded-[2.5rem] shadow-2xl border-4 border-white dark:border-slate-800 object-cover w-full h-[400px]" 
+                      className="rounded-[3.5rem] shadow-[0_50px_100px_rgba(0,0,0,0.2)] border-8 border-white dark:border-slate-800 object-cover w-full h-[450px] transition-transform duration-1000 hover:scale-105" 
                     />
                 </motion.div>
               </motion.div>
@@ -162,27 +175,32 @@ export default function ProductsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-bold mb-8">Deploy Anywhere. Scale Everywhere.</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-16 leading-relaxed">
+              <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tight leading-tight">Deploy Anywhere.<br />Scale Everywhere.</h2>
+              <p className="text-2xl text-muted-foreground max-w-4xl mx-auto mb-20 leading-relaxed font-medium">
                 Our global network presence ensures your users get the fastest experience possible, regardless of their location.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-                <div className="p-8 rounded-3xl bg-secondary/50 backdrop-blur-sm border">
-                    <Globe className="h-12 w-12 text-primary mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold mb-2">Global Presence</h3>
-                    <p className="text-muted-foreground">Strategic nodes for low latency.</p>
-                </div>
-                <div className="p-8 rounded-3xl bg-secondary/50 backdrop-blur-sm border">
-                    <ShieldCheck className="h-12 w-12 text-green-500 mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold mb-2">99% Uptime SLA</h3>
-                    <p className="text-muted-foreground">Enterprise availability commitment.</p>
-                </div>
-                <div className="p-8 rounded-3xl bg-secondary/50 backdrop-blur-sm border">
-                    <Cpu className="h-12 w-12 text-purple-500 mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold mb-2">NVMe Performance</h3>
-                    <p className="text-muted-foreground">Ultra-fast server technology.</p>
-                </div>
+                {[
+                    { title: "Global Presence", icon: Globe, color: "text-primary", desc: "Strategic nodes for low latency." },
+                    { title: "99% Uptime SLA", icon: ShieldCheck, color: "text-green-500", desc: "Enterprise availability commitment." },
+                    { title: "NVMe Performance", icon: Cpu, color: "text-purple-500", desc: "Ultra-fast server technology." }
+                ].map((stat, idx) => (
+                    <motion.div 
+                        key={idx}
+                        whileHover={{ y: -10 }}
+                        className="p-12 rounded-[3rem] bg-secondary/50 backdrop-blur-md border border-white/20 shadow-xl transition-all"
+                    >
+                        <motion.div 
+                            animate={floatingAnimation(4 + idx)}
+                            className={`${stat.color} mb-8`}
+                        >
+                            <stat.icon className="h-16 w-16 mx-auto" />
+                        </motion.div>
+                        <h3 className="text-3xl font-black mb-4">{stat.title}</h3>
+                        <p className="text-muted-foreground text-lg font-medium">{stat.desc}</p>
+                    </motion.div>
+                ))}
               </div>
             </motion.div>
         </section>
