@@ -5,7 +5,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
+import { z } from "z Fiber"
 import { Button } from "../../components/ui/button"
 import {
   Form,
@@ -31,19 +31,9 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select"
 import { notifyAdmin } from "../actions/notify"
+import { vpsPlans } from "../lib/pricing-plans";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-
-const vpsPlans = [
-  { name: "VPS Nano", description: "1 vCPU, 1 GB RAM, 20 GB NVMe" },
-  { name: "VPS Micro", description: "1 vCPU, 2 GB RAM, 40 GB NVMe" },
-  { name: "VPS Starter", description: "2 vCPU, 4 GB RAM, 80 GB NVMe" },
-  { name: "VPS Business", description: "4 vCPU, 8 GB RAM, 160 GB NVMe" },
-  { name: "VPS Pro", description: "8 vCPU, 16 GB RAM, 320 GB NVMe" },
-  { name: "VPS Enterprise", description: "16 vCPU, 32 GB RAM, 640 GB NVMe" },
-  { name: "VPS Elite", description: "24 vCPU, 64 GB RAM, 1.2 TB NVMe" },
-  { name: "Custom", description: "Tailored specs for your unique needs." },
-];
 
 const orderFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -252,7 +242,16 @@ export default function OrderPage() {
                                   <FormField control={form.control} name="vpsPlan" render={({ field }) => (
                                       <FormItem><FormLabel className="flex items-center gap-2"><Package size={16} />Select VPS Plan</FormLabel>
                                       <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger className="h-14 rounded-xl"><SelectValue placeholder="Choose a VPS plan..." /></SelectTrigger></FormControl>
-                                      <SelectContent className="rounded-xl">{vpsPlans.map(plan => <SelectItem key={plan.name} value={plan.name}><div><p className="font-bold">{plan.name}</p><p className="text-xs text-muted-foreground">{plan.description}</p></div></SelectItem>)}</SelectContent>
+                                      <SelectContent className="rounded-xl">
+                                        {vpsPlans.map(plan => (
+                                          <SelectItem key={plan.name} value={plan.name}>
+                                            <div>
+                                              <p className="font-bold">{plan.name} ({plan.price}/mo)</p>
+                                              <p className="text-xs text-muted-foreground">{plan.description}</p>
+                                            </div>
+                                          </SelectItem>
+                                        ))}
+                                      </SelectContent>
                                       </Select><FormMessage /></FormItem>
                                   )} />
                               )}
