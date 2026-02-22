@@ -32,9 +32,9 @@ export default function ProductsPage() {
       id: "vps",
       title: "Virtual Private Servers",
       icon: Server,
-      desc: "Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions give you full root access, guaranteed resources, and the ability to scale up as you grow instantly.",
+      desc: "Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions provide guaranteed resources and the ability to scale up as you grow instantly.",
       image: images.vpsImage,
-      features: ["Intel Xeon CPUs", "NVMe SSD Storage", "Full Root Access", "DDoS Protection"]
+      features: ["Intel Xeon CPUs", "NVMe SSD Storage", "Dedicated Resources", "DDoS Protection"]
     },
     {
       id: "dedicated",
