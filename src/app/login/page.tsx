@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useForm } from "react-hook-form"
@@ -16,7 +17,7 @@ import {
 import { Input } from "../../components/ui/input"
 import { useToast } from "../../hooks/use-toast"
 import { motion } from "framer-motion"
-import Image from "next/image"
+import NextImage from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { User, Download, KeyRound, Shield, Link as LinkIcon } from "lucide-react";
@@ -80,7 +81,7 @@ function RdpForm() {
         <Card className="border-none shadow-none">
             <CardHeader className="px-1 pt-6">
                 <CardTitle>RDP File Login</CardTitle>
-                <CardDescription>Generate a .rdp file to connect to your Shared Service (cloud-x.in).</CardDescription>
+                <CardDescription>Generate a .rdp file to connect to your Shared Server (cloud-x.in).</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
                 <Form {...form}>
@@ -169,7 +170,7 @@ function WebPortalForm() {
         <Card className="border-none shadow-none">
              <CardHeader className="px-1 pt-6">
                 <CardTitle>Web Portal Login</CardTitle>
-                <CardDescription>Enter your security code to access the web portal for your Shared Service.</CardDescription>
+                <CardDescription>Enter your security code to access the web portal for your Shared Server.</CardDescription>
             </CardHeader>
             <CardContent className="px-1 pb-0">
                 <Form {...form}>
@@ -214,8 +215,8 @@ export default function LoginPage() {
       >
         <Card>
             <CardHeader className="text-center">
-                <Image src="/logos/cloud-x/logo.svg" alt="Cloud-x Logo" width={60} height={60} className="mx-auto" />
-                <CardTitle>Shared Service Login</CardTitle>
+                <NextImage src="/logos/cloud-x/logo.svg" alt="Cloud-x Logo" width={60} height={60} className="mx-auto" />
+                <CardTitle>Shared Server Login</CardTitle>
                 <CardDescription className="text-lg">
                     Choose your preferred connection method.
                 </CardDescription>

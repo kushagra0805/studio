@@ -5,7 +5,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "z Fiber"
+import { z } from "zod"
 import { Button } from "../../components/ui/button"
 import {
   Form,
@@ -81,6 +81,7 @@ export default function OrderPage() {
   const serviceType = form.watch("serviceType");
 
   async function onSubmit(data: z.infer<typeof orderFormSchema>) {
+    console.log("Submit initiated...");
     setIsSubmitting(true);
     try {
       let gstCertificateUrl = "";
@@ -109,7 +110,7 @@ export default function OrderPage() {
       // 2. Notify Admin (Non-blocking)
       notifyAdmin({ type: 'order', data: orderData }).catch(e => console.error("Notification alert failed:", e));
 
-      // 3. Update UI immediately
+      // 3. Update UI immediately for positive feedback
       setIsOrderSubmitted(true);
       setIsSubmitting(false);
       
