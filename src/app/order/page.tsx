@@ -90,6 +90,7 @@ export default function OrderPage() {
   const serviceType = form.watch("serviceType");
 
   async function onSubmit(data: z.infer<typeof orderFormSchema>) {
+    console.log("Submitting Infrastructure Order:", data);
     setIsSubmitting(true);
     try {
       let gstCertificateUrl = "";
@@ -97,10 +98,12 @@ export default function OrderPage() {
       const gstFile = gstFileList?.[0];
 
       if (gstFile) {
+        console.log("Uploading GST Certificate:", gstFile.name);
         if (gstFile.size > MAX_FILE_SIZE) throw new Error("File too large (max 5MB)");
         const storageRef = ref(storage, `gst-certificates/${Date.now()}_${gstFile.name}`);
         const snapshot = await uploadBytes(storageRef, gstFile);
         gstCertificateUrl = await getDownloadURL(snapshot.ref);
+        console.log("GST Upload Success:", gstCertificateUrl);
       }
       
       const orderData = {
@@ -111,10 +114,11 @@ export default function OrderPage() {
       };
       
       // 1. Save to Firestore
-      await addDoc(collection(db, "orders"), orderData);
+      const docRef = await addDoc(collection(db, "orders"), orderData);
+      console.log("Order saved to Firestore ID:", docRef.id);
 
       // 2. Notify Admin (Non-blocking)
-      notifyAdmin({ type: 'order', data: orderData }).catch(e => console.error("Email failed", e));
+      notifyAdmin({ type: 'order', data: orderData }).catch(e => console.error("Notification alert failed:", e));
 
       setIsOrderSubmitted(true);
       toast({
@@ -122,10 +126,10 @@ export default function OrderPage() {
         description: "Your infrastructure request has been queued successfully.",
       });
     } catch (error: any) {
-      console.error("Error submitting order:", error);
+      console.error("Order fatal error:", error);
       toast({
         title: "Order Failed",
-        description: error.message || "Could not process your order. Please check your inputs and connection.",
+        description: error.message || "Could not process your order. Please check your connection and configuration.",
         variant: "destructive",
       });
     } finally {

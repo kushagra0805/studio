@@ -15,10 +15,13 @@ export async function notifyAdmin(submission: { type: 'contact' | 'order' | 'res
   const emailUser = process.env.EMAIL_USER;
   const emailPass = process.env.EMAIL_PASS;
 
+  // Graceful fallback for missing credentials
   if (!emailUser || !emailPass) {
-    console.warn(`[NOTIFY] Email credentials (EMAIL_USER/EMAIL_PASS) are not set. Skipping email delivery.`);
-    console.log(`[NOTIFY] Submission Data for ${ADMIN_EMAIL}:`, submission);
-    return { success: true, info: 'Credentials not configured' };
+    console.warn(`[NOTIFY] Email credentials not set. Simulation mode active.`);
+    console.log(`[NOTIFY] TARGET: ${ADMIN_EMAIL}`);
+    console.log(`[NOTIFY] SUBMISSION TYPE: ${type}`);
+    console.log(`[NOTIFY] SUBMISSION DATA:`, data);
+    return { success: true, status: 'simulated' };
   }
 
   const transporter = nodemailer.createTransport({
@@ -33,7 +36,7 @@ export async function notifyAdmin(submission: { type: 'contact' | 'order' | 'res
   let html = '';
 
   if (type === 'contact') {
-    subject = `[CONTACT] New Inquiry from ${data.name}`;
+    subject = `[CONTACT] New Inquiry: ${data.subject}`;
     html = `
       <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
         <h2 style="color: #2563eb;">New Contact Request</h2>
@@ -61,7 +64,7 @@ export async function notifyAdmin(submission: { type: 'contact' | 'order' | 'res
       </div>
     `;
   } else if (type === 'resume') {
-    subject = `[CAREER] New Application: ${data.position} from ${data.name}`;
+    subject = `[CAREER] Application for ${data.position}: ${data.name}`;
     html = `
       <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
         <h2 style="color: #2563eb;">New Resume Submission</h2>
@@ -75,15 +78,16 @@ export async function notifyAdmin(submission: { type: 'contact' | 'order' | 'res
 
   try {
     await transporter.sendMail({
-      from: `"M A Global Notification" <${emailUser}>`,
+      from: `"M A Global Notifications" <${emailUser}>`,
       to: ADMIN_EMAIL,
       subject: subject,
       html: html,
     });
-    console.log(`[NOTIFY] Email successfully sent to ${ADMIN_EMAIL}`);
+    console.log(`[NOTIFY] Success: Notification sent to ${ADMIN_EMAIL}`);
     return { success: true };
   } catch (error) {
-    console.error('[NOTIFY] Nodemailer Error:', error);
-    return { success: false, error: 'Failed to dispatch email' };
+    console.error('[NOTIFY] Error dispatching email:', error);
+    // Return success: false to allow the UI to know the email failed, even if DB succeeded
+    return { success: false, error: 'Email delivery failed' };
   }
 }

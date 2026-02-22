@@ -48,16 +48,20 @@ export default function ContactPage() {
   })
 
   async function onSubmit(data: z.infer<typeof contactFormSchema>) {
+    console.log("Submitting Contact Form:", data);
     setIsSubmitting(true)
     try {
       // 1. Save to Firestore
-      await addDoc(collection(db, "contacts"), {
+      const docRef = await addDoc(collection(db, "contacts"), {
         ...data,
         submittedAt: serverTimestamp(),
       });
+      console.log("Firestore success, doc ID:", docRef.id);
       
-      // 2. Notify Admin via Email (Don't let email failure block UI success)
-      notifyAdmin({ type: 'contact', data }).catch(e => console.error("Email notification failed", e));
+      // 2. Notify Admin via Email (Fire and forget, don't let it block)
+      notifyAdmin({ type: 'contact', data }).then(res => {
+        if (!res.success) console.warn("Email alert could not be sent, check server credentials.");
+      }).catch(e => console.error("Email notification failed:", e));
       
       setIsSubmitted(true);
       toast({
@@ -66,10 +70,10 @@ export default function ContactPage() {
       })
       form.reset()
     } catch (error: any) {
-      console.error("Submission error:", error);
+      console.error("Submission fatal error:", error);
       toast({
         title: "Submission Failed",
-        description: "Could not save your message. Please check your connection and try again.",
+        description: error.message || "Could not process your request. Please check your internet connection.",
         variant: "destructive",
       })
     } finally {

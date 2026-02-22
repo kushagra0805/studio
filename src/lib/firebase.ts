@@ -11,6 +11,11 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+// Check if config is partially missing
+if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
+  console.warn("Firebase configuration is missing in .env. Forms will not submit to the database until configured.");
+}
+
 // Initialize Firebase
 const apps = getApps();
 const app = !apps.length ? initializeApp(firebaseConfig) : apps[0];
