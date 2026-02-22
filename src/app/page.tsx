@@ -98,7 +98,7 @@ export default function Home() {
               <Button asChild size="lg" className="h-14 px-8 rounded-full shadow-xl shadow-primary/20">
                 <Link href="/pricing">Explore Plans</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-full border-white/20 text-white hover:bg-white/10 backdrop-blur-sm">
+              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-full border-white/40 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm transition-all">
                 <Link href="/contact">Request a Demo</Link>
               </Button>
             </motion.div>
@@ -114,7 +114,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Services Grid with Hover Effects */}
+      {/* Services Grid */}
       <section id="services" className="w-full py-24 md:py-32 bg-slate-50 dark:bg-slate-900/50">
         <div className="container px-4 md:px-6">
           <motion.div 
@@ -171,7 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Us Section with Graphic Background */}
+      {/* Why Us Section */}
       <section className="relative w-full py-24 md:py-32 overflow-hidden bg-white dark:bg-slate-950">
         <div className="container px-4 md:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -218,7 +218,6 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 hover:scale-110"
                 />
               </div>
-              {/* Floating Badge */}
               <motion.div
                 animate={floatingAnimation}
                 className="absolute -bottom-10 -right-10 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-2xl border hidden md:block"
@@ -249,7 +248,7 @@ export default function Home() {
               <Button asChild size="lg" variant="secondary" className="h-14 px-10 rounded-full text-lg shadow-xl shadow-black/10">
                 <Link href="/pricing">View All Pricing</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-full text-lg border-white/40 hover:bg-white/10 text-white">
+              <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-full text-lg border-white/40 bg-transparent hover:bg-white/10 text-white transition-all">
                 <Link href="/contact">Speak to an Expert</Link>
               </Button>
             </div>
