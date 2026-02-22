@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     template: "%s | M A Global Network"
   },
   description: 'M A Global Network provides high-performance VPS, Dedicated Servers, Web Hosting, and Shared Server solutions with a 99% Uptime Guarantee.',
-  keywords: ['Cloud Hosting', 'VPS India', 'Dedicated Servers', 'Shared Server', 'Tally Cloud', 'Busy Cloud', 'Colocation Services', 'Infrastructure as a Service'],
-  authors: [{ name: "Manish Agrawal", url: "https://www.your-domain.com" }],
+  keywords: ['Cloud Hosting India', 'High Performance VPS', 'Dedicated Servers', 'Accounting Shared Server', 'Tally Cloud Hosting', 'Busy Cloud', 'Colocation Services', 'Enterprise IT Infrastructure'],
+  authors: [{ name: "Manish Agrawal", url: "https://www.cloud-x.in" }],
   creator: "M A Global Network",
   publisher: "M A Global Network",
   formatDetection: {
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.your-domain.com'),
+  metadataBase: new URL('https://www.cloud-x.in'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'M A Global Network | Reliable Cloud Infrastructure',
-    description: 'Empowering visionaries with world-class cloud infrastructure, 99% uptime, and 24/7 expert support.',
-    url: 'https://www.your-domain.com',
+    description: 'Empowering businesses with world-class cloud infrastructure, 99% uptime, and 24/7 expert support.',
+    url: 'https://www.cloud-x.in',
     siteName: 'M A Global Network',
     images: [
       {
@@ -74,22 +74,33 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "M A Global Network",
-    "url": "https://www.your-domain.com",
-    "logo": "https://www.your-domain.com/logos/m-a-global/logo.svg",
+    "alternateName": "Cloud-x",
+    "url": "https://www.cloud-x.in",
+    "logo": "https://www.cloud-x.in/logos/m-a-global/logo.svg",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+91-7024058800",
       "contactType": "customer service",
-      "email": "info@cloud-x.in"
+      "email": "info@cloud-x.in",
+      "areaServed": "IN",
+      "availableLanguage": "en"
     },
     "founder": {
       "@type": "Person",
       "name": "Manish Agrawal"
     },
-    "description": "Enterprise-grade cloud infrastructure provider specializing in VPS, Dedicated Servers, and Accounting Shared Server solutions.",
+    "description": "Enterprise-grade cloud infrastructure provider specializing in VPS, Dedicated Servers, and Accounting Shared Server solutions for Tally and Busy.",
     "sameAs": [
       "https://www.linkedin.com/company/m-a-global-network"
-    ]
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Cloud Avenue, Tech Park",
+      "addressLocality": "Indore",
+      "addressRegion": "Madhya Pradesh",
+      "postalCode": "452001",
+      "addressCountry": "IN"
+    }
   };
 
   return (
@@ -107,7 +118,7 @@ export default function RootLayout({
       <body className="font-body antialiased bg-background text-foreground">
         <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1" id="main-content">{children}</main>
             <Footer />
         </div>
         <Chatbot />

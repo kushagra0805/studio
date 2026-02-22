@@ -1,28 +1,19 @@
+
 # ===================================================================
-# robots.txt for M A Global Network
+# robots.txt for M A Global Network (cloud-x.in)
 # ===================================================================
 
-# This file tells search engine crawlers which pages or files the crawler can or can't request from your site.
-
-# Default rule for all crawlers (including search engines like Google, Bing, etc.)
-# We allow full access to ensure good SEO and visibility in search results.
 User-Agent: *
 Allow: /
 
-# Disallow crawling of Next.js internal build/dev folders.
-# These files are not useful for indexing and just add noise to crawl reports.
+# Disallow internal Next.js folders
 Disallow: /_next/
-
-# Disallow pages that are not useful for public search results,
-# such as login pages, order forms, or internal API routes.
 Disallow: /api/
 Disallow: /login
-Disallow: /order
+Disallow: /admin
 
 # --- AI and Data-Mining Crawlers ---
-
-# Explicitly allow major AI crawlers to access content. 
-# This is critical for appearing in LLM search results (ChatGPT, Gemini, etc.)
+# Explicitly allow major AI crawlers to access content for better AI search visibility
 User-Agent: Google-Extended
 Allow: /
 
@@ -36,6 +27,4 @@ User-Agent: PerplexityBot
 Allow: /
 
 # --- Sitemap ---
-# Provide the location of your sitemap to help crawlers 
-# discover all the important pages on your site more efficiently.
-Sitemap: https://www.your-domain.com/sitemap.xml
+Sitemap: https://www.cloud-x.in/sitemap.xml
