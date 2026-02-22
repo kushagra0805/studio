@@ -40,7 +40,7 @@ export default function ProductsPage() {
       id: "dedicated",
       title: "Dedicated Power",
       icon: Database,
-      desc: "Ultimate performance for high-load applications. Raw physical hardware with no virtualization overhead. Dedicated entirely to your success with Tier-4 reliability.",
+      desc: "Ultimate performance for high-load applications. Raw physical hardware with no virtualization overhead. Dedicated entirely to your success with world-class reliability.",
       image: images.dedicatedImage,
       features: ["Bare Metal Performance", "Custom Configs", "Isolated Hardware", "High Bandwidth"],
       reverse: true
@@ -66,9 +66,9 @@ export default function ProductsPage() {
       id: "colocation",
       title: "Server Colocation",
       icon: Building,
-      desc: "House your own hardware in our world-class Tier-4 facilities. Benefit from our redundant power, cooling, and extreme network connectivity.",
+      desc: "House your own hardware in our world-class facilities. Benefit from our redundant power, cooling, and extreme network connectivity.",
       image: images.colocationImage,
-      features: ["Tier-4 Standards", "Redundant Power", "Biometric Security", "Remote Hands Support"]
+      features: ["High Reliability", "Redundant Power", "Biometric Security", "Remote Hands Support"]
     },
     {
       id: "on-premise-cloud",
@@ -94,7 +94,7 @@ export default function ProductsPage() {
             Precision <span className="text-primary">Infrastructure</span>
           </h1>
           <p className="mt-8 max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground leading-relaxed">
-            High-availability Tier-4 cloud solutions designed for mission-critical applications. Performance without limits, backed by a 99% Uptime Guarantee.
+            High-availability cloud solutions designed for mission-critical applications. Performance without limits, backed by a 99% Uptime Guarantee.
           </p>
         </motion.div>
 
@@ -164,7 +164,7 @@ export default function ProductsPage() {
             >
               <h2 className="text-4xl md:text-6xl font-bold mb-8">Deploy Anywhere. Scale Everywhere.</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-16 leading-relaxed">
-                Our global Tier-4 network presence ensures your users get the fastest experience possible, regardless of their location.
+                Our global network presence ensures your users get the fastest experience possible, regardless of their location.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">

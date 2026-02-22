@@ -111,7 +111,7 @@ export default function CareerPage() {
               Build the Future of <span className="text-primary">Cloud</span>
             </h1>
             <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-              Join M A Global Network and be part of a team that's redefining Tier-4 infrastructure.
+              Join M A Global Network and be part of a team that's redefining advanced cloud infrastructure.
             </p>
           </motion.div>
         </div>

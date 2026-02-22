@@ -88,7 +88,7 @@ export default function Home() {
               variants={itemVariants}
               className="mt-6 max-w-[750px] mx-auto text-slate-300 md:text-xl lg:text-2xl leading-relaxed"
             >
-              Empowering businesses worldwide with reliable, scalable, and ultra-secure Tier-4 cloud infrastructure.
+              Empowering businesses worldwide with reliable, scalable, and ultra-secure enterprise-grade cloud infrastructure.
             </motion.p>
             
             <motion.div
@@ -138,7 +138,7 @@ export default function Home() {
               { title: "Dedicated Power", icon: Database, link: "/products#dedicated", desc: "Raw physical performance for enterprise." },
               { title: "Shared Service", icon: BarChart, link: "/cloud-x", desc: "Accounting solutions optimized for cloud-x.in." },
               { title: "Global Hosting", icon: Globe, link: "/products#web-hosting", desc: "Secure and fast hosting for websites." },
-              { title: "Colocation", icon: Building, link: "/products#colocation", desc: "Tier-4 space for your mission-critical hardware." },
+              { title: "Colocation", icon: Building, link: "/products#colocation", desc: "Reliable space for your mission-critical hardware." },
               { title: "On-premise Cloud", icon: CloudCog, link: "/products#on-premise-cloud", desc: "Private cloud solutions at your location." }
             ].map((service, idx) => (
               <motion.div
@@ -183,13 +183,13 @@ export default function Home() {
             >
               <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">Unrivaled Infrastructure,<br />Unmatched Reliability</h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                At M A Global Network, we don't just host your data; we protect your digital legacy. Our Tier-4 data centers and redundant network paths ensure your business stays online 24/7/365.
+                At M A Global Network, we don't just host your data; we protect your digital legacy. Our high-availability data centers and redundant network paths ensure your business stays online 24/7/365.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
                   { icon: LifeBuoy, text: "24/7 Expert Support", color: "text-blue-500" },
-                  { icon: ShieldCheck, text: "Tier-4 Security", color: "text-green-500" },
+                  { icon: ShieldCheck, text: "Enterprise Security", color: "text-green-500" },
                   { icon: Scaling, text: "Elastic Scalability", color: "text-purple-500" },
                   { icon: Zap, text: "99% Uptime Guarantee", color: "text-amber-500" }
                 ].map((item, idx) => (

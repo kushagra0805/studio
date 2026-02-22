@@ -125,9 +125,9 @@ export default function AboutPage() {
               <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-blue-500/10 text-blue-500 mb-8 transition-transform group-hover:scale-110">
                 <ShieldCheck className="h-8 w-8" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">Tier-4 Infrastructure</h2>
+              <h2 className="text-2xl font-bold mb-4">Advanced Infrastructure</h2>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                Our services are powered by world-class Tier-4 data centers, ensuring maximum redundancy and physical security for your mission-critical data.
+                Our services are powered by world-class data centers, ensuring maximum redundancy and physical security for your mission-critical data.
               </p>
             </motion.div>
 
