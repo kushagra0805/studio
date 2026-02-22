@@ -4,7 +4,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, Lock } from "lucide-react";
 
 export function Footer() {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -73,10 +73,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t">
+        <div className="mt-8 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground text-center">
             © {year} M A Global Network. All rights reserved.
           </p>
+          <Link href="/admin" className="text-xs text-muted-foreground flex items-center gap-1 hover:text-primary">
+            <Lock className="h-3 w-3" /> Admin Submissions
+          </Link>
         </div>
       </div>
     </footer>
