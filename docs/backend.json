@@ -1,0 +1,69 @@
+
+{
+  "entities": {
+    "Contact": {
+      "title": "Contact Submission",
+      "description": "Information from the contact us form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "message"]
+    },
+    "Order": {
+      "title": "Service Order",
+      "description": "A new order for a cloud service.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "mobile": { "type": "string" },
+        "address": { "type": "string" },
+        "pincode": { "type": "string" },
+        "businessName": { "type": "string" },
+        "gstNumber": { "type": "string" },
+        "gstCertificate": { "type": "string", "description": "URL to the uploaded PDF" },
+        "serviceType": { "type": "string", "enum": ["vps", "cloud-x", "web-hosting", "dedicated-server", "colocation"] },
+        "plan": { "type": "string" },
+        "customRequirements": { "type": "string" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "mobile", "serviceType", "termsAccepted"]
+    },
+    "Resume": {
+      "title": "Job Application",
+      "description": "A resume submission for career opportunities.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "mobile": { "type": "string" },
+        "position": { "type": "string" },
+        "resumeUrl": { "type": "string", "description": "URL to the uploaded resume PDF" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "resumeUrl"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com"]
+  },
+  "firestore": {
+    "/contacts/{contactId}": {
+      "schema": { "$ref": "#/entities/Contact" },
+      "description": "Collection of contact form submissions."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Collection of service orders."
+    },
+    "/resumes/{resumeId}": {
+      "schema": { "$ref": "#/entities/Resume" },
+      "description": "Collection of job applications and resumes."
+    }
+  }
+}
