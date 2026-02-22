@@ -5,8 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
-import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight } from "lucide-react";
+import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight, Quote } from "lucide-react";
 import { motion } from "framer-motion";
+import images from '../lib/placeholder-images.json';
 
 export default function AboutPage() {
 
@@ -35,6 +36,7 @@ export default function AboutPage() {
 
   return (
     <div className="bg-background">
+      {/* Hero Section */}
       <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center"
@@ -51,6 +53,7 @@ export default function AboutPage() {
         </motion.div>
       </div>
 
+      {/* Core Values Section */}
       <div className="relative py-16 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -66,7 +69,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-2xl font-bold">Our Mission</h2>
               <p className="mt-2 text-muted-foreground">
-                To empower businesses by providing robust, scalable, and secure cloud solutions that drive growth and innovation, making enterprise-level technology accessible to all.
+                To empower businesses by providing robust, scalable, and secure cloud solutions that drive growth and innovation.
               </p>
             </motion.div>
             <motion.div variants={itemVariants} className="text-center">
@@ -75,7 +78,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-2xl font-bold">Our Vision</h2>
               <p className="mt-2 text-muted-foreground">
-                To be the most trusted and customer-centric cloud service provider, known for our cutting-edge technology, exceptional support, and commitment to our clients' success.
+                To be the most trusted and customer-centric cloud service provider, known for our cutting-edge technology.
               </p>
             </motion.div>
             <motion.div variants={itemVariants} className="text-center">
@@ -84,14 +87,64 @@ export default function AboutPage() {
               </div>
               <h2 className="text-2xl font-bold">Our Infrastructure</h2>
               <p className="mt-2 text-muted-foreground">
-                Our global network of state-of-the-art data centers is built for high availability and low latency, ensuring your applications are always fast, secure, and online.
+                A global network of state-of-the-art data centers built for high availability and low latency.
               </p>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      <div className="py-24">
+      {/* CEO & Founder Section */}
+      <div className="py-24 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+            >
+              <div className="absolute -top-4 -left-4 w-full h-full border-2 border-primary/20 rounded-xl -z-10 hidden md:block"></div>
+              <Image
+                src={images.ceoPortrait.url}
+                width={images.ceoPortrait.width}
+                height={images.ceoPortrait.height}
+                data-ai-hint={images.ceoPortrait.hint}
+                alt="CEO & Founder"
+                className="rounded-xl shadow-2xl object-cover grayscale hover:grayscale-0 transition-all duration-500 w-full max-w-[400px] mx-auto"
+              />
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+            >
+              <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Our Leadership</span>
+              <h2 className="text-4xl font-bold tracking-tight mb-6">Meet the Visionary</h2>
+              <p className="text-xl text-muted-foreground mb-8 italic">
+                "We don't just provide hosting; we provide the foundation for your digital dreams. Our goal is to make enterprise-grade infrastructure accessible to every ambitious entrepreneur."
+              </p>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold">Mr. Ankit Gupta</h3>
+                <p className="text-primary font-semibold">Founder & CEO</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  With over 15 years of experience in cloud computing and network infrastructure, Mr. Gupta founded M A Global Network with a single goal: to bridge the gap between complex technology and business success. Under his leadership, the company has grown from a specialized niche provider to a global infrastructure powerhouse.
+                </p>
+              </div>
+              <div className="mt-8 flex gap-4">
+                 <Button asChild variant="outline">
+                   <Link href="/contact">Connect with our Team</Link>
+                 </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Our Story Section */}
+      <div className="py-24 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
             <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -104,7 +157,7 @@ export default function AboutPage() {
                     Founded with the belief that powerful cloud technology should be accessible to everyone, M A Global Network began as a small team of passionate engineers. We saw a need for a hosting provider that wasn't just a vendor, but a true partner. 
                 </p>
                 <p className="text-muted-foreground">
-                    From our origins in providing specialized accounting cloud services with Cloud-x.in, we've grown into a comprehensive infrastructure provider. Today, we serve thousands of clients worldwide, but our core mission remains the same: to deliver exceptional performance and unwavering support.
+                    From our origins in providing specialized accounting cloud services with Cloud-x.in, we've grown into a comprehensive infrastructure provider. Today, we serve thousands of clients worldwide.
                 </p>
             </motion.div>
             <motion.div
@@ -114,18 +167,19 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                  <Image
-                  src="/images/about/our-story.png"
-                  data-ai-hint="teamwork journey"
-                  width="450"
-                  height="315"
+                  src={images.ourStory.url}
+                  width={images.ourStory.width}
+                  height={images.ourStory.height}
+                  data-ai-hint={images.ourStory.hint}
                   alt="Our Journey"
-                  className="mx-auto rounded-xl object-cover"
+                  className="mx-auto rounded-xl object-cover shadow-lg"
                 />
             </motion.div>
         </div>
       </div>
       
-      <div className="py-24 bg-secondary">
+      {/* Commitment Section */}
+      <div className="py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-12"
@@ -155,7 +209,7 @@ export default function AboutPage() {
                             <CardTitle>Uncompromising Reliability</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="mt-2 text-muted-foreground">We build our systems for 99% uptime, ensuring your services are always available when you need them most.</p>
+                            <p className="mt-2 text-muted-foreground">Ensuring your services are always available with 99% uptime when you need them most.</p>
                         </CardContent>
                     </Card>
                 </motion.div>
@@ -168,7 +222,7 @@ export default function AboutPage() {
                             <CardTitle>Continuous Innovation</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="mt-2 text-muted-foreground">We are constantly exploring new technologies to provide our clients with the fastest, most secure, and most efficient solutions.</p>
+                            <p className="mt-2 text-muted-foreground">Constantly exploring new technologies to provide the fastest and most secure solutions.</p>
                         </CardContent>
                     </Card>
                 </motion.div>
@@ -181,7 +235,7 @@ export default function AboutPage() {
                             <CardTitle>Customer-Centric Support</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="mt-2 text-muted-foreground">Your success is our success. Our expert team is dedicated to providing friendly, responsive, and effective support 24/7.</p>
+                            <p className="mt-2 text-muted-foreground">Our expert team is dedicated to providing responsive and effective support 24/7.</p>
                         </CardContent>
                     </Card>
                 </motion.div>
@@ -189,6 +243,7 @@ export default function AboutPage() {
           </div>
       </div>
 
+       {/* CTA Section */}
        <div className="py-24">
             <div className="container mx-auto px-4 text-center">
                 <motion.div

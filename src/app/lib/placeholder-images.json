@@ -1,0 +1,27 @@
+
+{
+  "heroBackground": {
+    "url": "https://picsum.photos/seed/cloudserver/1920/1080",
+    "width": 1920,
+    "height": 1080,
+    "hint": "abstract network"
+  },
+  "ourStory": {
+    "url": "https://picsum.photos/seed/teamwork/450/315",
+    "width": 450,
+    "height": 315,
+    "hint": "teamwork journey"
+  },
+  "ceoPortrait": {
+    "url": "https://picsum.photos/seed/ceo/400/500",
+    "width": 400,
+    "height": 500,
+    "hint": "professional leader"
+  },
+  "cloudWorkflow": {
+    "url": "https://picsum.photos/seed/workflow/450/405",
+    "width": 450,
+    "height": 405,
+    "hint": "workflow diagram"
+  }
+}
