@@ -14,6 +14,7 @@ import { db, storage } from "../../lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { notifyAdmin } from "../actions/notify";
+import images from '../lib/placeholder-images.json';
 
 const perks = [
   {
@@ -69,7 +70,6 @@ export default function CareerPage() {
     }
 
     try {
-      // 1. Upload to Storage
       const storageRef = ref(storage, `resumes/${Date.now()}_${resumeFile.name}`);
       const snapshot = await uploadBytes(storageRef, resumeFile);
       const resumeUrl = await getDownloadURL(snapshot.ref);
@@ -83,15 +83,12 @@ export default function CareerPage() {
         submittedAt: serverTimestamp(),
       };
 
-      // 2. Save to Firestore (Non-blocking mutation)
       addDoc(collection(db, "resumes"), resumeData).catch(error => {
         console.error("Resume database save failed:", error);
       });
 
-      // 3. Notify Admin (Non-blocking)
       notifyAdmin({ type: 'resume', data: resumeData }).catch(err => console.error("Email notify failed", err));
 
-      // 4. Update UI immediately
       setIsSubmitted(true);
       setIsSubmitting(false);
       toast({ title: "Application Sent!", description: "We have received your resume. Our team will contact you soon." });
@@ -104,7 +101,6 @@ export default function CareerPage() {
 
   return (
     <div className="bg-background text-foreground">
-      {/* Hero Section - Fixed Contrast */}
       <section className="relative py-32 md:py-48 overflow-hidden bg-slate-950">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-slate-950 to-slate-950 -z-10" />
         <div className="container mx-auto px-4 text-center relative z-10">
@@ -127,34 +123,6 @@ export default function CareerPage() {
         </div>
       </section>
 
-      {/* Perks Section - Ensuring Text Visibility */}
-      <section className="py-24 bg-white dark:bg-slate-900">
-        <div className="container mx-auto px-4">
-           <div className="text-center mb-20">
-              <h2 className="text-4xl font-black tracking-tight sm:text-5xl text-slate-900 dark:text-white">Life at M A Global Network</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-bold">
-                We're committed to creating an environment where high-performers can innovate and lead.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {perks.map((perk, index) => (
-                <Card key={index} className="h-full border-none shadow-xl bg-slate-50 dark:bg-slate-800 rounded-[2rem] hover:shadow-2xl transition-all duration-300 group">
-                  <CardHeader className="pt-10">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground mb-6 shadow-lg group-hover:scale-110 transition-transform">
-                      <perk.icon className="h-8 w-8" />
-                    </div>
-                    <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">{perk.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pb-10">
-                    <p className="text-slate-700 dark:text-slate-300 text-lg leading-relaxed font-semibold">{perk.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-        </div>
-      </section>
-
-      {/* Resume Submission Section */}
       <section id="apply" className="py-32 bg-slate-100 dark:bg-slate-950 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -163,22 +131,8 @@ export default function CareerPage() {
                 <div className="lg:col-span-2 bg-primary p-12 text-primary-foreground flex flex-col justify-center">
                     <h3 className="text-4xl font-black mb-6">Start Your Journey</h3>
                     <p className="text-primary-foreground/90 text-lg mb-10 font-bold">
-                        Upload your resume and tell us which mission you want to join. We review all applications within 48 hours.
+                        Upload your resume and tell us which mission you want to join.
                     </p>
-                    <div className="space-y-6">
-                        <div className="flex gap-4 items-center">
-                            <CheckCircle className="h-6 w-6 text-white" />
-                            <span className="font-bold">Review in 48 Hours</span>
-                        </div>
-                        <div className="flex gap-4 items-center">
-                            <CheckCircle className="h-6 w-6 text-white" />
-                            <span className="font-bold">Technical Assessment</span>
-                        </div>
-                        <div className="flex gap-4 items-center">
-                            <CheckCircle className="h-6 w-6 text-white" />
-                            <span className="font-bold">Leadership Interview</span>
-                        </div>
-                    </div>
                 </div>
                 <CardContent className="lg:col-span-3 p-12 bg-white dark:bg-slate-800">
                   <AnimatePresence mode="wait">
@@ -193,7 +147,6 @@ export default function CareerPage() {
                             <CheckCircle className="h-20 w-20 text-green-500" />
                         </div>
                         <h3 className="text-3xl font-black mb-4 text-slate-900 dark:text-white">Resume Submitted!</h3>
-                        <p className="text-slate-700 dark:text-slate-300 text-lg mb-10 max-w-sm mx-auto font-bold">Thank you for your interest. Our talent acquisition team will review your profile and reach out via email.</p>
                         <Button onClick={() => setIsSubmitted(false)} size="lg" className="rounded-full px-10 h-14 text-lg">Submit Another</Button>
                       </motion.div>
                     ) : (
@@ -206,36 +159,27 @@ export default function CareerPage() {
                       >
                         <div className="space-y-2">
                           <Label htmlFor="name" className="text-slate-900 dark:text-slate-200 font-black">Full Name</Label>
-                          <Input id="name" name="name" required placeholder="John Doe" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
+                          <Input id="name" name="name" required placeholder="John Doe" className="h-12 rounded-xl" />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                             <Label htmlFor="email" className="text-slate-900 dark:text-slate-200 font-black">Email Address</Label>
-                            <Input id="email" name="email" type="email" required placeholder="you@example.com" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
+                            <Input id="email" name="email" type="email" required placeholder="you@example.com" className="h-12 rounded-xl" />
                             </div>
                             <div className="space-y-2">
                             <Label htmlFor="mobile" className="text-slate-900 dark:text-slate-200 font-black">Mobile Number</Label>
-                            <Input id="mobile" name="mobile" required placeholder="9876543210" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
+                            <Input id="mobile" name="mobile" required placeholder="9876543210" className="h-12 rounded-xl" />
                             </div>
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="position" className="text-slate-900 dark:text-slate-200 font-black">Target Position</Label>
-                          <Input id="position" name="position" required placeholder="e.g., Cloud Architect" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
+                          <Input id="position" name="position" required placeholder="e.g., Cloud Architect" className="h-12 rounded-xl" />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="resume" className="text-slate-900 dark:text-slate-200 font-black">Resume (PDF only, max 5MB)</Label>
-                          <div className="relative group">
-                            <Input 
-                              id="resume" 
-                              name="resume" 
-                              type="file" 
-                              accept=".pdf" 
-                              required 
-                              className="cursor-pointer h-14 rounded-xl file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 transition-all bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
-                            />
-                          </div>
+                          <Input id="resume" name="resume" type="file" accept=".pdf" required className="h-14 rounded-xl" />
                         </div>
-                        <Button type="submit" size="lg" className="w-full h-16 rounded-full text-xl font-bold shadow-2xl shadow-primary/20 mt-6" disabled={isSubmitting}>
+                        <Button type="submit" size="lg" className="w-full h-16 rounded-full text-xl font-bold" disabled={isSubmitting}>
                           {isSubmitting ? <><Loader2 className="mr-2 h-6 w-6 animate-spin" /> Transmitting...</> : <><Upload className="mr-2 h-6 w-6" /> Submit Application</>}
                         </Button>
                       </motion.form>
@@ -248,7 +192,6 @@ export default function CareerPage() {
         </div>
       </section>
 
-      {/* Reach Us Section - Ensured Visibility */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-20 items-center">
@@ -263,41 +206,22 @@ export default function CareerPage() {
               </h2>
               <div className="space-y-8">
                 <div className="flex gap-6 items-start p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-transform hover:scale-[1.02]">
-                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-inner"><Building2 className="h-6 w-6" /></div>
+                  <div className="bg-primary/10 p-4 rounded-2xl text-primary"><Building2 className="h-6 w-6" /></div>
                   <div>
                     <h4 className="text-xl font-bold mb-1 text-slate-900 dark:text-white">M A Global Network HQ</h4>
-                    <p className="text-slate-700 dark:text-slate-300 text-lg font-bold leading-relaxed">123 Cloud Avenue, Tech Park<br />Indore, MP, 452001, India</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 items-center p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-transform hover:scale-[1.02]">
-                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-inner"><Mail className="h-6 w-6" /></div>
-                  <div>
-                    <h4 className="text-xl font-bold mb-1 text-slate-900 dark:text-white">Career Inquiries</h4>
-                    <p className="text-slate-700 dark:text-slate-300 text-lg font-bold">careers@cloud-x.in</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 items-center p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-transform hover:scale-[1.02]">
-                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-inner"><Phone className="h-6 w-6" /></div>
-                  <div>
-                    <h4 className="text-xl font-bold mb-1 text-slate-900 dark:text-white">HR Desk</h4>
-                    <p className="text-slate-700 dark:text-slate-300 text-lg font-bold">+91 70240 58800</p>
+                    <p className="text-slate-700 dark:text-slate-300 text-lg font-bold">123 Cloud Avenue, Tech Park<br />Indore, MP, 452001, India</p>
                   </div>
                 </div>
               </div>
             </motion.div>
             <div className="relative aspect-square md:aspect-video rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800">
                <NextImage 
-                src="https://picsum.photos/seed/datacenter-lobby/1200/800" 
-                width={1200}
-                height={800}
+                src={images.career.office.url} 
+                width={images.career.office.width}
+                height={images.career.office.height}
                 alt="Our Office" 
                 className="object-cover w-full h-full"
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-               <div className="absolute bottom-8 left-8 text-white">
-                  <p className="text-sm font-bold uppercase tracking-widest text-primary mb-1">Global HQ</p>
-                  <p className="text-2xl font-black">Indore Technology Park</p>
-               </div>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ export default function ProductsPage() {
       title: "Virtual Private Servers",
       icon: Server,
       desc: "Get the power of a dedicated server with the flexibility of cloud hosting. Our high-performance VPS solutions provide guaranteed resources and the ability to scale up as you grow instantly.",
-      image: images.vpsImage,
+      image: images.products.vps,
       features: ["Intel Xeon CPUs", "NVMe SSD Storage", "Dedicated Resources", "DDoS Protection"]
     },
     {
@@ -42,7 +42,7 @@ export default function ProductsPage() {
       title: "Dedicated Power",
       icon: Database,
       desc: "Ultimate performance for high-load applications. Raw physical hardware with no virtualization overhead. Dedicated entirely to your success with world-class reliability.",
-      image: images.dedicatedImage,
+      image: images.products.dedicated,
       features: ["Bare Metal Performance", "Custom Configs", "Isolated Hardware", "High Bandwidth"],
       reverse: true
     },
@@ -51,7 +51,7 @@ export default function ProductsPage() {
       title: "Shared Server (Cloud-x.in)",
       icon: BarChart,
       desc: "Optimized accounting infrastructure for Tally, Busy, and more. Access your critical financial data from anywhere securely through our specialized cloud portal.",
-      image: images.sharedServiceImage,
+      image: images.products.shared,
       features: ["RDP/Web Access", "Daily Backups", "Multi-user Support", "99% Uptime"]
     },
     {
@@ -59,7 +59,7 @@ export default function ProductsPage() {
       title: "Web Hosting",
       icon: Globe,
       desc: "Fast, secure, and reliable hosting for your websites. From basic blogs to high-traffic e-commerce platforms, we provide the stability you need.",
-      image: images.webHostingImage,
+      image: images.products.hosting,
       features: ["Free SSL Certificate", "One-Click Installs", "Unmetered Bandwidth", "Managed Security"],
       reverse: true
     },
@@ -68,7 +68,7 @@ export default function ProductsPage() {
       title: "Server Colocation",
       icon: Building,
       desc: "House your own hardware in our world-class facilities. Benefit from our redundant power, cooling, and extreme network connectivity.",
-      image: images.colocationImage,
+      image: images.products.colocation,
       features: ["High Reliability", "Redundant Power", "Biometric Security", "Remote Hands Support"]
     },
     {
@@ -76,7 +76,7 @@ export default function ProductsPage() {
       title: "On-premise Cloud",
       icon: CloudCog,
       desc: "The ultimate private cloud solution deployed at your location. Total control over your data with the expertise and management of M A Global Network.",
-      image: images.onPremiseCloudImage,
+      image: images.products.onPremise,
       features: ["Data Sovereignty", "Custom Architecture", "Hybrid Connectivity", "Fully Managed Service"],
       reverse: true
     }
@@ -99,7 +99,6 @@ export default function ProductsPage() {
           </p>
         </motion.div>
 
-        {/* Product Sections */}
         {products.map((product, idx) => (
           <section key={product.id} id={product.id} className={`py-24 scroll-mt-24 ${product.reverse ? 'bg-slate-50 dark:bg-slate-900/40 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-24 rounded-[4rem]' : ''}`}>
             <div className={`grid md:grid-cols-2 gap-24 items-center`}>
@@ -167,43 +166,6 @@ export default function ProductsPage() {
             </div>
           </section>
         ))}
-
-        {/* Global Network Section */}
-        <section className="py-32 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tight leading-tight">Deploy Anywhere.<br />Scale Everywhere.</h2>
-              <p className="text-2xl text-muted-foreground max-w-4xl mx-auto mb-20 leading-relaxed font-medium">
-                Our global network presence ensures your users get the fastest experience possible, regardless of their location.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-                {[
-                    { title: "Global Presence", icon: Globe, color: "text-primary", desc: "Strategic nodes for low latency." },
-                    { title: "99% Uptime SLA", icon: ShieldCheck, color: "text-green-500", desc: "Enterprise availability commitment." },
-                    { title: "NVMe Performance", icon: Cpu, color: "text-purple-500", desc: "Ultra-fast server technology." }
-                ].map((stat, idx) => (
-                    <motion.div 
-                        key={idx}
-                        whileHover={{ y: -10 }}
-                        className="p-12 rounded-[3rem] bg-secondary/50 backdrop-blur-md border border-white/20 shadow-xl transition-all"
-                    >
-                        <motion.div 
-                            animate={floatingAnimation(4 + idx)}
-                            className={`${stat.color} mb-8`}
-                        >
-                            <stat.icon className="h-16 w-16 mx-auto" />
-                        </motion.div>
-                        <h3 className="text-3xl font-black mb-4">{stat.title}</h3>
-                        <p className="text-muted-foreground text-lg font-medium">{stat.desc}</p>
-                    </motion.div>
-                ))}
-              </div>
-            </motion.div>
-        </section>
       </div>
     </div>
   );

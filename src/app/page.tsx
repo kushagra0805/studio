@@ -34,7 +34,7 @@ const itemVariants = {
 export default function Home() {
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Section - Optimized for SEO with H1 */}
+      {/* Hero Section */}
       <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full bg-slate-950 -z-20" />
         <motion.div
@@ -44,12 +44,12 @@ export default function Home() {
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <NextImage
-            src={images.heroBackground.url}
+            src={images.home.hero.url}
             alt="M A Global Network Data Center Infrastructure Background"
             fill
             className="object-cover"
             priority
-            data-ai-hint={images.heroBackground.hint}
+            data-ai-hint={images.home.hero.hint}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/20 to-slate-950/90" />
         </motion.div>
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Grid - Optimized with H2 and H3 */}
+      {/* Services Grid */}
       <section id="services" className="w-full py-24 md:py-32 bg-slate-50 dark:bg-slate-900/50">
         <div className="container px-4 md:px-6">
           <motion.div 
@@ -193,12 +193,12 @@ export default function Home() {
             >
               <div className="absolute -inset-10 bg-primary/10 rounded-full blur-[80px] -z-10" />
               <NextImage
-                src={images.cloudWorkflow.url}
-                width={images.cloudWorkflow.width}
-                height={images.cloudWorkflow.height}
+                src={images.home.workflow.url}
+                width={images.home.workflow.width}
+                height={images.home.workflow.height}
                 alt="Cloud Infrastructure Workflow and Uptime Monitoring"
                 className="rounded-3xl shadow-2xl object-cover"
-                data-ai-hint={images.cloudWorkflow.hint}
+                data-ai-hint={images.home.workflow.hint}
               />
             </motion.div>
           </div>

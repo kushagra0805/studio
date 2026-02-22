@@ -1,63 +1,85 @@
 
 {
-  "heroBackground": {
-    "url": "https://picsum.photos/seed/enterprise-datacenter-infra/1920/1080",
-    "width": 1920,
-    "height": 1080,
-    "hint": "datacenter servers"
+  "home": {
+    "hero": {
+      "url": "https://picsum.photos/seed/enterprise-datacenter-infra/1920/1080",
+      "width": 1920,
+      "height": 1080,
+      "hint": "datacenter servers"
+    },
+    "workflow": {
+      "url": "https://picsum.photos/seed/cloud-network-mesh/1200/800",
+      "width": 1200,
+      "height": 800,
+      "hint": "cloud network"
+    }
   },
-  "ourStory": {
-    "url": "https://picsum.photos/seed/server-rack-detail/450/315",
-    "width": 450,
-    "height": 315,
-    "hint": "server rack"
+  "about": {
+    "ceo": {
+      "url": "https://picsum.photos/seed/tech-leader-manish/400/500",
+      "width": 400,
+      "height": 500,
+      "hint": "business leader"
+    },
+    "story": {
+      "url": "https://picsum.photos/seed/server-rack-detail/1200/800",
+      "width": 1200,
+      "height": 800,
+      "hint": "server rack"
+    }
   },
-  "ceoPortrait": {
-    "url": "https://picsum.photos/seed/tech-leader-manish/400/500",
-    "width": 400,
-    "height": 500,
-    "hint": "business leader"
+  "products": {
+    "vps": {
+      "url": "https://picsum.photos/seed/vps-blade-server/600/400",
+      "width": 600,
+      "height": 400,
+      "hint": "vps server"
+    },
+    "dedicated": {
+      "url": "https://picsum.photos/seed/bare-metal-chassis/600/400",
+      "width": 600,
+      "height": 400,
+      "hint": "dedicated hardware"
+    },
+    "shared": {
+      "url": "https://picsum.photos/seed/accounting-cloud-node/600/400",
+      "width": 600,
+      "height": 400,
+      "hint": "cloud computing"
+    },
+    "hosting": {
+      "url": "https://picsum.photos/seed/web-server-cluster/600/400",
+      "width": 600,
+      "height": 400,
+      "hint": "web hosting"
+    },
+    "colocation": {
+      "url": "https://picsum.photos/seed/colocation-racks/600/400",
+      "width": 600,
+      "height": 400,
+      "hint": "colocation data"
+    },
+    "onPremise": {
+      "url": "https://picsum.photos/seed/private-cloud-stack/600/400",
+      "width": 600,
+      "height": 400,
+      "hint": "private cloud"
+    }
   },
-  "cloudWorkflow": {
-    "url": "https://picsum.photos/seed/cloud-network-mesh/450/405",
-    "width": 450,
-    "height": 405,
-    "hint": "cloud network"
+  "career": {
+    "office": {
+      "url": "https://picsum.photos/seed/datacenter-lobby/1200/800",
+      "width": 1200,
+      "height": 800,
+      "hint": "office lobby"
+    }
   },
-  "vpsImage": {
-    "url": "https://picsum.photos/seed/vps-blade-server/600/400",
-    "width": 600,
-    "height": 400,
-    "hint": "vps server"
-  },
-  "dedicatedImage": {
-    "url": "https://picsum.photos/seed/bare-metal-chassis/600/400",
-    "width": 600,
-    "height": 400,
-    "hint": "dedicated hardware"
-  },
-  "sharedServiceImage": {
-    "url": "https://picsum.photos/seed/accounting-cloud-node/600/400",
-    "width": 600,
-    "height": 400,
-    "hint": "cloud computing"
-  },
-  "webHostingImage": {
-    "url": "https://picsum.photos/seed/web-server-cluster/600/400",
-    "width": 600,
-    "height": 400,
-    "hint": "web hosting"
-  },
-  "colocationImage": {
-    "url": "https://picsum.photos/seed/colocation-racks/600/400",
-    "width": 600,
-    "height": 400,
-    "hint": "colocation data"
-  },
-  "onPremiseCloudImage": {
-    "url": "https://picsum.photos/seed/private-cloud-stack/600/400",
-    "width": 600,
-    "height": 400,
-    "hint": "private cloud"
+  "cloudX": {
+    "workflow": {
+      "url": "https://picsum.photos/seed/workflow-diagram/450/405",
+      "width": 450,
+      "height": 405,
+      "hint": "workflow diagram"
+    }
   }
 }

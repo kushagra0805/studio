@@ -77,9 +77,9 @@ export default function AboutPage() {
               >
                 <div className="absolute -inset-10 bg-primary/30 rounded-full blur-[100px] opacity-20 animate-pulse" />
                 <NextImage
-                  src={images.ceoPortrait.url}
-                  width={images.ceoPortrait.width}
-                  height={images.ceoPortrait.height}
+                  src={images.about.ceo.url}
+                  width={images.about.ceo.width}
+                  height={images.about.ceo.height}
                   alt="Mr. Manish Agrawal"
                   className="rounded-[3rem] shadow-2xl object-cover grayscale hover:grayscale-0 transition-all duration-1000 w-full max-w-[450px] mx-auto border-8 border-white/10"
                 />
@@ -113,45 +113,6 @@ export default function AboutPage() {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Core Values & Infrastructure Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.2 } }
-            }}
-          >
-            {[
-                { title: "Advanced Infrastructure", icon: ShieldCheck, color: "text-blue-500", bg: "bg-blue-500/10", desc: "Our services are powered by world-class data centers, ensuring maximum redundancy and physical security for your data." },
-                { title: "99% Uptime Guarantee", icon: Zap, color: "text-purple-500", bg: "bg-purple-500/10", desc: "We stand by our commitment to excellence with a solid 99% uptime guarantee, backed by high-availability clusters." },
-                { title: "Certified Excellence", icon: Award, color: "text-green-500", bg: "bg-green-500/10", desc: "M A Global Network adheres to industry-leading standards to provide secure, compliant, and efficient solutions." }
-            ].map((value, idx) => (
-                <motion.div 
-                    key={idx}
-                    variants={itemVariants} 
-                    whileHover={{ y: -10 }}
-                    className="group p-10 rounded-[3rem] bg-white dark:bg-slate-800 shadow-xl hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)] transition-all duration-500 border border-slate-100 dark:border-slate-700"
-                >
-                    <motion.div 
-                        animate={floatingAnimation(4 + idx)}
-                        className={`flex items-center justify-center h-20 w-20 rounded-[1.5rem] ${value.bg} ${value.color} mb-10 transition-transform group-hover:scale-110 shadow-inner`}
-                    >
-                        <value.icon className="h-10 w-10" />
-                    </motion.div>
-                    <h2 className="text-3xl font-black mb-6">{value.title}</h2>
-                    <p className="text-muted-foreground leading-relaxed text-xl">
-                        {value.desc}
-                    </p>
-                </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
@@ -192,9 +153,9 @@ export default function AboutPage() {
                     className="relative"
                  >
                     <NextImage
-                        src={images.ourStory.url}
-                        width={images.ourStory.width}
-                        height={images.ourStory.height}
+                        src={images.about.story.url}
+                        width={images.about.story.width}
+                        height={images.about.story.height}
                         alt="Our Journey"
                         className="mx-auto rounded-[3.5rem] object-cover shadow-[0_50px_100px_rgba(0,0,0,0.15)] border-8 border-white dark:border-slate-800"
                     />
