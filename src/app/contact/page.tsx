@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -50,35 +51,27 @@ export default function ContactPage() {
   async function onSubmit(data: z.infer<typeof contactFormSchema>) {
     console.log("Submitting Contact Form:", data);
     setIsSubmitting(true)
-    try {
-      // 1. Save to Firestore
-      const docRef = await addDoc(collection(db, "contacts"), {
-        ...data,
-        submittedAt: serverTimestamp(),
-      });
-      console.log("Firestore success, doc ID:", docRef.id);
-      
-      // 2. Notify Admin via Email (Fire and forget, don't let it block)
-      notifyAdmin({ type: 'contact', data }).then(res => {
-        if (!res.success) console.warn("Email alert could not be sent, check server credentials.");
-      }).catch(e => console.error("Email notification failed:", e));
-      
-      setIsSubmitted(true);
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you shortly.",
-      })
-      form.reset()
-    } catch (error: any) {
-      console.error("Submission fatal error:", error);
-      toast({
-        title: "Submission Failed",
-        description: error.message || "Could not process your request. Please check your internet connection.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
+    
+    // 1. Save to Firestore (Optimistic mutation)
+    addDoc(collection(db, "contacts"), {
+      ...data,
+      submittedAt: serverTimestamp(),
+    }).catch(error => {
+      console.error("Firestore submission failed:", error);
+    });
+    
+    // 2. Notify Admin via Email (Fire and forget)
+    notifyAdmin({ type: 'contact', data }).catch(e => console.error("Email notification failed:", e));
+    
+    // 3. Update UI immediately for better UX
+    setIsSubmitted(true);
+    setIsSubmitting(false);
+    form.reset();
+    
+    toast({
+      title: "Message Sent!",
+      description: "Thank you for contacting us. We'll get back to you shortly.",
+    })
   }
 
   return (

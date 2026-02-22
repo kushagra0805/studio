@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/ta
 import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, CloudCog, Layers, Hand, Cloud } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Separator } from "../../components/ui/separator";
 
 const vpsPlans = [
   {

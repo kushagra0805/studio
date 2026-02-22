@@ -83,18 +83,21 @@ export default function CareerPage() {
         submittedAt: serverTimestamp(),
       };
 
-      // 2. Save to Firestore
-      await addDoc(collection(db, "resumes"), resumeData);
+      // 2. Save to Firestore (Non-blocking mutation)
+      addDoc(collection(db, "resumes"), resumeData).catch(error => {
+        console.error("Resume database save failed:", error);
+      });
 
       // 3. Notify Admin (Non-blocking)
       notifyAdmin({ type: 'resume', data: resumeData }).catch(err => console.error("Email notify failed", err));
 
+      // 4. Update UI immediately
       setIsSubmitted(true);
+      setIsSubmitting(false);
       toast({ title: "Application Sent!", description: "We have received your resume. Our team will contact you soon." });
     } catch (error: any) {
       console.error("Submission error:", error);
-      toast({ title: "Error", description: "There was a problem submitting your application. Please check your connection.", variant: "destructive" });
-    } finally {
+      toast({ title: "Error", description: "There was a problem submitting your application.", variant: "destructive" });
       setIsSubmitting(false);
     }
   }

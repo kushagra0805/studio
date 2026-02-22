@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -90,7 +91,6 @@ export default function OrderPage() {
   const serviceType = form.watch("serviceType");
 
   async function onSubmit(data: z.infer<typeof orderFormSchema>) {
-    console.log("Submitting Infrastructure Order:", data);
     setIsSubmitting(true);
     try {
       let gstCertificateUrl = "";
@@ -98,12 +98,10 @@ export default function OrderPage() {
       const gstFile = gstFileList?.[0];
 
       if (gstFile) {
-        console.log("Uploading GST Certificate:", gstFile.name);
         if (gstFile.size > MAX_FILE_SIZE) throw new Error("File too large (max 5MB)");
         const storageRef = ref(storage, `gst-certificates/${Date.now()}_${gstFile.name}`);
         const snapshot = await uploadBytes(storageRef, gstFile);
         gstCertificateUrl = await getDownloadURL(snapshot.ref);
-        console.log("GST Upload Success:", gstCertificateUrl);
       }
       
       const orderData = {
@@ -113,14 +111,18 @@ export default function OrderPage() {
         submittedAt: serverTimestamp(),
       };
       
-      // 1. Save to Firestore
-      const docRef = await addDoc(collection(db, "orders"), orderData);
-      console.log("Order saved to Firestore ID:", docRef.id);
+      // 1. Save to Firestore (Non-blocking mutation)
+      addDoc(collection(db, "orders"), orderData).catch(error => {
+        console.error("Order database save failed:", error);
+      });
 
       // 2. Notify Admin (Non-blocking)
       notifyAdmin({ type: 'order', data: orderData }).catch(e => console.error("Notification alert failed:", e));
 
+      // 3. Update UI immediately
       setIsOrderSubmitted(true);
+      setIsSubmitting(false);
+      
       toast({
         title: "Order Placed!",
         description: "Your infrastructure request has been queued successfully.",
@@ -129,10 +131,9 @@ export default function OrderPage() {
       console.error("Order fatal error:", error);
       toast({
         title: "Order Failed",
-        description: error.message || "Could not process your order. Please check your connection and configuration.",
+        description: error.message || "Could not process your order. Please check your connection.",
         variant: "destructive",
       });
-    } finally {
       setIsSubmitting(false);
     }
   }
