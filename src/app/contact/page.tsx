@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -22,7 +21,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Mail, Send, User, MessageSquare, Loader2, CheckCircle, Phone } from "lucide-react";
 import { db } from "../../lib/firebase"
-import { collection, addDoc } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { Separator } from "../../components/ui/separator"
 import { notifyAdmin } from "../actions/notify"
 
@@ -30,7 +29,7 @@ const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
   subject: z.string().min(5, "Subject must be at least 5 characters."),
-  message: z.string().min(10, "Message must be at least 10 characters.").max(500, "Message cannot exceed 500 characters."),
+  message: z.string().min(10, "Message must be at least 10 characters.").max(1000, "Message cannot exceed 1000 characters."),
 })
 
 export default function ContactPage() {
@@ -51,16 +50,14 @@ export default function ContactPage() {
   async function onSubmit(data: z.infer<typeof contactFormSchema>) {
     setIsSubmitting(true)
     try {
-      const submissionData = {
-        ...data,
-        submittedAt: new Date(),
-      };
-
       // 1. Save to Firestore
-      await addDoc(collection(db, "contacts"), submissionData);
+      await addDoc(collection(db, "contacts"), {
+        ...data,
+        submittedAt: serverTimestamp(),
+      });
       
-      // 2. Notify Admin via Email (Server Action)
-      await notifyAdmin({ type: 'contact', data: submissionData });
+      // 2. Notify Admin via Email (Don't let email failure block UI success)
+      notifyAdmin({ type: 'contact', data }).catch(e => console.error("Email notification failed", e));
       
       setIsSubmitted(true);
       toast({
@@ -68,11 +65,11 @@ export default function ContactPage() {
         description: "Thank you for contacting us. We'll get back to you shortly.",
       })
       form.reset()
-    } catch (error) {
-      console.error("Error adding document: ", error);
+    } catch (error: any) {
+      console.error("Submission error:", error);
       toast({
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem sending your message. Please try again.",
+        title: "Submission Failed",
+        description: "Could not save your message. Please check your connection and try again.",
         variant: "destructive",
       })
     } finally {
@@ -194,7 +191,7 @@ export default function ContactPage() {
                             <FormLabel className="flex items-center gap-2"><MessageSquare size={16} /> Your Message</FormLabel>
                             <FormControl>
                               <Textarea
-                                placeholder="Tell us more about your infrastructure needs..."
+                                placeholder="Tell us more about your infrastructure needs (min 10 chars)..."
                                 className="min-h-[150px] rounded-xl"
                                 {...field}
                               />
@@ -205,7 +202,7 @@ export default function ContactPage() {
                       />
                       <Button type="submit" size="lg" className="w-full h-14 rounded-full text-lg shadow-xl shadow-primary/20" disabled={isSubmitting}>
                         {isSubmitting ? (
-                          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</>
+                          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting...</>
                         ) : (
                           <><Send className="mr-2 h-5 w-5" /> Send Message</>
                         )}

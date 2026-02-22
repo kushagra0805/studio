@@ -1,9 +1,8 @@
-
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { useForm, useFieldArray } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Button } from "../../components/ui/button"
@@ -24,10 +23,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { Separator } from "../../components/ui/separator"
 import { Slider } from "../../components/ui/slider"
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
-import { User, Home, Briefcase, FileText, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, Package, Cpu, MemoryStick, HardDrive, CheckCircle } from "lucide-react"
+import { User, Home, Fingerprint, Send, Server, Cloud, Loader2, Globe, Database, Building, Package, FileText, CheckCircle } from "lucide-react"
 import { Checkbox } from "../../components/ui/checkbox"
 import { db, storage } from "../../lib/firebase"
-import { collection, addDoc } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select"
 import { notifyAdmin } from "../actions/notify"
@@ -107,25 +106,26 @@ export default function OrderPage() {
       const orderData = {
         ...data,
         gstCertificate: gstCertificateUrl,
-        submittedAt: new Date(),
+        userCount: serviceType === 'cloud-x' ? userCount : null,
+        submittedAt: serverTimestamp(),
       };
       
       // 1. Save to Firestore
       await addDoc(collection(db, "orders"), orderData);
 
-      // 2. Notify Admin
-      await notifyAdmin({ type: 'order', data: orderData });
+      // 2. Notify Admin (Non-blocking)
+      notifyAdmin({ type: 'order', data: orderData }).catch(e => console.error("Email failed", e));
 
       setIsOrderSubmitted(true);
       toast({
-        title: "Order Placed Successfully!",
-        description: "Thank you for your order. Our team will contact you shortly.",
+        title: "Order Placed!",
+        description: "Your infrastructure request has been queued successfully.",
       });
     } catch (error: any) {
       console.error("Error submitting order:", error);
       toast({
         title: "Order Failed",
-        description: error.message || "There was a problem submitting your order. Please try again.",
+        description: error.message || "Could not process your order. Please check your inputs and connection.",
         variant: "destructive",
       });
     } finally {

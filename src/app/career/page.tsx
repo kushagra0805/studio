@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react";
@@ -11,7 +10,7 @@ import { Label } from "../../components/ui/label";
 import { useToast } from "../../hooks/use-toast";
 import Image from "next/image";
 import { db, storage } from "../../lib/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { notifyAdmin } from "../actions/notify";
 
@@ -69,6 +68,7 @@ export default function CareerPage() {
     }
 
     try {
+      // 1. Upload to Storage
       const storageRef = ref(storage, `resumes/${Date.now()}_${resumeFile.name}`);
       const snapshot = await uploadBytes(storageRef, resumeFile);
       const resumeUrl = await getDownloadURL(snapshot.ref);
@@ -79,20 +79,20 @@ export default function CareerPage() {
         mobile,
         position,
         resumeUrl,
-        submittedAt: new Date(),
+        submittedAt: serverTimestamp(),
       };
 
-      // 1. Save to Firestore
+      // 2. Save to Firestore
       await addDoc(collection(db, "resumes"), resumeData);
 
-      // 2. Notify Admin
-      await notifyAdmin({ type: 'resume', data: resumeData });
+      // 3. Notify Admin (Non-blocking)
+      notifyAdmin({ type: 'resume', data: resumeData }).catch(err => console.error("Email notify failed", err));
 
       setIsSubmitted(true);
       toast({ title: "Application Sent!", description: "We have received your resume. Our team will contact you soon." });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Submission error:", error);
-      toast({ title: "Error", description: "There was a problem submitting your application.", variant: "destructive" });
+      toast({ title: "Error", description: "There was a problem submitting your application. Please check your connection.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
