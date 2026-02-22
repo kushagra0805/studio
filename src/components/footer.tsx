@@ -1,8 +1,10 @@
+
 "use client"
 
 import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react";
+import { Mail, Phone } from "lucide-react";
 
 export function Footer() {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -23,6 +25,16 @@ export function Footer() {
             <p className="text-sm text-muted-foreground max-w-xs">
               Powering your digital future with reliable and secure cloud solutions.
             </p>
+            <div className="mt-4 flex flex-col gap-3 text-sm">
+                <a href="mailto:info@cloud-x.in" className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors">
+                    <Mail className="h-4 w-4" />
+                    <span>info@cloud-x.in</span>
+                </a>
+                <a href="tel:7024058800" className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors">
+                    <Phone className="h-4 w-4" />
+                    <span>7024058800</span>
+                </a>
+            </div>
           </div>
           
           <div>
@@ -41,6 +53,7 @@ export function Footer() {
             <h4 className="font-semibold mb-4 text-foreground">Company</h4>
             <nav className="flex flex-col gap-2">
               <Link href="/about" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>About Us</Link>
+              <Link href="/career" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Career</Link>
               <Link href="/pricing" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Pricing</Link>
               <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Contact Us</Link>
               <Link href="/order" className="text-sm text-muted-foreground hover:text-primary hover:underline underline-offset-4 transition-transform duration-200 inline-block hover:-translate-y-px" prefetch={false}>Order Now</Link>

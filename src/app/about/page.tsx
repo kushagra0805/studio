@@ -110,7 +110,6 @@ export default function AboutPage() {
                 src={images.ceoPortrait.url}
                 width={images.ceoPortrait.width}
                 height={images.ceoPortrait.height}
-                data-ai-hint={images.ceoPortrait.hint}
                 alt="CEO & Founder"
                 className="rounded-xl shadow-2xl object-cover grayscale hover:grayscale-0 transition-all duration-500 w-full max-w-[400px] mx-auto"
               />
@@ -170,7 +169,6 @@ export default function AboutPage() {
                   src={images.ourStory.url}
                   width={images.ourStory.width}
                   height={images.ourStory.height}
-                  data-ai-hint={images.ourStory.hint}
                   alt="Our Journey"
                   className="mx-auto rounded-xl object-cover shadow-lg"
                 />

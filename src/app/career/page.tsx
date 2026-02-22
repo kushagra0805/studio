@@ -52,7 +52,6 @@ const itemVariants = {
   }
 };
 
-
 export default function CareerPage() {
   return (
     <div className="bg-background text-foreground">
@@ -177,8 +176,8 @@ export default function CareerPage() {
             >
                <Image 
                 src="https://picsum.photos/seed/office/800/600" 
-                data-ai-hint="modern office"
-                fill 
+                width={800}
+                height={600}
                 alt="Our Office" 
                 className="object-cover"
                />
