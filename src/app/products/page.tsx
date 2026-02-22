@@ -46,8 +46,8 @@ export default function ProductsPage() {
       reverse: true
     },
     {
-      id: "shared-service",
-      title: "Shared Service (Cloud-x.in)",
+      id: "shared-server",
+      title: "Shared Server (Cloud-x.in)",
       icon: BarChart,
       desc: "Optimized accounting infrastructure for Tally, Busy, and more. Access your critical financial data from anywhere securely through our specialized cloud portal.",
       image: images.sharedServiceImage,

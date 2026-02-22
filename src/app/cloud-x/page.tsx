@@ -41,7 +41,7 @@ export default function CloudXPage() {
            >
             <div className="inline-block rounded-lg bg-primary/10 px-4 py-2 mb-4">
                 <h2 className="text-xl font-bold tracking-tighter text-primary">
-                    Shared Service (Cloud-x.in)
+                    Shared Server (Cloud-x.in)
                 </h2>
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-primary">
@@ -175,7 +175,7 @@ export default function CloudXPage() {
               data-ai-hint="workflow diagram"
               width="450"
               height="405"
-              alt="Shared Service workflow"
+              alt="Shared Server workflow"
               className="mx-auto rounded-xl object-cover"
             />
           </motion.div>
@@ -188,7 +188,7 @@ export default function CloudXPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight">Everything You Need, All in One Place</h2>
              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-              Our Shared Service is packed with features to make your accounting process more efficient and secure.
+              Our Shared Server is packed with features to make your accounting process more efficient and secure.
             </p>
           </div>
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
@@ -236,7 +236,7 @@ export default function CloudXPage() {
           </div>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-lg">Is my data secure on the Shared Service?</AccordionTrigger>
+              <AccordionTrigger className="text-lg">Is my data secure on the Shared Server?</AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground">
                 Absolutely. Security is our top priority. We use end-to-end encryption, robust firewalls, and isolated environments for each client. Your data is backed up daily and stored in our state-of-the-art data centers.
               </AccordionContent>
@@ -244,11 +244,11 @@ export default function CloudXPage() {
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-lg">Can I use my existing Tally or Busy license?</AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground">
-                Yes, you can. You can use your existing license with our Shared Service without any issues. Our team will help you configure it during the setup process.
+                Yes, you can. You can use your existing license with our Shared Server without any issues. Our team will help you configure it during the setup process.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger className="text-lg">How do I access my software on the Shared Service?</AccordionTrigger>
+              <AccordionTrigger className="text-lg">How do I access my software on the Shared Server?</AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground">
                 We provide two easy ways to connect: a downloadable RDP (Remote Desktop Protocol) file for the most feature-rich experience, or a secure web portal for quick access from any browser. Both options are simple to use.
               </AccordionContent>

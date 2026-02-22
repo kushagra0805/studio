@@ -1,9 +1,10 @@
+
 "use client"
 
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
-import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, CloudCog, Layers, Hand } from "lucide-react";
+import { Check, Server, Globe, Database, Building, Cpu, MemoryStick, HardDrive, ShieldCheck, Zap, Network, CloudCog, Layers, Hand, Cloud } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -335,14 +336,15 @@ export default function PricingPage() {
           </p>
         </motion.div>
 
-        <Tabs defaultValue="vps" className="w-full mt-12" id="vps">
+        <Tabs defaultValue="vps" className="w-full mt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 h-auto">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 h-auto">
               <TabsTrigger value="vps" className="py-2">Virtual Servers</TabsTrigger>
+              <TabsTrigger value="shared-server" className="py-2">Shared Server</TabsTrigger>
               <TabsTrigger value="web-hosting" className="py-2">Web Hosting</TabsTrigger>
               <TabsTrigger value="dedicated" className="py-2">Dedicated Servers</TabsTrigger>
               <TabsTrigger value="colocation" className="py-2">Colocation</TabsTrigger>
@@ -358,6 +360,45 @@ export default function PricingPage() {
               animate="visible"
             >
               {vpsPlans.map((plan) => <PlanCard key={plan.name} plan={plan} />)}
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="shared-server" className="mt-10">
+             <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+            >
+                <Card className="max-w-3xl mx-auto">
+                    <CardHeader className="text-center">
+                        <div className="flex justify-center mb-4">
+                            <div className="bg-primary/10 p-4 rounded-full">
+                                <Cloud className="h-10 w-10 text-primary" />
+                            </div>
+                        </div>
+                        <CardTitle>Shared Server (cloud-x.in)</CardTitle>
+                        <CardDescription>Optimized accounting infrastructure for Tally, Busy, and multi-user business applications.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="text-center">
+                         <div className="text-center mb-8">
+                            <span className="text-4xl font-bold text-primary">Custom Pricing</span>
+                        </div>
+                        <ul className="space-y-4 text-lg text-left max-w-md mx-auto">
+                            <li className="flex items-center"><Check className="h-6 w-6 text-primary mr-3" /><span>Multi-user RDP access</span></li>
+                            <li className="flex items-center"><Check className="h-6 w-6 text-primary mr-3" /><span>Daily automated backups</span></li>
+                            <li className="flex items-center"><Check className="h-6 w-6 text-primary mr-3" /><span>99% Uptime SLA</span></li>
+                            <li className="flex items-center"><Check className="h-6 w-6 text-primary mr-3" /><span>Expert technical support 24/7</span></li>
+                        </ul>
+                        <p className="mt-8 text-muted-foreground">
+                            Our Shared Server solutions are tailored to your specific number of users and application requirements.
+                        </p>
+                    </CardContent>
+                    <CardFooter className="justify-center">
+                        <Button asChild size="lg" className="px-12 rounded-full">
+                            <Link href="/contact">Contact Consultant for Quote</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
             </motion.div>
           </TabsContent>
 

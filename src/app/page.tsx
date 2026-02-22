@@ -98,7 +98,7 @@ export default function Home() {
               <Button asChild size="lg" className="h-14 px-8 rounded-full shadow-xl shadow-primary/20">
                 <Link href="/pricing">Explore Plans</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-full border-white/40 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm transition-all">
+              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-full border-white text-white bg-white/10 hover:bg-white hover:text-slate-950 transition-all">
                 <Link href="/contact">Request a Demo</Link>
               </Button>
             </motion.div>
@@ -136,7 +136,7 @@ export default function Home() {
             {[
               { title: "Virtual Servers", icon: Server, link: "/products#vps", desc: "High-performance VPS with instant scaling." },
               { title: "Dedicated Power", icon: Database, link: "/products#dedicated", desc: "Raw physical performance for enterprise." },
-              { title: "Shared Service", icon: BarChart, link: "/cloud-x", desc: "Accounting solutions optimized for cloud-x.in." },
+              { title: "Shared Server", icon: BarChart, link: "/cloud-x", desc: "Accounting solutions optimized for cloud-x.in." },
               { title: "Global Hosting", icon: Globe, link: "/products#web-hosting", desc: "Secure and fast hosting for websites." },
               { title: "Colocation", icon: Building, link: "/products#colocation", desc: "Reliable space for your mission-critical hardware." },
               { title: "On-premise Cloud", icon: CloudCog, link: "/products#on-premise-cloud", desc: "Private cloud solutions at your location." }
@@ -248,7 +248,7 @@ export default function Home() {
               <Button asChild size="lg" variant="secondary" className="h-14 px-10 rounded-full text-lg shadow-xl shadow-black/10">
                 <Link href="/pricing">View All Pricing</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-full text-lg border-white/40 bg-transparent hover:bg-white/10 text-white transition-all">
+              <Button asChild size="lg" variant="outline" className="h-14 px-10 rounded-full text-lg border-white bg-white/10 hover:bg-white text-white hover:text-primary transition-all">
                 <Link href="/contact">Speak to an Expert</Link>
               </Button>
             </div>
