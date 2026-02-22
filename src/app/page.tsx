@@ -59,7 +59,7 @@ export default function Home() {
         <motion.div
           className="absolute inset-0 z-0"
           initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.4 }}
+          animate={{ scale: 1, opacity: 0.5 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <Image
@@ -68,11 +68,14 @@ export default function Home() {
             fill
             className="object-cover"
             priority
+            data-ai-hint={images.heroBackground.hint}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950/90" />
+          {/* Enhanced atmospheric gradients for a premium IT feel */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/40 to-slate-950/95" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.8)_100%)]" />
         </motion.div>
 
-        {/* Orbiting Elements */}
+        {/* Orbiting Elements - Representing Global Network Connectivity */}
         <motion.div animate={orbitAnimation} className="absolute inset-0 z-0 pointer-events-none opacity-10">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-primary/30 rounded-full" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] border border-primary/20 rounded-full" />
@@ -121,7 +124,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* More Floating Icons for Background Decoration */}
+        {/* Floating Infrastructure Icons */}
         <motion.div animate={floatingAnimation(5, 0)} className="absolute top-1/4 left-1/4 hidden lg:block opacity-20 text-primary">
           <Server size={80} />
         </motion.div>
@@ -250,6 +253,7 @@ export default function Home() {
                   height={images.cloudWorkflow.height}
                   alt="High-performance cloud server network topology"
                   className="object-cover transition-transform duration-1000 hover:scale-110"
+                  data-ai-hint={images.cloudWorkflow.hint}
                 />
               </motion.div>
               <motion.div
