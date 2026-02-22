@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
-import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight, Quote } from "lucide-react";
+import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import images from '../lib/placeholder-images.json';
 
@@ -127,10 +127,10 @@ export default function AboutPage() {
                 "We don't just provide hosting; we provide the foundation for your digital dreams. Our goal is to make enterprise-grade infrastructure accessible to every ambitious entrepreneur."
               </p>
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold">Mr. Ankit Gupta</h3>
+                <h3 className="text-2xl font-bold">Mr. Manish Agrawal</h3>
                 <p className="text-primary font-semibold">Founder & CEO</p>
                 <p className="text-muted-foreground leading-relaxed">
-                  With over 15 years of experience in cloud computing and network infrastructure, Mr. Gupta founded M A Global Network with a single goal: to bridge the gap between complex technology and business success. Under his leadership, the company has grown from a specialized niche provider to a global infrastructure powerhouse.
+                  With years of experience in cloud computing and network infrastructure, Mr. Manish Agrawal founded M A Global Network with a single goal: to bridge the gap between complex technology and business success. Under his leadership, the company has grown into a global infrastructure powerhouse.
                 </p>
               </div>
               <div className="mt-8 flex gap-4">
@@ -177,99 +177,6 @@ export default function AboutPage() {
             </motion.div>
         </div>
       </div>
-      
-      {/* Commitment Section */}
-      <div className="py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <h2 className="text-3xl font-bold tracking-tight">Our Commitment to Excellence</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                Our core values guide every decision we make and every interaction we have.
-              </p>
-            </motion.div>
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
-                <motion.div variants={itemVariants}>
-                    <Card className="text-center h-full">
-                        <CardHeader>
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
-                                <ShieldCheck className="h-8 w-8" />
-                            </div>
-                            <CardTitle>Uncompromising Reliability</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="mt-2 text-muted-foreground">Ensuring your services are always available with 99% uptime when you need them most.</p>
-                        </CardContent>
-                    </Card>
-                </motion.div>
-                <motion.div variants={itemVariants}>
-                     <Card className="text-center h-full">
-                        <CardHeader>
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
-                                <Lightbulb className="h-8 w-8" />
-                            </div>
-                            <CardTitle>Continuous Innovation</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="mt-2 text-muted-foreground">Constantly exploring new technologies to provide the fastest and most secure solutions.</p>
-                        </CardContent>
-                    </Card>
-                </motion.div>
-                 <motion.div variants={itemVariants}>
-                     <Card className="text-center h-full">
-                        <CardHeader>
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mx-auto mb-4">
-                                <HeartHandshake className="h-8 w-8" />
-                            </div>
-                            <CardTitle>Customer-Centric Support</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="mt-2 text-muted-foreground">Our expert team is dedicated to providing responsive and effective support 24/7.</p>
-                        </CardContent>
-                    </Card>
-                </motion.div>
-            </motion.div>
-          </div>
-      </div>
-
-       {/* CTA Section */}
-       <div className="py-24">
-            <div className="container mx-auto px-4 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <h2 className="text-3xl font-bold tracking-tight">Ready to Build the Future?</h2>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                        Explore our powerful solutions or get in touch with our team to discuss your project.
-                    </p>
-                    <div className="mt-8 flex justify-center gap-4">
-                        <Button asChild size="lg">
-                            <Link href="/products">
-                                View Our Products <ArrowRight className="ml-2 h-5 w-5" />
-                            </Link>
-                        </Button>
-                         <Button asChild size="lg" variant="secondary">
-                            <Link href="/contact">Contact Us</Link>
-                        </Button>
-                    </div>
-                </motion.div>
-            </div>
-       </div>
-
     </div>
   );
 }
