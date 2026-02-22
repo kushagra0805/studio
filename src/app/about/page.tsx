@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
-import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight, Award, History, Server } from "lucide-react";
+import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight, Award, History, Server, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import images from '../lib/placeholder-images.json';
 
