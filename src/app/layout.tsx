@@ -9,10 +9,56 @@ import { CookieBanner } from '../components/cookie-banner';
 
 export const metadata: Metadata = {
   title: {
-    default: "M A Global Network - Cloud Services",
+    default: "M A Global Network | Enterprise Cloud & Infrastructure Solutions",
     template: "%s | M A Global Network"
   },
-  description: 'Your trusted partner for VMs, dedicated servers, colocation, and web hosting.',
+  description: 'M A Global Network provides high-performance VPS, Dedicated Servers, Web Hosting, and Shared Server solutions with a 99% Uptime Guarantee.',
+  keywords: ['Cloud Hosting', 'VPS India', 'Dedicated Servers', 'Shared Server', 'Tally Cloud', 'Busy Cloud', 'Colocation Services', 'Infrastructure as a Service'],
+  authors: [{ name: "Manish Agrawal", url: "https://www.your-domain.com" }],
+  creator: "M A Global Network",
+  publisher: "M A Global Network",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://www.your-domain.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'M A Global Network | Reliable Cloud Infrastructure',
+    description: 'Empowering visionaries with world-class cloud infrastructure, 99% uptime, and 24/7 expert support.',
+    url: 'https://www.your-domain.com',
+    siteName: 'M A Global Network',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'M A Global Network Cloud Solutions',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'M A Global Network | Cloud Infrastructure',
+    description: 'Scalable VPS, Dedicated Servers, and Shared Server solutions with 99% Uptime.',
+    images: ['/images/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: "/logos/m-a-global/favicon.svg",
   }
@@ -23,6 +69,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // JSON-LD Structured Data for AI & Search Engines
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "M A Global Network",
+    "url": "https://www.your-domain.com",
+    "logo": "https://www.your-domain.com/logos/m-a-global/logo.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-7024058800",
+      "contactType": "customer service",
+      "email": "info@cloud-x.in"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Manish Agrawal"
+    },
+    "description": "Enterprise-grade cloud infrastructure provider specializing in VPS, Dedicated Servers, and Accounting Shared Server solutions.",
+    "sameAs": [
+      "https://www.linkedin.com/company/m-a-global-network"
+    ]
+  };
+
   return (
     <html lang="en">
       <head>
@@ -30,6 +99,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="font-body antialiased bg-background text-foreground">
         <div className="flex flex-col min-h-screen">

@@ -64,7 +64,7 @@ export default function Home() {
         >
           <Image
             src={images.heroBackground.url}
-            alt="Global Cloud Network"
+            alt="M A Global Network Data Center Infrastructure"
             fill
             className="object-cover"
             priority
@@ -90,7 +90,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 rounded-full bg-primary/20 border border-primary/30 px-4 py-1.5 text-sm font-medium text-primary-foreground mb-6 backdrop-blur-sm shadow-[0_0_20px_rgba(var(--primary),0.3)]"
             >
               <Zap className="h-4 w-4 fill-primary" />
-              <span>Next-Gen Infrastructure Solutions</span>
+              <span>Next-Gen Cloud Infrastructure</span>
             </motion.div>
             
             <motion.h1
@@ -104,7 +104,7 @@ export default function Home() {
               variants={itemVariants}
               className="mt-6 max-w-[750px] mx-auto text-slate-300 md:text-xl lg:text-2xl leading-relaxed font-medium"
             >
-              Empowering businesses worldwide with reliable, scalable, and ultra-secure enterprise-grade cloud infrastructure.
+              Providing reliable, scalable, and secure cloud solutions including VPS, Dedicated Servers, and Accounting Shared Servers with 99% Uptime.
             </motion.p>
             
             <motion.div
@@ -112,7 +112,7 @@ export default function Home() {
               className="mt-10 flex flex-col gap-4 min-[400px]:flex-row justify-center"
             >
               <Button asChild size="lg" className="h-14 px-8 rounded-full shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
-                <Link href="/pricing">Explore Plans</Link>
+                <Link href="/pricing">View Pricing Plans</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-full border-white/30 text-white bg-white/10 hover:bg-white hover:text-slate-950 transition-all backdrop-blur-md">
                 <Link href="/contact">Request a Demo</Link>
@@ -147,21 +147,21 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Engineered for Excellence</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Professional Hosting & Server Solutions</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed">
-                Discover our specialized hosting and server solutions built on a foundation of performance and 99% uptime.
+                Experience high-performance infrastructure built for mission-critical applications and 99% availability.
               </p>
             </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Virtual Servers", icon: Server, link: "/products#vps", desc: "High-performance VPS with instant scaling." },
-              { title: "Dedicated Power", icon: Database, link: "/products#dedicated", desc: "Raw physical performance for enterprise." },
-              { title: "Shared Server", icon: BarChart, link: "/cloud-x", desc: "Accounting solutions optimized for cloud-x.in." },
-              { title: "Global Hosting", icon: Globe, link: "/products#web-hosting", desc: "Secure and fast hosting for websites." },
-              { title: "Colocation", icon: Building, link: "/products#colocation", desc: "Reliable space for your mission-critical hardware." },
-              { title: "On-premise Cloud", icon: CloudCog, link: "/products#on-premise-cloud", desc: "Private cloud solutions at your location." }
+              { title: "Virtual Servers", icon: Server, link: "/products#vps", desc: "High-performance VPS with instant scaling and guaranteed resources." },
+              { title: "Dedicated Power", icon: Database, link: "/products#dedicated", desc: "Raw physical performance for enterprise-level workloads." },
+              { title: "Shared Server", icon: BarChart, link: "/cloud-x", desc: "Optimized accounting infrastructure for Tally, Busy, and more." },
+              { title: "Global Hosting", icon: Globe, link: "/products#web-hosting", desc: "Fast, secure, and reliable web hosting for global reach." },
+              { title: "Colocation", icon: Building, link: "/products#colocation", desc: "Enterprise space for your own mission-critical hardware." },
+              { title: "On-premise Cloud", icon: CloudCog, link: "/products#on-premise-cloud", desc: "Fully managed private cloud deployed at your location." }
             ].map((service, idx) => (
               <motion.div
                 key={idx}
@@ -206,9 +206,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl font-black tracking-tight sm:text-5xl mb-6 leading-tight">Unrivaled Infrastructure,<br />Unmatched Reliability</h2>
+              <h2 className="text-4xl font-black tracking-tight sm:text-5xl mb-6 leading-tight">Reliable Infrastructure,<br />Unmatched Uptime</h2>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                At M A Global Network, we don't just host your data; we protect your digital legacy. Our high-availability data centers and redundant network paths ensure your business stays online 24/7/365.
+                M A Global Network provides robust cloud infrastructure designed to protect your data and keep your business online 24/7 with a solid 99% uptime guarantee.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-6">
@@ -248,7 +248,7 @@ export default function Home() {
                   src={images.cloudWorkflow.url}
                   width={images.cloudWorkflow.width}
                   height={images.cloudWorkflow.height}
-                  alt="Cloud Infrastructure"
+                  alt="High-performance cloud server network topology"
                   className="object-cover transition-transform duration-1000 hover:scale-110"
                 />
               </motion.div>
@@ -256,7 +256,7 @@ export default function Home() {
                 animate={floatingAnimation(4, 1)}
                 className="absolute -bottom-10 -right-10 bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-slate-700 hidden md:block"
               >
-                <p className="text-xs font-black text-primary uppercase tracking-[0.3em] mb-2">Global Status</p>
+                <p className="text-xs font-black text-primary uppercase tracking-[0.3em] mb-2">Network Status</p>
                 <div className="flex items-center gap-3">
                     <div className="h-3 w-3 bg-green-500 rounded-full animate-ping" />
                     <p className="text-3xl font-black mt-1">99% UPTIME</p>
@@ -284,13 +284,13 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Upgrade Your Infrastructure Today</h2>
+            <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Upgrade to Enterprise Cloud Today</h2>
             <p className="text-primary-foreground/90 text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-              Join thousands of businesses that trust M A Global Network for their mission-critical applications with guaranteed 99% availability.
+              Join thousands of businesses that trust M A Global Network for mission-critical cloud hosting with guaranteed 99% availability.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               <Button asChild size="lg" variant="secondary" className="h-16 px-12 rounded-full text-xl font-bold shadow-2xl shadow-black/20 hover:scale-105 transition-transform">
-                <Link href="/pricing">View All Pricing</Link>
+                <Link href="/pricing">Explore Pricing</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-16 px-12 rounded-full text-xl font-bold border-white/40 bg-white/10 hover:bg-white text-white hover:text-primary transition-all backdrop-blur-md">
                 <Link href="/contact">Speak to an Expert</Link>
