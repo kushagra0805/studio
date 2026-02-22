@@ -4,16 +4,16 @@
 import { useState } from "react";
 import { Building2, Lightbulb, TrendingUp, Users, HeartHandshake, MapPin, ArrowRight, Mail, Phone, Briefcase, FileText, Upload, CheckCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { useToast } from "../../hooks/use-toast";
-import Link from "next/link";
 import Image from "next/image";
 import { db, storage } from "../../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { notifyAdmin } from "../actions/notify";
 
 const perks = [
   {
@@ -73,15 +73,20 @@ export default function CareerPage() {
       const snapshot = await uploadBytes(storageRef, resumeFile);
       const resumeUrl = await getDownloadURL(snapshot.ref);
 
-      // Non-blocking write to Firestore
-      addDoc(collection(db, "resumes"), {
+      const resumeData = {
         name,
         email,
         mobile,
         position,
         resumeUrl,
         submittedAt: new Date(),
-      });
+      };
+
+      // 1. Save to Firestore
+      await addDoc(collection(db, "resumes"), resumeData);
+
+      // 2. Notify Admin
+      await notifyAdmin({ type: 'resume', data: resumeData });
 
       setIsSubmitted(true);
       toast({ title: "Application Sent!", description: "We have received your resume. Our team will contact you soon." });

@@ -30,9 +30,9 @@ import { db, storage } from "../../lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select"
+import { notifyAdmin } from "../actions/notify"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ACCEPTED_FILE_TYPES = ["application/pdf"];
 
 const vpsPlans = [
   { name: "VPS Nano", description: "1 vCPU, 1 GB RAM, 20 GB NVMe" },
@@ -44,28 +44,6 @@ const vpsPlans = [
   { name: "VPS Elite", description: "24 vCPU, 64 GB RAM, 1.2 TB NVMe" },
   { name: "Custom", description: "Tailored specs for your unique needs." },
 ];
-const webHostingPlans = [
-  { name: "Starter", description: "1 Website, 20 GB SSD, Unmetered B/W" },
-  { name: "Personal", description: "5 Websites, 50 GB SSD, Unmetered B/W" },
-  { name: "Business", description: "10 Websites, 100 GB NVMe, Daily Backups" },
-  { name: "Pro", description: "Unlimited Websites, 200 GB NVMe, Daily Backups" },
-  { name: "Custom", description: "Custom hosting solution for specific requirements." },
-];
-const dedicatedPlans = [
-  { name: "DS-Essential", description: "Xeon E-2336, 32 GB RAM, 2x 250 GB SATA SSD" },
-  { name: "DS-Standard", description: "Xeon-D 2123IT, 32 GB RAM, 2x 512 GB NVMe SSD" },
-  { name: "DS-Advanced", description: "AMD EPYC 7282, 64 GB RAM, 2x 1 TB NVMe SSD" },
-  { name: "DS-Elite", description: "Dual Xeon Silver 4314, 128 GB RAM, 2x 2 TB NVMe SSD" },
-  { name: "Custom", description: "Custom dedicated server configuration." },
-];
-const colocationPlans = [
-  { name: "Per U", description: "1U Space, 1 Amp Power, 5 TB B/W" },
-  { name: "Quarter Rack", description: "10U Space, 5 Amps Power, 10 TB B/W" },
-  { name: "Half Rack", description: "21U Space, 10 Amps Power, 20 TB B/W" },
-  { name: "Full Rack", description: "42U Space, 20 Amps Power, 30 TB B/W" },
-  { name: "Custom", description: "Custom colocation space and power." },
-];
-
 
 const orderFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -75,7 +53,6 @@ const orderFormSchema = z.object({
   pincode: z.string().regex(/^\d{6}$/, "Please enter a valid 6-digit pincode."),
   businessName: z.string().optional(),
   gstNumber: z.string().optional(),
-  gstCertificate: z.any().optional(),
   serviceType: z.enum(["vps", "cloud-x", "web-hosting", "dedicated-server", "colocation"], {
     required_error: "You need to select a service type.",
   }),
@@ -83,13 +60,7 @@ const orderFormSchema = z.object({
   webHostingPlan: z.string().optional(),
   dedicatedServerPlan: z.string().optional(),
   colocationPlan: z.string().optional(),
-  customCpu: z.number().optional(),
-  customRam: z.number().optional(),
-  customStorage: z.number().optional(),
   customRequirements: z.string().optional(),
-  userNames: z.array(z.object({
-    name: z.string().min(2, "User name must be at least 2 characters."),
-  })).optional(),
   termsAccepted: z.literal(true, {
     errorMap: () => ({ message: "You must accept the terms and conditions to proceed." }),
   }),
@@ -113,52 +84,11 @@ export default function OrderPage() {
           gstNumber: "",
           serviceType: "vps",
           vpsPlan: "",
-          webHostingPlan: "",
-          dedicatedServerPlan: "",
-          colocationPlan: "",
-          customCpu: 8,
-          customRam: 16,
-          customStorage: 160,
-          customRequirements: "",
-          userNames: [{ name: "" }],
           termsAccepted: false,
       },
   })
 
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: "userNames"
-  });
-
-  useEffect(() => {
-    const currentCount = fields.length;
-    if (userCount > currentCount) {
-        for (let i = currentCount; i < userCount; i++) {
-            append({ name: "" });
-        }
-    } else if (userCount < currentCount) {
-        for (let i = currentCount; i > userCount; i--) {
-            remove(i - 1);
-        }
-    }
-  }, [userCount, fields.length, append, remove]);
-
-  const fileRef = form.register("gstCertificate");
   const serviceType = form.watch("serviceType");
-  const vpsPlan = form.watch("vpsPlan");
-  const webHostingPlan = form.watch("webHostingPlan");
-  const dedicatedServerPlan = form.watch("dedicatedServerPlan");
-  const colocationPlan = form.watch("colocationPlan");
-  
-  const customCpu = form.watch("customCpu");
-  const customRam = form.watch("customRam");
-  const customStorage = form.watch("customStorage");
-
-  const showCustomRequirements = 
-    (serviceType === 'vps' && vpsPlan === 'Custom') ||
-    (serviceType === 'web-hosting' && webHostingPlan === 'Custom') ||
-    (serviceType === 'dedicated-server' && dedicatedServerPlan === 'Custom') ||
-    (serviceType === 'colocation' && colocationPlan === 'Custom');
 
   async function onSubmit(data: z.infer<typeof orderFormSchema>) {
     setIsSubmitting(true);
@@ -180,13 +110,16 @@ export default function OrderPage() {
         submittedAt: new Date(),
       };
       
-      // Using non-blocking addDoc but setting state after
-      addDoc(collection(db, "orders"), orderData);
+      // 1. Save to Firestore
+      await addDoc(collection(db, "orders"), orderData);
+
+      // 2. Notify Admin
+      await notifyAdmin({ type: 'order', data: orderData });
 
       setIsOrderSubmitted(true);
       toast({
         title: "Order Placed Successfully!",
-        description: "Thank you for your order. Our team will contact you for verification.",
+        description: "Thank you for your order. Our team will contact you shortly.",
       });
     } catch (error: any) {
       console.error("Error submitting order:", error);
@@ -327,28 +260,7 @@ export default function OrderPage() {
                                         </FormControl>
                                         <FormDescription>Assign unique IDs to each member of your accounting team.</FormDescription>
                                       </FormItem>
-                                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                          {fields.map((item, index) => (
-                                              <FormField
-                                                  control={form.control}
-                                                  key={item.id}
-                                                  name={`userNames.${index}.name`}
-                                                  render={({ field }) => (
-                                                      <FormItem>
-                                                          <FormControl>
-                                                              <Input placeholder={`Name for User #${index + 1}`} className="h-12 rounded-xl" {...field} />
-                                                          </FormControl>
-                                                          <FormMessage />
-                                                      </FormItem>
-                                                  )}
-                                              />
-                                          ))}
-                                      </div>
                                   </div>
-                              )}
-                              {/* Other select components simplified for brevity in this example, same logic as VPS */}
-                              {(serviceType === 'web-hosting' || serviceType === 'dedicated-server' || serviceType === 'colocation') && (
-                                <p className="text-sm text-muted-foreground italic">Please complete your billing details below to proceed with your {serviceType} plan selection.</p>
                               )}
                           </div>
                       </div>

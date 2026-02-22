@@ -24,6 +24,7 @@ import { Mail, Send, User, MessageSquare, Loader2, CheckCircle, Phone } from "lu
 import { db } from "../../lib/firebase"
 import { collection, addDoc } from "firebase/firestore"
 import { Separator } from "../../components/ui/separator"
+import { notifyAdmin } from "../actions/notify"
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -50,11 +51,16 @@ export default function ContactPage() {
   async function onSubmit(data: z.infer<typeof contactFormSchema>) {
     setIsSubmitting(true)
     try {
-      // Non-blocking write as per guidelines (but we want to show success after)
-      addDoc(collection(db, "contacts"), {
+      const submissionData = {
         ...data,
         submittedAt: new Date(),
-      });
+      };
+
+      // 1. Save to Firestore
+      await addDoc(collection(db, "contacts"), submissionData);
+      
+      // 2. Notify Admin via Email (Server Action)
+      await notifyAdmin({ type: 'contact', data: submissionData });
       
       setIsSubmitted(true);
       toast({
