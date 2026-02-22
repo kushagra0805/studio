@@ -1,12 +1,19 @@
 
 "use client"
 
-import { Building2, Lightbulb, TrendingUp, Users, HeartHandshake, MapPin, ArrowRight, Mail, Phone, Briefcase } from "lucide-react";
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { useState } from "react";
+import { Building2, Lightbulb, TrendingUp, Users, HeartHandshake, MapPin, ArrowRight, Mail, Phone, Briefcase, FileText, Upload, CheckCircle, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
+import { useToast } from "../../hooks/use-toast";
 import Link from "next/link";
 import Image from "next/image";
+import { db, storage } from "../../lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const perks = [
   {
@@ -31,36 +38,68 @@ const perks = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
 export default function CareerPage() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  async function handleResumeSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const mobile = formData.get("mobile") as string;
+    const position = formData.get("position") as string;
+    const resumeFile = formData.get("resume") as File;
+
+    if (!resumeFile || resumeFile.size === 0) {
+      toast({ title: "Error", description: "Please upload your resume.", variant: "destructive" });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (resumeFile.size > MAX_FILE_SIZE) {
+      toast({ title: "Error", description: "File size exceeds 5MB limit.", variant: "destructive" });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const storageRef = ref(storage, `resumes/${Date.now()}_${resumeFile.name}`);
+      const snapshot = await uploadBytes(storageRef, resumeFile);
+      const resumeUrl = await getDownloadURL(snapshot.ref);
+
+      await addDoc(collection(db, "resumes"), {
+        name,
+        email,
+        mobile,
+        position,
+        resumeUrl,
+        submittedAt: new Date(),
+      });
+
+      setIsSubmitted(true);
+      toast({ title: "Application Sent!", description: "We have received your resume. Our team will contact you soon." });
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast({ title: "Error", description: "There was a problem submitting your application.", variant: "destructive" });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <div className="bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 overflow-hidden border-b">
         <div className="absolute inset-0 bg-primary/5 -z-10" />
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 text-center">
           <motion.div 
-            className="text-center max-w-4xl mx-auto"
+            className="max-w-4xl mx-auto"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -72,16 +111,8 @@ export default function CareerPage() {
               Build the Future of <span className="text-primary">Cloud</span>
             </h1>
             <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-              Join M A Global Network and be part of a team that's redefining infrastructure. We're looking for thinkers, builders, and dreamers.
+              Join M A Global Network and be part of a team that's redefining Tier-4 infrastructure.
             </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-               <Button asChild size="lg" className="rounded-full shadow-lg">
-                  <a href="#openings">View Open Roles</a>
-               </Button>
-               <Button asChild variant="outline" size="lg" className="rounded-full">
-                  <Link href="/about">Learn Our Story</Link>
-               </Button>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -89,46 +120,113 @@ export default function CareerPage() {
       {/* Perks Section */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
-           <motion.div
-              className="text-center mb-16"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={itemVariants}
-            >
+           <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Life at M A Global Network</h2>
               <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                We're committed to creating an environment where every individual can thrive both personally and professionally.
+                We're committed to creating an environment where every individual can thrive.
               </p>
-            </motion.div>
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {perks.map((perk, index) => (
-                <motion.div key={index} variants={itemVariants}>
-                  <Card className="h-full border-none shadow-none bg-secondary/30 hover:bg-secondary/50 transition-colors">
-                    <CardHeader>
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground mb-4 shadow-md">
-                        <perk.icon className="h-6 w-6" />
-                      </div>
-                      <CardTitle className="text-xl">{perk.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground leading-relaxed">{perk.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <Card key={index} className="h-full border-none shadow-none bg-secondary/30 hover:bg-secondary/50 transition-colors">
+                  <CardHeader>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground mb-4 shadow-md">
+                      <perk.icon className="h-6 w-6" />
+                    </div>
+                    <CardTitle className="text-xl">{perk.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground leading-relaxed">{perk.description}</p>
+                  </CardContent>
+                </Card>
               ))}
-            </motion.div>
+            </div>
+        </div>
+      </section>
+
+      {/* Resume Submission Section */}
+      <section id="apply" className="py-24 bg-secondary/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <Card className="border-2 shadow-2xl">
+              <CardHeader className="text-center">
+                <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit mb-4">
+                  <Upload className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="text-3xl">Apply Now</CardTitle>
+                <CardDescription className="text-lg">
+                  Submit your details and resume (PDF, max 5MB).
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <AnimatePresence mode="wait">
+                  {isSubmitted ? (
+                    <motion.div 
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="text-center py-10"
+                    >
+                      <CheckCircle className="h-20 w-20 text-green-500 mx-auto mb-6" />
+                      <h3 className="text-2xl font-bold mb-2">Application Received!</h3>
+                      <p className="text-muted-foreground mb-8">Thank you for your interest. We will review your resume and get back to you soon.</p>
+                      <Button onClick={() => setIsSubmitted(false)}>Submit Another Resume</Button>
+                    </motion.div>
+                  ) : (
+                    <motion.form 
+                      key="form"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      onSubmit={handleResumeSubmit} 
+                      className="space-y-6"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="name">Full Name</Label>
+                          <Input id="name" name="name" required placeholder="Your Name" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="email">Email Address</Label>
+                          <Input id="email" name="email" type="email" required placeholder="you@example.com" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="mobile">Mobile Number</Label>
+                          <Input id="mobile" name="mobile" required placeholder="9876543210" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="position">Position Applied For</Label>
+                          <Input id="position" name="position" required placeholder="e.g., Cloud Architect" />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="resume">Resume (PDF, max 5MB)</Label>
+                        <div className="relative group">
+                          <Input 
+                            id="resume" 
+                            name="resume" 
+                            type="file" 
+                            accept=".pdf" 
+                            required 
+                            className="cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                          />
+                        </div>
+                      </div>
+                      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</> : "Submit Application"}
+                      </Button>
+                    </motion.form>
+                  )}
+                </AnimatePresence>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Reach Us Section */}
-      <section className="py-24 bg-secondary/50">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -138,11 +236,8 @@ export default function CareerPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold tracking-tight mb-6 flex items-center gap-3">
-                <MapPin className="h-8 w-8 text-primary" /> How To Reach Us
+                <MapPin className="h-8 w-8 text-primary" /> Visit Our Office
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Our main office is located in the heart of Tech Park, easily accessible via public transport. We'd love to host you for a coffee and discuss your future.
-              </p>
               <div className="space-y-6">
                 <div className="flex gap-4 items-start">
                   <div className="bg-primary/10 p-2 rounded-lg"><Building2 className="text-primary h-5 w-5" /></div>
@@ -154,81 +249,29 @@ export default function CareerPage() {
                 <div className="flex gap-4 items-start">
                   <div className="bg-primary/10 p-2 rounded-lg"><Mail className="text-primary h-5 w-5" /></div>
                   <div>
-                    <h4 className="font-bold">Email Us</h4>
+                    <h4 className="font-bold">Career Inquiries</h4>
                     <p className="text-muted-foreground">careers@cloud-x.in</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
                   <div className="bg-primary/10 p-2 rounded-lg"><Phone className="text-primary h-5 w-5" /></div>
                   <div>
-                    <h4 className="font-bold">Call Us</h4>
+                    <h4 className="font-bold">HR Desk</h4>
                     <p className="text-muted-foreground">+91 70240 58800</p>
                   </div>
                 </div>
               </div>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border"
-            >
+            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border">
                <Image 
-                src="https://picsum.photos/seed/office/800/600" 
+                src="https://picsum.photos/seed/datacenter-lobby/800/600" 
                 width={800}
                 height={600}
                 alt="Our Office" 
                 className="object-cover"
                />
-            </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Open Positions Section */}
-      <section id="openings" className="container mx-auto py-24 px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="max-w-3xl mx-auto text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          variants={itemVariants}
-        >
-          <h2 className="text-3xl font-bold tracking-tight">Open Opportunities</h2>
-          <div className="mt-12 space-y-4">
-             <Card className="border-dashed border-2 bg-transparent">
-                <CardContent className="py-12">
-                   <p className="text-xl font-medium">Currently, our team is full!</p>
-                   <p className="mt-2 text-muted-foreground">But we're always scouting for talent. Send your portfolio or CV to us and we'll reach out when a spot opens up.</p>
-                   <div className="mt-8">
-                      <Button asChild size="lg" className="rounded-full px-10">
-                         <Link href="/contact">Send Your Resume <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                      </Button>
-                   </div>
-                </CardContent>
-             </Card>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Footer Contact CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-           >
-            <h2 className="text-3xl font-bold mb-4">Didn't find what you were looking for?</h2>
-            <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto">
-              If you have any questions about our hiring process or working at M A Global Network, our HR team is happy to help.
-            </p>
-            <Button asChild variant="secondary" size="lg" className="rounded-full bg-white text-primary hover:bg-white/90">
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-           </motion.div>
         </div>
       </section>
     </div>

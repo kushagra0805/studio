@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
-import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight, Award, History, Users } from "lucide-react";
+import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight, Award, History, Server } from "lucide-react";
 import { motion } from "framer-motion";
 import images from '../lib/placeholder-images.json';
 
@@ -34,8 +34,8 @@ export default function AboutPage() {
   return (
     <div className="bg-background pt-20">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="relative py-24 md:py-32 overflow-hidden text-center">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function AboutPage() {
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
       </section>
 
-      {/* CEO & Founder Section - Highlighted */}
+      {/* CEO & Founder Section */}
       <section className="py-24 bg-slate-950 text-white overflow-hidden relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-20 items-center">
@@ -104,46 +104,12 @@ export default function AboutPage() {
                   Under his visionary leadership, the company has transformed from a niche hosting provider into a multi-national infrastructure powerhouse, serving thousands of businesses with cutting-edge cloud solutions.
                 </p>
               </div>
-              <div className="mt-12">
-                 <Button asChild size="lg" className="rounded-full h-14 px-10">
-                   <Link href="/contact">Connect With Our Team</Link>
-                 </Button>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 border-y bg-slate-50 dark:bg-slate-900/20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { label: "Active Users", value: "10,000+", icon: Users },
-              { label: "Data Centers", value: "12+", icon: Globe },
-              { label: "Uptime", value: "99.99%", icon: ShieldCheck },
-              { label: "Years Experience", value: "12+", icon: History }
-            ].map((stat, idx) => (
-              <motion.div 
-                key={idx} 
-                className="text-center p-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-primary/10 text-primary mb-4">
-                  <stat.icon className="h-6 w-6" />
-                </div>
-                <p className="text-4xl font-black text-slate-900 dark:text-white mb-1">{stat.value}</p>
-                <p className="text-muted-foreground font-medium uppercase tracking-wider text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values Section */}
+      {/* Core Values & Infrastructure Section */}
       <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div 
@@ -157,31 +123,31 @@ export default function AboutPage() {
           >
             <motion.div variants={itemVariants} className="group p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-700">
               <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-blue-500/10 text-blue-500 mb-8 transition-transform group-hover:scale-110">
-                <Target className="h-8 w-8" />
+                <ShieldCheck className="h-8 w-8" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
+              <h2 className="text-2xl font-bold mb-4">Tier-4 Infrastructure</h2>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                Empowering businesses by providing robust, scalable, and secure cloud solutions that drive growth and innovation at every level.
+                Our services are powered by world-class Tier-4 data centers, ensuring maximum redundancy and physical security for your mission-critical data.
               </p>
             </motion.div>
 
             <motion.div variants={itemVariants} className="group p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-700">
               <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-purple-500/10 text-purple-500 mb-8 transition-transform group-hover:scale-110">
-                 <Eye className="h-8 w-8" />
+                 <Zap className="h-8 w-8" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
+              <h2 className="text-2xl font-bold mb-4">99% Uptime Guarantee</h2>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                To be the world's most trusted cloud provider, known for our uncompromising performance and obsessively client-focused support.
+                We stand by our commitment to excellence with a solid 99% uptime guarantee, backed by high-availability clusters and 24/7 monitoring.
               </p>
             </motion.div>
 
             <motion.div variants={itemVariants} className="group p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-700">
               <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-green-500/10 text-green-500 mb-8 transition-transform group-hover:scale-110">
-                <Globe className="h-8 w-8" />
+                <Award className="h-8 w-8" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">Global Reach</h2>
+              <h2 className="text-2xl font-bold mb-4">Certified Excellence</h2>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                Expanding our network of Tier-4 data centers across continents to deliver low-latency services to users everywhere.
+                M A Global Network adheres to industry-leading certifications and standards to provide secure, compliant, and efficient cloud hosting solutions.
               </p>
             </motion.div>
           </motion.div>
@@ -227,7 +193,6 @@ export default function AboutPage() {
                   alt="Our Journey"
                   className="mx-auto rounded-3xl object-cover shadow-2xl border-4 border-white dark:border-slate-800"
                 />
-                {/* Floating graphic */}
                 <motion.div 
                   animate={floatingAnimation}
                   className="absolute -top-10 -right-10 bg-primary/20 p-8 rounded-full blur-3xl -z-10"
