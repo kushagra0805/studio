@@ -2,7 +2,7 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
+import NextImage from "next/image"
 import { useEffect, useState } from "react";
 import { Mail, Phone, Lock } from "lucide-react";
 
@@ -19,7 +19,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 text-center md:text-left md:grid-cols-4">
           <div className="md:col-span-1 flex flex-col items-center md:items-start">
             <Link href="/" className="flex items-center gap-2 mb-4 text-primary" prefetch={false}>
-              <Image src="/logos/m-a-global/logo.svg" alt="M A Global Network Logo" width={28} height={28} />
+              <NextImage src="/logos/m-a-global/logo.svg" alt="M A Global Network Logo" width={28} height={28} />
               <span className="text-xl font-bold">M A Global Network</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">

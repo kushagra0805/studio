@@ -2,7 +2,7 @@
 "use client"
 
 import Link from 'next/link';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { Button } from '../../components/ui/button';
 import { ArrowRight, Server, Database, Globe, Building, BarChart, CloudCog, ShieldCheck, Zap, Cpu, Network, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -155,7 +155,7 @@ export default function ProductsPage() {
                     className="relative"
                 >
                     <div className="absolute -inset-10 bg-primary/20 rounded-[4rem] blur-[80px] opacity-30 -z-10" />
-                    <Image 
+                    <NextImage 
                       width={product.image.width} 
                       height={product.image.height} 
                       src={product.image.url} 

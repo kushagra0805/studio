@@ -2,7 +2,7 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
+import NextImage from "next/image"
 import { useState, useEffect } from "react"
 import { Button } from "./ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
@@ -43,7 +43,7 @@ export function Header() {
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <Link href="/" className="flex items-center justify-center gap-2" prefetch={false}>
-        <Image src="/logos/m-a-global/logo.svg" alt="M A Global Network Logo" width={32} height={32} />
+        <NextImage src="/logos/m-a-global/logo.svg" alt="M A Global Network Logo" width={32} height={32} />
         <span className="text-lg font-bold whitespace-nowrap text-primary">M A Global Network</span>
       </Link>
       
@@ -75,7 +75,7 @@ export function Header() {
             <SheetHeader className="flex flex-row items-center justify-between">
               <SheetTitle>
                 <Link href="/" onClick={closeSheet} className="flex items-center gap-2">
-                  <Image src="/logos/m-a-global/logo.svg" alt="M A Global Network Logo" width={28} height={28} />
+                  <NextImage src="/logos/m-a-global/logo.svg" alt="M A Global Network Logo" width={28} height={28} />
                   <span className="font-bold text-md text-primary">M A Global Network</span>
                 </Link>
               </SheetTitle>

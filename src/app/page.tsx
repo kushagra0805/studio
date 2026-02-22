@@ -2,7 +2,7 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
+import NextImage from "next/image"
 import { Button } from "../components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 import { Server, Database, Globe, BarChart, LifeBuoy, ShieldCheck, Scaling, Zap, ArrowRight, CloudCog, Building, Cpu, Network } from "lucide-react"
@@ -62,7 +62,7 @@ export default function Home() {
           animate={{ scale: 1, opacity: 0.5 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
-          <Image
+          <NextImage
             src={images.heroBackground.url}
             alt="M A Global Network Data Center Infrastructure"
             fill
@@ -247,7 +247,7 @@ export default function Home() {
                 animate={floatingAnimation(5, 0)}
                 className="relative rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.2)] border-8 border-white dark:border-slate-900"
               >
-                <Image
+                <NextImage
                   src={images.cloudWorkflow.url}
                   width={images.cloudWorkflow.width}
                   height={images.cloudWorkflow.height}

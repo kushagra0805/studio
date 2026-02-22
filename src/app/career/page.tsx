@@ -9,7 +9,7 @@ import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { useToast } from "../../hooks/use-toast";
-import Image from "next/image";
+import NextImage from "next/image";
 import { db, storage } from "../../lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -286,7 +286,7 @@ export default function CareerPage() {
               </div>
             </motion.div>
             <div className="relative aspect-square md:aspect-video rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800">
-               <Image 
+               <NextImage 
                 src="https://picsum.photos/seed/datacenter-lobby/1200/800" 
                 width={1200}
                 height={800}

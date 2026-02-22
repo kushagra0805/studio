@@ -2,7 +2,7 @@
 "use client"
 
 import Link from 'next/link';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Target, Globe, Eye, ShieldCheck, Lightbulb, HeartHandshake, ArrowRight, Award, History, Server, Zap } from "lucide-react";
@@ -76,7 +76,7 @@ export default function AboutPage() {
                 className="relative"
               >
                 <div className="absolute -inset-10 bg-primary/30 rounded-full blur-[100px] opacity-20 animate-pulse" />
-                <Image
+                <NextImage
                   src={images.ceoPortrait.url}
                   width={images.ceoPortrait.width}
                   height={images.ceoPortrait.height}
@@ -191,7 +191,7 @@ export default function AboutPage() {
                     animate={floatingAnimation(7)}
                     className="relative"
                  >
-                    <Image
+                    <NextImage
                         src={images.ourStory.url}
                         width={images.ourStory.width}
                         height={images.ourStory.height}

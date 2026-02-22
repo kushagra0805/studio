@@ -2,6 +2,7 @@
 "use client";
 
 import Link from 'next/link';
+import NextImage from 'next/image';
 import { X, Contact, MessageSquareText } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
@@ -45,7 +46,7 @@ export function ChatInterface({ onClose }: ChatInterfaceProps) {
         <div className="w-20 h-20 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-6">
             <div className="relative">
                 <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <Image src="https://picsum.photos/seed/support/100/100" width={100} height={100} alt="Support" />
+                    <NextImage src="https://picsum.photos/seed/support/100/100" width={100} height={100} alt="Support" />
                 </div>
                 <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-900" />
             </div>
