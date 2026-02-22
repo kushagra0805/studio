@@ -101,11 +101,10 @@ export default function CareerPage() {
 
   return (
     <div className="bg-background text-foreground">
-      {/* Hero Section */}
-      <section className="relative py-32 md:py-48 overflow-hidden">
-        <div className="absolute inset-0 bg-slate-950 -z-20" />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-slate-950 -z-10" />
-        <div className="container mx-auto px-4 text-center">
+      {/* Hero Section - Fixed Contrast */}
+      <section className="relative py-32 md:py-48 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-slate-950 to-slate-950 -z-10" />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div 
             className="max-w-4xl mx-auto"
             initial={{ opacity: 0, y: -30 }}
@@ -115,28 +114,28 @@ export default function CareerPage() {
             <div className="inline-flex items-center justify-center p-4 rounded-3xl bg-white/10 backdrop-blur-md mb-8 border border-white/20">
                 <Briefcase className="h-12 w-12 text-primary" />
             </div>
-            <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl text-white mb-8">
+            <h1 className="text-5xl font-black tracking-tight sm:text-7xl lg:text-8xl text-white mb-8 drop-shadow-2xl">
               Build the Future of <span className="text-primary">Cloud</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-200 leading-relaxed max-w-2xl mx-auto font-medium">
+            <p className="text-xl md:text-2xl text-slate-100 leading-relaxed max-w-2xl mx-auto font-bold opacity-100">
               Join M A Global Network and be part of a high-performance team that's redefining enterprise infrastructure.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Perks Section */}
-      <section className="py-24 bg-white dark:bg-slate-950">
+      {/* Perks Section - Ensuring Text Visibility */}
+      <section className="py-24 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
            <div className="text-center mb-20">
               <h2 className="text-4xl font-black tracking-tight sm:text-5xl text-slate-900 dark:text-white">Life at M A Global Network</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+              <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-bold">
                 We're committed to creating an environment where high-performers can innovate and lead.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {perks.map((perk, index) => (
-                <Card key={index} className="h-full border-none shadow-xl bg-slate-50 dark:bg-slate-900 rounded-[2rem] hover:shadow-2xl transition-all duration-300 group">
+                <Card key={index} className="h-full border-none shadow-xl bg-slate-50 dark:bg-slate-800 rounded-[2rem] hover:shadow-2xl transition-all duration-300 group">
                   <CardHeader className="pt-10">
                     <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground mb-6 shadow-lg group-hover:scale-110 transition-transform">
                       <perk.icon className="h-8 w-8" />
@@ -144,7 +143,7 @@ export default function CareerPage() {
                     <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">{perk.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="pb-10">
-                    <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed font-medium">{perk.description}</p>
+                    <p className="text-slate-700 dark:text-slate-300 text-lg leading-relaxed font-semibold">{perk.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -153,14 +152,14 @@ export default function CareerPage() {
       </section>
 
       {/* Resume Submission Section */}
-      <section id="apply" className="py-32 bg-slate-100 dark:bg-slate-900/50 relative overflow-hidden">
+      <section id="apply" className="py-32 bg-slate-100 dark:bg-slate-950 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <Card className="border-none shadow-[0_50px_100px_rgba(0,0,0,0.1)] rounded-[3rem] overflow-hidden">
               <div className="grid lg:grid-cols-5 h-full">
                 <div className="lg:col-span-2 bg-primary p-12 text-primary-foreground flex flex-col justify-center">
                     <h3 className="text-4xl font-black mb-6">Start Your Journey</h3>
-                    <p className="text-primary-foreground/90 text-lg mb-10 font-medium">
+                    <p className="text-primary-foreground/90 text-lg mb-10 font-bold">
                         Upload your resume and tell us which mission you want to join. We review all applications within 48 hours.
                     </p>
                     <div className="space-y-6">
@@ -191,7 +190,7 @@ export default function CareerPage() {
                             <CheckCircle className="h-20 w-20 text-green-500" />
                         </div>
                         <h3 className="text-3xl font-black mb-4 text-slate-900 dark:text-white">Resume Submitted!</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-lg mb-10 max-w-sm mx-auto font-medium">Thank you for your interest. Our talent acquisition team will review your profile and reach out via email.</p>
+                        <p className="text-slate-700 dark:text-slate-300 text-lg mb-10 max-w-sm mx-auto font-bold">Thank you for your interest. Our talent acquisition team will review your profile and reach out via email.</p>
                         <Button onClick={() => setIsSubmitted(false)} size="lg" className="rounded-full px-10 h-14 text-lg">Submit Another</Button>
                       </motion.div>
                     ) : (
@@ -203,25 +202,25 @@ export default function CareerPage() {
                         className="space-y-6"
                       >
                         <div className="space-y-2">
-                          <Label htmlFor="name" className="text-slate-900 dark:text-slate-200 font-bold">Full Name</Label>
-                          <Input id="name" name="name" required placeholder="John Doe" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700" />
+                          <Label htmlFor="name" className="text-slate-900 dark:text-slate-200 font-black">Full Name</Label>
+                          <Input id="name" name="name" required placeholder="John Doe" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                            <Label htmlFor="email" className="text-slate-900 dark:text-slate-200 font-bold">Email Address</Label>
-                            <Input id="email" name="email" type="email" required placeholder="you@example.com" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700" />
+                            <Label htmlFor="email" className="text-slate-900 dark:text-slate-200 font-black">Email Address</Label>
+                            <Input id="email" name="email" type="email" required placeholder="you@example.com" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
                             </div>
                             <div className="space-y-2">
-                            <Label htmlFor="mobile" className="text-slate-900 dark:text-slate-200 font-bold">Mobile Number</Label>
-                            <Input id="mobile" name="mobile" required placeholder="9876543210" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700" />
+                            <Label htmlFor="mobile" className="text-slate-900 dark:text-slate-200 font-black">Mobile Number</Label>
+                            <Input id="mobile" name="mobile" required placeholder="9876543210" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
                             </div>
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="position" className="text-slate-900 dark:text-slate-200 font-bold">Target Position</Label>
-                          <Input id="position" name="position" required placeholder="e.g., Cloud Architect" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700" />
+                          <Label htmlFor="position" className="text-slate-900 dark:text-slate-200 font-black">Target Position</Label>
+                          <Input id="position" name="position" required placeholder="e.g., Cloud Architect" className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold" />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="resume" className="text-slate-900 dark:text-slate-200 font-bold">Resume (PDF only, max 5MB)</Label>
+                          <Label htmlFor="resume" className="text-slate-900 dark:text-slate-200 font-black">Resume (PDF only, max 5MB)</Label>
                           <div className="relative group">
                             <Input 
                               id="resume" 
@@ -229,7 +228,7 @@ export default function CareerPage() {
                               type="file" 
                               accept=".pdf" 
                               required 
-                              className="cursor-pointer h-14 rounded-xl file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 transition-all bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700"
+                              className="cursor-pointer h-14 rounded-xl file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 transition-all bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                             />
                           </div>
                         </div>
@@ -246,7 +245,7 @@ export default function CareerPage() {
         </div>
       </section>
 
-      {/* Reach Us Section */}
+      {/* Reach Us Section - Ensured Visibility */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-20 items-center">
@@ -260,25 +259,25 @@ export default function CareerPage() {
                 <MapPin className="h-10 w-10 text-primary" /> Visit Our Office
               </h2>
               <div className="space-y-8">
-                <div className="flex gap-6 items-start p-6 rounded-3xl bg-secondary/30 border border-secondary transition-transform hover:scale-[1.02]">
+                <div className="flex gap-6 items-start p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-transform hover:scale-[1.02]">
                   <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-inner"><Building2 className="h-6 w-6" /></div>
                   <div>
                     <h4 className="text-xl font-bold mb-1 text-slate-900 dark:text-white">M A Global Network HQ</h4>
-                    <p className="text-slate-600 dark:text-slate-400 text-lg font-medium leading-relaxed">123 Cloud Avenue, Tech Park<br />Indore, MP, 452001, India</p>
+                    <p className="text-slate-700 dark:text-slate-300 text-lg font-bold leading-relaxed">123 Cloud Avenue, Tech Park<br />Indore, MP, 452001, India</p>
                   </div>
                 </div>
-                <div className="flex gap-6 items-center p-6 rounded-3xl bg-secondary/30 border border-secondary transition-transform hover:scale-[1.02]">
+                <div className="flex gap-6 items-center p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-transform hover:scale-[1.02]">
                   <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-inner"><Mail className="h-6 w-6" /></div>
                   <div>
                     <h4 className="text-xl font-bold mb-1 text-slate-900 dark:text-white">Career Inquiries</h4>
-                    <p className="text-slate-600 dark:text-slate-400 text-lg font-medium">careers@cloud-x.in</p>
+                    <p className="text-slate-700 dark:text-slate-300 text-lg font-bold">careers@cloud-x.in</p>
                   </div>
                 </div>
-                <div className="flex gap-6 items-center p-6 rounded-3xl bg-secondary/30 border border-secondary transition-transform hover:scale-[1.02]">
+                <div className="flex gap-6 items-center p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-transform hover:scale-[1.02]">
                   <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-inner"><Phone className="h-6 w-6" /></div>
                   <div>
                     <h4 className="text-xl font-bold mb-1 text-slate-900 dark:text-white">HR Desk</h4>
-                    <p className="text-slate-600 dark:text-slate-400 text-lg font-medium">+91 70240 58800</p>
+                    <p className="text-slate-700 dark:text-slate-300 text-lg font-bold">+91 70240 58800</p>
                   </div>
                 </div>
               </div>
