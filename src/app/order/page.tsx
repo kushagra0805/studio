@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -81,18 +80,18 @@ export default function OrderPage() {
   const serviceType = form.watch("serviceType");
 
   async function onSubmit(data: z.infer<typeof orderFormSchema>) {
-    console.log("Submit initiated...");
+    console.log("[ORDER] Processing Infrastructure Request...");
     setIsSubmitting(true);
+    
     try {
       let gstCertificateUrl = "";
-      const gstFileList = (document.getElementById('gstCertificate') as HTMLInputElement)?.files;
-      const gstFile = gstFileList?.[0];
+      const gstFile = (document.getElementById('gstCertificate') as HTMLInputElement)?.files?.[0];
 
       if (gstFile) {
-        if (gstFile.size > MAX_FILE_SIZE) throw new Error("File too large (max 5MB)");
+        if (gstFile.size > MAX_FILE_SIZE) throw new Error("GST File exceeds 5MB limit.");
         const storageRef = ref(storage, `gst-certificates/${Date.now()}_${gstFile.name}`);
-        const snapshot = await uploadBytes(storageRef, gstFile);
-        gstCertificateUrl = await getDownloadURL(snapshot.ref);
+        const snap = await uploadBytes(storageRef, gstFile);
+        gstCertificateUrl = await getDownloadURL(snap.ref);
       }
       
       const orderData = {
@@ -102,27 +101,25 @@ export default function OrderPage() {
         submittedAt: serverTimestamp(),
       };
       
-      // 1. Save to Firestore (Non-blocking mutation)
-      addDoc(collection(db, "orders"), orderData).catch(error => {
-        console.error("Order database save failed:", error);
-      });
+      // 1. Non-blocking Firestore Write
+      addDoc(collection(db, "orders"), orderData).catch(err => console.error("Firestore Save Failed:", err));
 
-      // 2. Notify Admin (Non-blocking)
-      notifyAdmin({ type: 'order', data: orderData }).catch(e => console.error("Notification alert failed:", e));
+      // 2. Non-blocking Email Notification
+      notifyAdmin({ type: 'order', data: orderData }).catch(err => console.error("Email Dispatch Failed:", err));
 
-      // 3. Update UI immediately for positive feedback
+      // 3. Instant UI feedback
       setIsOrderSubmitted(true);
       setIsSubmitting(false);
       
       toast({
-        title: "Order Placed!",
-        description: "Your infrastructure request has been queued successfully.",
+        title: "Order Processed!",
+        description: "Your infrastructure configuration has been received.",
       });
     } catch (error: any) {
-      console.error("Order fatal error:", error);
+      console.error("[ORDER] Critical Submission Error:", error);
       toast({
-        title: "Order Failed",
-        description: error.message || "Could not process your order. Please check your connection.",
+        title: "Submission Error",
+        description: error.message || "Network disruption detected. Please try again.",
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -131,8 +128,8 @@ export default function OrderPage() {
   
   const handleAadhaarVerification = () => {
     toast({
-        title: "Redirecting...",
-        description: "Aadhaar verification system is currently offline for maintenance.",
+        title: "Aadhaar System Offline",
+        description: "The verification node is currently undergoing scheduled maintenance.",
     });
   }
 
@@ -147,9 +144,9 @@ export default function OrderPage() {
         <Card className="border-none shadow-2xl overflow-hidden rounded-[2.5rem]">
           <CardHeader className="text-center bg-primary text-primary-foreground py-12">
             <Package className="mx-auto h-16 w-16 mb-4" />
-            <CardTitle className="text-4xl font-black">Configure Your Infrastructure</CardTitle>
+            <CardTitle className="text-4xl font-black">Infrastructure Setup</CardTitle>
             <CardDescription className="text-primary-foreground/80 text-lg">
-              Set up your high-performance environment and secure your deployment.
+              Configure your environment and secure your enterprise deployment.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-8 md:p-12">
@@ -164,16 +161,16 @@ export default function OrderPage() {
                   <div className="bg-green-100 dark:bg-green-900/30 p-8 rounded-full w-fit mx-auto mb-8">
                     <CheckCircle className="h-24 w-24 text-green-500" />
                   </div>
-                  <h3 className="text-4xl font-bold mb-4">Order Received!</h3>
+                  <h3 className="text-4xl font-bold mb-4 text-slate-900 dark:text-white">Request Queued!</h3>
                   <p className="text-muted-foreground text-xl mb-12 max-w-lg mx-auto leading-relaxed">
-                    Your infrastructure request has been queued. As a security measure, please proceed with Aadhaar verification to finalize your deployment.
+                    Your request has been saved. For security compliance, please finalize with Aadhaar verification.
                   </p>
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <Button size="lg" className="h-16 px-10 rounded-full text-lg shadow-xl shadow-primary/20" onClick={handleAadhaarVerification}>
-                      <Fingerprint className="mr-2 h-6 w-6" /> Proceed to Aadhaar Verification
+                      <Fingerprint className="mr-2 h-6 w-6" /> Start Aadhaar Verification
                     </Button>
                     <Button variant="outline" size="lg" className="h-16 px-10 rounded-full text-lg" asChild>
-                      <Link href="/">Return Home</Link>
+                      <Link href="/">Back to Home</Link>
                     </Button>
                   </div>
                 </motion.div>
@@ -186,39 +183,33 @@ export default function OrderPage() {
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
                       
-                      {/* Section 1: Contact */}
                       <div className="space-y-6">
-                          <h3 className="text-2xl font-bold flex items-center gap-3"><User className="text-primary" /> Contact Information</h3>
+                          <h3 className="text-2xl font-bold flex items-center gap-3"><User className="text-primary" /> Contact Details</h3>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               <FormField control={form.control} name="name" render={({ field }) => (
-                                  <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="John Doe" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
+                                  <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="Your Name" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
                               )} />
                               <FormField control={form.control} name="email" render={({ field }) => (
-                                  <FormItem><FormLabel>Email Address</FormLabel><FormControl><Input placeholder="you@example.com" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
+                                  <FormItem><FormLabel>Email Address</FormLabel><FormControl><Input placeholder="email@company.com" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
                               )} />
                               <FormField control={form.control} name="mobile" render={({ field }) => (
-                                  <FormItem><FormLabel>Mobile Number</FormLabel><FormControl><Input placeholder="9876543210" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
+                                  <FormItem><FormLabel>Mobile Number</FormLabel><FormControl><Input placeholder="9123456789" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
                               )} />
                           </div>
                       </div>
 
                       <Separator />
                       
-                      {/* Section 2: Service */}
                       <div className="space-y-6">
-                          <h3 className="text-2xl font-bold flex items-center gap-3"><Server className="text-primary" /> Service Configuration</h3>
+                          <h3 className="text-2xl font-bold flex items-center gap-3"><Server className="text-primary" /> Service Setup</h3>
                           <FormField
                               control={form.control}
                               name="serviceType"
                               render={({ field }) => (
                                   <FormItem className="space-y-3">
-                                  <FormLabel>Select Infrastructure Type</FormLabel>
+                                  <FormLabel>Select Infrastructure</FormLabel>
                                   <FormControl>
-                                      <RadioGroup
-                                          onValueChange={field.onChange}
-                                          defaultValue={field.value}
-                                          className="grid grid-cols-2 md:grid-cols-3 gap-4"
-                                      >
+                                      <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                       {[
                                         { val: "vps", label: "VPS", icon: Server },
                                         { val: "cloud-x", label: "Shared Server", icon: Cloud },
@@ -226,9 +217,9 @@ export default function OrderPage() {
                                         { val: "dedicated-server", label: "Dedicated", icon: Database },
                                         { val: "colocation", label: "Colocation", icon: Building },
                                       ].map((item) => (
-                                        <FormItem key={item.val} className="flex items-center space-x-3 space-y-0 p-4 rounded-xl border-2 border-secondary hover:border-primary/30 transition-all cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                                        <FormItem key={item.val} className="flex items-center space-x-3 space-y-0 p-4 rounded-xl border-2 border-secondary hover:border-primary transition-all cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
                                             <FormControl><RadioGroupItem value={item.val} /></FormControl>
-                                            <FormLabel className="font-semibold flex items-center gap-2 cursor-pointer"><item.icon className="h-5 w-5 text-primary" />{item.label}</FormLabel>
+                                            <FormLabel className="font-bold flex items-center gap-2 cursor-pointer"><item.icon className="h-5 w-5 text-primary" />{item.label}</FormLabel>
                                         </FormItem>
                                       ))}
                                       </RadioGroup>
@@ -241,15 +232,12 @@ export default function OrderPage() {
                           <div className="mt-8">
                               {serviceType === 'vps' && (
                                   <FormField control={form.control} name="vpsPlan" render={({ field }) => (
-                                      <FormItem><FormLabel className="flex items-center gap-2"><Package size={16} />Select VPS Plan</FormLabel>
-                                      <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger className="h-14 rounded-xl"><SelectValue placeholder="Choose a VPS plan..." /></SelectTrigger></FormControl>
+                                      <FormItem><FormLabel className="flex items-center gap-2"><Package size={16} />Choose Plan</FormLabel>
+                                      <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger className="h-14 rounded-xl"><SelectValue placeholder="Select a VPS Tier" /></SelectTrigger></FormControl>
                                       <SelectContent className="rounded-xl">
                                         {vpsPlans.map(plan => (
                                           <SelectItem key={plan.name} value={plan.name}>
-                                            <div>
-                                              <p className="font-bold">{plan.name} ({plan.price}/mo)</p>
-                                              <p className="text-xs text-muted-foreground">{plan.description}</p>
-                                            </div>
+                                            <div className="font-bold">{plan.name} - {plan.price}</div>
                                           </SelectItem>
                                         ))}
                                       </SelectContent>
@@ -259,11 +247,11 @@ export default function OrderPage() {
                               {serviceType === 'cloud-x' && (
                                   <div className="space-y-8 p-6 rounded-2xl bg-secondary/30">
                                       <FormItem>
-                                        <FormLabel className="text-lg font-bold">Number of Concurrent User IDs: <span className="text-primary">{userCount}</span></FormLabel>
+                                        <FormLabel className="text-lg font-bold">Accounting User IDs: <span className="text-primary">{userCount}</span></FormLabel>
                                         <FormControl>
-                                          <Slider min={1} max={50} step={1} defaultValue={[userCount]} onValueChange={(value) => setUserCount(value[0])} className="py-4" />
+                                          <Slider min={1} max={50} step={1} defaultValue={[userCount]} onValueChange={(v) => setUserCount(v[0])} className="py-4" />
                                         </FormControl>
-                                        <FormDescription>Assign unique IDs to each member of your accounting team.</FormDescription>
+                                        <FormDescription>Define the number of concurrent cloud-x users.</FormDescription>
                                       </FormItem>
                                   </div>
                               )}
@@ -272,13 +260,12 @@ export default function OrderPage() {
 
                       <Separator />
 
-                      {/* Section 3: Billing & Legal */}
                       <div className="space-y-6">
-                          <h3 className="text-2xl font-bold flex items-center gap-3"><Home className="text-primary" /> Billing & Legal</h3>
+                          <h3 className="text-2xl font-bold flex items-center gap-3"><Home className="text-primary" /> Billing</h3>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                               <div className="md:col-span-2">
                                 <FormField control={form.control} name="address" render={({ field }) => (
-                                    <FormItem><FormLabel>Billing Address</FormLabel><FormControl><Textarea placeholder="Full address..." className="min-h-[100px] rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
+                                    <FormItem><FormLabel>Office Address</FormLabel><FormControl><Textarea placeholder="Full office address..." className="min-h-[100px] rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
                                 )} />
                               </div>
                               <FormField control={form.control} name="pincode" render={({ field }) => (
@@ -287,14 +274,13 @@ export default function OrderPage() {
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               <FormField control={form.control} name="gstNumber" render={({ field }) => (
-                                  <FormItem><FormLabel>GST Number (Optional)</FormLabel><FormControl><Input placeholder="29ABCDE1234F1Z5" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
+                                  <FormItem><FormLabel>GSTIN (Optional)</FormLabel><FormControl><Input placeholder="GST Number" className="h-12 rounded-xl" {...field} /></FormControl><FormMessage /></FormItem>
                               )} />
                               <FormItem>
-                                  <FormLabel className="flex items-center gap-2"><FileText size={16} /> GST Certificate (PDF, max 5MB)</FormLabel>
+                                  <FormLabel className="flex items-center gap-2"><FileText size={16} /> GST Proof (PDF)</FormLabel>
                                   <FormControl>
-                                      <Input id="gstCertificate" type="file" accept=".pdf" className="h-12 rounded-xl file:bg-primary file:text-white file:border-none file:rounded-full file:px-4 file:mr-4 file:cursor-pointer cursor-pointer" />
+                                      <Input id="gstCertificate" type="file" accept=".pdf" className="h-12 rounded-xl file:bg-primary file:text-white file:border-none file:rounded-full file:px-4 file:mr-4" />
                                   </FormControl>
-                                  <FormMessage />
                               </FormItem>
                           </div>
                       </div>
@@ -308,8 +294,8 @@ export default function OrderPage() {
                           <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-2xl border-2 p-6 bg-secondary/10">
                             <FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange} /></FormControl>
                             <div className="space-y-1 leading-none">
-                              <FormLabel className="text-sm">
-                                I agree to the <Link href="/terms" target="_blank" className="text-primary font-bold hover:underline">Terms of Service</Link>, <Link href="/privacy" target="_blank" className="text-primary font-bold hover:underline">Privacy Policy</Link>, and <Link href="/sla" target="_blank" className="text-primary font-bold hover:underline">99% Uptime SLA</Link>.
+                              <FormLabel className="text-sm font-bold">
+                                I verify all information is accurate and agree to the <Link href="/terms" className="text-primary underline">Terms</Link>.
                               </FormLabel>
                               <FormMessage />
                             </div>
@@ -318,7 +304,7 @@ export default function OrderPage() {
                       />
 
                       <Button type="submit" size="lg" className="w-full h-16 rounded-full text-xl shadow-2xl shadow-primary/30" disabled={isSubmitting}>
-                        {isSubmitting ? <><Loader2 className="mr-2 h-6 w-6 animate-spin" /> Processing Order...</> : <><Send className="mr-2 h-6 w-6" /> Place Order Now</>}
+                        {isSubmitting ? <><Loader2 className="mr-2 h-6 w-6 animate-spin" /> Provisioning...</> : <><Send className="mr-2 h-6 w-6" /> Deploy Infrastructure Now</>}
                       </Button>
                     </form>
                   </Form>
